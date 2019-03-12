@@ -14,7 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express" = "^4.16.4"
+    "express" : "^4.16.4"
   },
   "bugs": {
     "url": "https://github.com/gti-sos/SOS1819-09/issues"
