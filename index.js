@@ -110,7 +110,7 @@ app.put("/api/v1/climate-stats/:country/:year", (req,res)=>{
     var updatedClimates = req.body;
     var found = false;
 
-    var updatedClimates = climate_stats.map((c) =>{
+    updatedClimates = climate_stats.map((c) =>{
     
         if(c.country == country && c.year == year){
             found = true;
@@ -140,7 +140,7 @@ app.post("/api/v1/climate-stats/:country/:year",(req,res)=>{
 
 app.post("/api/v1/climate-stats/",(req,res)=>{
     res.sendStatus(405);
-})
+});
 
 // DELETE /api/v1/climate-stats/
 
@@ -153,11 +153,13 @@ app.delete("/api/v1/climate-stats/", (req,res)=>{
 
 
 app.listen(port, () => {
-    console.log('Magic is happening in port'+port)
+    console.log('Magic is happening in port'+port);
 });
 
 
 // _______________________ population_stats ____________________________________
+
+var totalpopulation=[{}];
 
 // /api/v1/populationstat/loadInitialData
 app.get("/api/v1/populationstat/loadInitialData",(req,res)=>{
