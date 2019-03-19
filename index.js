@@ -152,11 +152,6 @@ app.delete("/api/v1/climate-stats/", (req,res)=>{
 
 
 
-app.listen(port, () => {
-    console.log('Magic is happening in port'+port);
-});
-
-
 // _______________________ population_stats ____________________________________
 
 var totalpopulation=[{}];
