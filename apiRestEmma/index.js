@@ -116,7 +116,7 @@ app.delete("/api/v1/populationstat/:country/:year",(req,res)=>{
             if(t.country==country && t.year==year){
                 found=true;
             }
-            return (t.country != country && t.year != year);
+            return (t.country != country || t.year != year);
        
     });
     
