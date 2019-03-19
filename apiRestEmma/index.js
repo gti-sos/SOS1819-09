@@ -2,10 +2,18 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var app = express();
 
-
+var totalpopulation=[{}];
 var port = process.env.PORT || 8080;
+    
+app.use(bodyParser.json());
 
-var totalpopulation = [{
+app.listen(port, () => {
+    console.log("Super server ready on port" +port);
+});
+
+// /api/v1/populationstat/loadInitialData
+app.get("/api/v1/populationstat/loadInitialData",(req,res)=>{
+    var totalpopulationInitial = [{
     country:"Aruba",
     year:"1990",
     totalpopulation:"62149",
@@ -27,33 +35,35 @@ var totalpopulation = [{
     accesstoelectricity:"93.36"
 },
     ];
-    
-app.use(bodyParser.json());
-
-app.listen(port, () => {
-    console.log("Super server ready on port" +port);
-});
-
-//GET /totalpopulation/
-app.get("/totalpopulation",(req,res)=>{
+    totalpopulation = totalpopulationInitial;
     res.send(totalpopulation);
 });
 
-//POST /totalpopulation/
-app.post("/totalpopulation",(req,res)=>{
+//GET /populationstat/
+app.get("/api/v1/populationstat",(req,res)=>{
+    res.send(totalpopulation);
+});
+
+//POST /populationstat/
+app.post("/api/v1/populationstat",(req,res)=>{
     var newtotpop = req.body;
     totalpopulation.push(newtotpop);
     res.sendStatus(201);
 });
 
-//DELETE /totalpopulation/
-app.delete("/totalpopulation",(req,res)=>{
+//PUT /populationstat/
+app.put("/api/v1/populationstat",(req,res)=>{
+    res.sendStatus(405);
+});
+
+//DELETE /populationstat/
+app.delete("/api/v1/populationstat",(req,res)=>{
     totalpopulation = [];
     res.sendStatus(200);
 });
 
-//GET /totalpopulation/country/year
-app.get("/totalpopulation/:country/:year",(req,res)=>{
+//GET /populationstat/country/year
+app.get("/api/v1/populationstat/:country/:year",(req,res)=>{
     var country = req.params.country;
     var year = req.params.year;
     var filteredtotpop = totalpopulation.filter((t)=>{
@@ -67,8 +77,13 @@ app.get("/totalpopulation/:country/:year",(req,res)=>{
     }
 });
 
-//PUT /totalpopulation/country/year
-app.put("/totalpopulation/:country/:year",(req,res)=>{
+//POST /populationstat/country/year
+app.post("/api/v1/populationstat/:country/:year",(req,res)=>{
+    res.sendStatus(405);
+});
+
+//PUT /populationstat/country/year
+app.put("/api/v1/populationstat/:country/:year",(req,res)=>{
     var country = req.params.country;
     var year = req.params.year;
     var updatedpop = req.body;
@@ -91,8 +106,8 @@ app.put("/totalpopulation/:country/:year",(req,res)=>{
     }
 });
 
-//DELETE /totalpopulation/country/year
-app.delete("/totalpopulation/:country/:year",(req,res)=>{
+//DELETE /populationstat/country/year
+app.delete("/api/v1/populationstat/:country/:year",(req,res)=>{
     var country = req.params.country;
     var year = req.params.year;
     var found = false;
