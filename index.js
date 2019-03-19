@@ -277,3 +277,150 @@ app.delete("/api/v1/populationstat/:country/:year",(req,res)=>{
         res.sendStatus(200);
     }
 });
+
+// ___________________________economy_stats_____________________________________
+
+// GET /api/v1/economy-stats/loadInitialData
+var economy_stats = [{}];
+
+app.get("/api/v1/economy-stats/loadInitialData",(req,res)=>{
+    
+    var economy_stats_initial = [{
+        country : "Netherlands",
+        year : "1970",
+        gdp_growth_stats : "34.14211806",
+        industry_gdp_stats : "3.457969859",
+        gross_sav_gdp_stats : "31.1994775"
+    },{
+        country : "South Africa",
+        year : "1970",
+        gdp_growth_stats : "5.248674135",
+        industry_gdp_stats : "36.14320462",
+        gross_sav_gdp_stats : "25.72970582"
+    },{
+        country : "Netherlands",
+        year : "2012",
+        gdp_growth_stats : "-1.057037404",
+        industry_gdp_stats : "20.03862584",
+        gross_sav_gdp_stats : "29.44247574"
+    }];
+    
+    economy_stats = economy_stats_initial;
+    
+   res.send(economy_stats);
+});
+
+// GET /api/v1/economy-stats/
+
+app.get("/api/v1/economy-stats/",(req,res)=>{
+   res.send(economy_stats);
+});
+
+// POST /api/v1/economy-stats/
+
+app.post("/api/v1/economy-stats/",(req,res)=>{
+   var newEconomy = req.body;
+   
+   economy_stats.push(newEconomy);
+   
+   res.sendStatus(201);
+});
+
+// GET /api/v1/economy-stats/:country/:year
+
+app.get("/api/v1/economy-stats/:country/:year", (req,res)=>{
+
+    var country = req.params.country;
+    var year = req.params.year;
+
+    var filteredEconomies = economy_stats.filter((c) =>{
+       return c.country == country; 
+    }).filter((c) =>{
+        return c.year == year;
+    });
+    
+    if (filteredEconomies.length >= 1){
+        res.send(filteredEconomies[0]);
+    }else{
+        res.sendStatus(404);
+    }
+
+});
+
+// DELETE /api/v1/economy-stats/:country/:year
+
+app.delete("/api/v1/economy-stats/:country/:year",(req,res)=>{
+    var country = req.params.country;
+    var year = req.params.year;
+    var found = false;
+    
+    var updatedEconomies = economy_stats.filter((c)=>{
+            if(c.country==country && c.year==year){
+                found=true;
+            }
+            return (c.country != country || c.year != year);
+       
+    });
+    
+    if(found==false){
+        res.sendStatus(404);
+    }else {
+        economy_stats=updatedEconomies;
+        res.sendStatus(200);
+    }
+});
+
+// PUT /api/v1/economy-stats/:country/:year
+
+app.put("/api/v1/economy-stats/:country/:year", (req,res)=>{
+
+    var country = req.params.country;
+    var year = req.params.year;
+    var updatedEconomies = req.body;
+    var found = false;
+
+    updatedEconomies = economy_stats.map((c) =>{
+    
+        if(c.country == country && c.year == year){
+            found = true;
+            return updatedEconomies;
+        }else{
+            return c;            
+        }
+  
+    });
+    
+    if (found == false){
+        res.sendStatus(404);
+    }else{
+        economy_stats = updatedEconomies;
+        res.sendStatus(200);
+    }
+
+});
+
+// POST /api/v1/economy-stats/:country/:year error
+
+app.post("/api/v1/economy-stats/:country/:year",(req,res)=>{
+    res.sendStatus(405);
+});
+
+// PUT /api/v1/economy-stats/ error
+
+app.post("/api/v1/economy-stats/",(req,res)=>{
+    res.sendStatus(405);
+});
+
+// DELETE /api/v1/economy-stats/
+
+app.delete("/api/v1/economy-stats/", (req,res)=>{
+    economy_stats = [];
+    
+    res.sendStatus(200);
+});
+
+
+
+app.listen(port, () => {
+    console.log('Magic is happening in port'+port);
+});
