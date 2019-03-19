@@ -1,0 +1,15 @@
+{
+  "name": "apirestemma",
+  "version": "0.0.1",
+  "description": "this is the API Rest for feedback 03",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "https://github.com/ebonhomme01",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4"
+  }
+}
