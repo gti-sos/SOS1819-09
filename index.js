@@ -138,7 +138,7 @@ app.post("/api/v1/climate-stats/:country/:year",(req,res)=>{
 
 // PUT /api/v1/climate-stats/ error
 
-app.post("/api/v1/climate-stats/",(req,res)=>{
+app.put("/api/v1/climate-stats/",(req,res)=>{
     res.sendStatus(405);
 });
 
