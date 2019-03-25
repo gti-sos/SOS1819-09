@@ -238,9 +238,9 @@ app.delete("/api/v1/climate-stats/", (req,res)=>{
     res.sendStatus(205);
 });
 
-// GET /api/v1/climate-stats/docs
+// GET /api/v1/climate-stats/docs/
 
-app.get("/api/v1/climate-stats/docs",(req,res)=>{
+app.get("/api/v1/climate-stats/docs/",(req,res)=>{
     
    res.redirect('https://documenter.getpostman.com/view/6904229/S17tPT8R');
 });
