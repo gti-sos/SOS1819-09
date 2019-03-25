@@ -26,6 +26,12 @@ client.connect(err => {
 });
 
 
+// GET /api/v1/climate-stats/docs/
+
+app.get("/api/v1/climate-stats/docs/", (req,res)=>{
+    res.redirect('https://documenter.getpostman.com/view/6904229/S17tPT8R');
+});
+
 // GET /api/v1/climate-stats/loadInitialData 2 recursos
 
 app.get("/api/v1/climate-stats/loadInitialData",(req,res)=>{
@@ -236,13 +242,6 @@ app.delete("/api/v1/climate-stats/", (req,res)=>{
     climate_stats.deleteMany({});
 
     res.sendStatus(205);
-});
-
-// GET /api/v1/climate-stats/docs/
-
-app.get("/api/v1/climate-stats/docs/",(req,res)=>{
-    
-   res.redirect('https://documenter.getpostman.com/view/6904229/S17tPT8R');
 });
 
 // _______________________ population_stats ____________________________________
