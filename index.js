@@ -62,14 +62,30 @@ app.get("/api/v1/climate-stats/loadInitialData",(req,res)=>{
         nitrous_oxide_stats : 3423.68712
     }];
     
-    climate_stats.insert(climate_stats_initial);
     
-    climate_stats.find({}).toArray((err, climateArray)=>{
+    // Verification of the no-emptyness of the base
+     climate_stats.find({}).toArray((err, climateArray)=>{
         if(err)
-            console.log("Error: "+err);
+            console.log(err);
         
-        res.send(climateArray);
-    });
+        
+        if (climateArray==0){ // if empty, create the data
+            
+            climate_stats.insert(climate_stats_initial);
+    
+            climate_stats.find({}).toArray((err, climateArray)=>{
+                if(err)
+                    console.log("Error: "+err);
+                
+                res.send(climateArray);
+            });
+            
+        }else{ // if not empty, send an error
+            
+            res.sendStatus(409);
+    
+        }
+    })
 });
 
 // GET /api/v1/climate-stats/
@@ -89,9 +105,41 @@ app.get("/api/v1/climate-stats/",(req,res)=>{
 app.post("/api/v1/climate-stats/",(req,res)=>{
     var newClimate = req.body;
     
-    climate_stats.insert(newClimate);
+     climate_stats.find(newClimate).toArray((err, climateArray)=>{
+        if(err)
+            console.log(err);
+        
+        
+        if (climateArray==0){ // if empty, create the data
+            
+            climate_stats.insert(newClimate);
+            res.sendStatus(201);
+            
+        }else{ // if not empty, send an error
+            
+            res.sendStatus(409);
     
-    res.sendStatus(201);
+        }
+    });
+    
+});
+
+// GET /api/v1/climate-stats/:country
+
+app.get("/api/v1/climate-stats/:country", (req,res)=>{
+
+    var country = req.params.country;
+
+    climate_stats.find({"country":country}).toArray((err, climateArray)=>{
+        if(err)
+            console.log(err);
+        
+        if (climateArray==0){
+            res.sendStatus(404);
+        }else{
+            res.send(climateArray);
+        }
+    })
 });
 
 // GET /api/v1/climate-stats/:country/:year
@@ -173,7 +221,7 @@ app.put("/api/v1/climate-stats/:country/:year", (req,res)=>{
 // POST /api/v1/climate-stats/:country/:year error
 
 app.post("/api/v1/climate-stats/:country/:year",(req,res)=>{
-    res.sendStatus(409);
+    res.sendStatus(405);
 });
 
 // PUT /api/v1/climate-stats/ error
