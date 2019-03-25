@@ -48,6 +48,18 @@ app.get("/api/v1/climate-stats/loadInitialData",(req,res)=>{
         methane_stats : 37208.10558,
         co2_stats : 5.660938803,
         nitrous_oxide_stats : 20873.14001
+    },{
+        country : "France",
+        year : "2012",
+        methane_stats : 81178.5035,
+        co2_stats : 5.075063887,
+        nitrous_oxide_stats : 36865.68363
+    },{
+        country : "Afghanistan",
+        year : "2012",
+        methane_stats : 13763.166,
+        co2_stats : 0.3503705807,
+        nitrous_oxide_stats : 3423.68712
     }];
     
     climate_stats.insert(climate_stats_initial);
