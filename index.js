@@ -18,24 +18,6 @@ app.get("/api/v1/climate-stats/loadInitialData",(req,res)=>{
     
     var climate_stats_initial = [{
         country : "Spain",
-<<<<<<< HEAD
-        year : "1970",
-        methane_stats : "26508.8",
-        co2_stats : "3.457969859",
-        nitrous_oxide_stats : "18686.862"
-    },{
-        country : "France",
-        year : "1970",
-        methane_stats : "82882.3",
-        co2_stats : "8.436868233",
-        nitrous_oxide_stats : "64736.37"
-    },{
-        country : "Spain",
-        year : "2012",
-        methane_stats : "37208.10558",
-        co2_stats : "5.660938803",
-        nitrous_oxide_stats : "20873.14001"
-=======
         year : 1970,
         methane_stats : 26508.8,
         co2_stats : 3.457969859,
@@ -64,7 +46,6 @@ app.get("/api/v1/climate-stats/loadInitialData",(req,res)=>{
         methane_stats : 13763.166,
         co2_stats : 0.3503705807,
         nitrous_oxide_stats : 3423.68712
->>>>>>> 59f764533183bfbc22d7f88529eda1120c94ff73
     }];
     
     climate_stats = climate_stats_initial;
@@ -74,10 +55,6 @@ app.get("/api/v1/climate-stats/loadInitialData",(req,res)=>{
 
 // GET /api/v1/climate-stats/
 
-<<<<<<< HEAD
-app.get("/api/v1/climate-stats/",(req,res)=>{
-   res.send(climate_stats);
-=======
 app.get("/api/v1/climate-stats",(req,res)=>{
     
     var year = req.query.year;
@@ -146,21 +123,11 @@ app.get("/api/v1/climate-stats",(req,res)=>{
         });
         
     }
->>>>>>> 59f764533183bfbc22d7f88529eda1120c94ff73
 });
 
 // POST /api/v1/climate-stats/
 
 app.post("/api/v1/climate-stats/",(req,res)=>{
-<<<<<<< HEAD
-   var newClimate = req.body;
-   
-   climate_stats.push(newClimate);
-   
-   res.sendStatus(201);
-});
-
-=======
     var newClimate = req.body;
     
      climate_stats.find({"country":newClimate.country, "year":newClimate.year}).toArray((err, climateArray)=>{
@@ -214,7 +181,6 @@ app.get("/api/v1/climate-stats/:country", (req,res)=>{
     });
 });
 
->>>>>>> 59f764533183bfbc22d7f88529eda1120c94ff73
 // GET /api/v1/climate-stats/:country/:year
 
 app.get("/api/v1/climate-stats/:country/:year", (req,res)=>{
@@ -222,12 +188,6 @@ app.get("/api/v1/climate-stats/:country/:year", (req,res)=>{
     var country = req.params.country;
     var year = req.params.year;
 
-<<<<<<< HEAD
-    var filteredClimates = climate_stats.filter((c) =>{
-       return c.country == country; 
-    }).filter((c) =>{
-        return c.year == year;
-=======
     climate_stats.find({"country":country,"year":parseInt(year,10)}).toArray((err, climateArray)=>{
         if(err)
             console.log(err);
@@ -237,7 +197,6 @@ app.get("/api/v1/climate-stats/:country/:year", (req,res)=>{
         }else{
             res.send(climateArray);
         }
->>>>>>> 59f764533183bfbc22d7f88529eda1120c94ff73
     });
     
     if (filteredClimates.length >= 1){
@@ -254,15 +213,7 @@ app.delete("/api/v1/climate-stats/:country/:year",(req,res)=>{
     var country = req.params.country;
     var year = req.params.year;
     var found = false;
-    
-<<<<<<< HEAD
-    var updatedClimates = climate_stats.filter((c)=>{
-            if(c.country==country && c.year==year){
-                found=true;
-            }
-            return (c.country != country || c.year != year);
-       
-=======
+
     climate_stats.find({"country":country,"year":parseInt(year,10)}).toArray((err, climateArray)=>{
         if(err)
             console.log(err);
@@ -278,7 +229,6 @@ app.delete("/api/v1/climate-stats/:country/:year",(req,res)=>{
             res.sendStatus(205);
     
         }
->>>>>>> 59f764533183bfbc22d7f88529eda1120c94ff73
     });
     
     if(found==false){
@@ -295,18 +245,6 @@ app.put("/api/v1/climate-stats/:country/:year", (req,res)=>{
 
     var country = req.params.country;
     var year = req.params.year;
-<<<<<<< HEAD
-    var updatedClimates = req.body;
-    var found = false;
-
-    updatedClimates = climate_stats.map((c) =>{
-    
-        if(c.country == country && c.year == year){
-            found = true;
-            return updatedClimates;
-        }else{
-            return c;            
-=======
     var updatedClimate = req.body;
 
     climate_stats.find({"country":country,"year":parseInt(year,10)}).toArray((err, climateArray)=>{
@@ -344,7 +282,6 @@ app.put("/api/v1/climate-stats/:country/:year", (req,res)=>{
                     
                 }
             });
->>>>>>> 59f764533183bfbc22d7f88529eda1120c94ff73
         }
   
     });
@@ -373,11 +310,7 @@ app.put("/api/v1/climate-stats/",(req,res)=>{
 // DELETE /api/v1/climate-stats/
 
 app.delete("/api/v1/climate-stats/", (req,res)=>{
-<<<<<<< HEAD
-    climate_stats = [];
-    
-    res.sendStatus(200);
-=======
+
     climate_stats.deleteMany({});
 
     res.sendStatus(205);
@@ -763,130 +696,241 @@ app.put("/api/v1/secure/climate-stats/",(req,res)=>{
     }else{
         res.sendStatus(401);
     }
->>>>>>> 59f764533183bfbc22d7f88529eda1120c94ff73
 });
 
 
 
 // _______________________ populationstats ____________________________________
 
-var totalpopulation=[{}];
+//var express = require("express");
+//const port = process.env.PORT || 8080;
+//var app = express();
+//var queryParser = require('express-query-int');
+//var bodyParser = require("body-parser");
+//app.use(bodyParser.json());
+//app.use(queryParser());
 
-// /api/v1/populationstat/loadInitialData
+var MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://user:user@sos-1gum3.mongodb.net/test?retryWrites=true";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+
+var popstats;
+
+client.connect(err => {
+  popstats = client.db("sos181909").collection("populationstats");
+  // perform actions on the collection object
+  console.log("connected");
+});
+
+
+app.use(bodyParser.json());
+
+// loadInitialData /populationstats/loadInitialData
 app.get("/api/v1/populationstats/loadInitialData",(req,res)=>{
     var totalpopulationInitial = [{
     country:"Aruba",
-    year:"1990",
+    year:1990,
     totalpopulation:"62149",
     urbanpopulation:"31273",
     accesstoelectricity:"88.44"
 },
     {
     country:"Afghanistan",
-    year:"1990",
+    year:1990,
     totalpopulation:"12249114",
     urbanpopulation:"2593995",
     accesstoelectricity:"0.01"
 },
     {
     country:"Aruba",
-    year:"2010",
+    year:2010,
     totalpopulation:"101669",
     urbanpopulation:"43778",
     accesstoelectricity:"93.36"
 },
+{
+    country:"Angola",
+    year:1990,
+    totalpopulation:"12171441",
+    urbanpopulation:"4225990",
+    accesstoelectricity:"11.4"
+},
+{
+    country:"Andora",
+    year:1990,
+    totalpopulation:"52448",
+    urbanpopulation:"51627",
+    accesstoelectricity:"93.36"
+},
     ];
-    totalpopulation = totalpopulationInitial;
-    res.send(totalpopulation);
+    popstats.count(function(err, count) {
+    
+    if( count == 0) {
+        popstats.insertMany(totalpopulationInitial);
+        res.sendStatus(200);
+    }
+    else {
+        res.sendStatus(409);
+    }
+});
 });
 
-//GET /populationstat/
-app.get("/api/v1/populationstats",(req,res)=>{
-    res.send(totalpopulation);
+// GET /populationstats/
+app.get("/api/v1/populationstats", (req,res)=>{
+    if(Object.keys(req.query).length === 0){
+       popstats.find({}).toArray((err,popstatsArray)=>{
+        
+        if(err)
+            console.log("Error: "+err);
+        
+        res.send(popstatsArray);
+    }); 
+    } else if (req.query.from != undefined && req.query.to != undefined){
+        var from = req.query.from;
+        var to = req.query.to;
+        popstats.find({year: {$gte: parseInt(from), $lte: parseInt(to) }}).toArray((err,popstatsArray)=>{
+            if(err)
+                console.log("Error: "+err);
+            
+            res.send(popstatsArray);        
+        });
+    }else if(req.query.year != "undefined"){
+        var year = req.query.year;
+        popstats.find({year: parseInt(year)}).toArray((err,popstatsArray)=>{
+            
+            if(err)
+                console.log("Error: "+err);
+            
+            res.send(popstatsArray);        
+        });
+    
+    } else res.sendStatus(400);
 });
 
-//POST /populationstat/
-app.post("/api/v1/populationstats",(req,res)=>{
-    var newtotpop = req.body;
-    totalpopulation.push(newtotpop);
-    res.sendStatus(201);
+
+// POST /populationstats/
+app.post("/api/v1/populationstats", (req,res)=>{
+    
+    var newPopstat = req.body;
+    var country = req.body.country;
+    var year = req.body.year;
+    if(country==undefined || year==undefined){
+    res.sendStatus(400);
+    } else {
+        popstats.find({country: country, year: year}).toArray((err,popstatsArray)=>{
+            if(err)
+                console.log("Error: "+err);
+            if(popstatsArray != 0)
+                res.sendStatus(409);
+            else {res.insert(newPopstat);
+                res.sendStatus(201);
+            }
+        });
+    }
 });
 
-//PUT /populationstat/
-app.put("/api/v1/populationstats",(req,res)=>{
-    res.sendStatus(405);
-});
 
-//DELETE /populationstat/
-app.delete("/api/v1/populationstats",(req,res)=>{
-    totalpopulation = [];
+// DELETE /populationstats/
+app.delete("/api/v1/populationstats", (req,res)=>{
+    
+    popstats.deleteMany();
+    
     res.sendStatus(200);
 });
 
-//GET /populationstat/country/year
-app.get("/api/v1/populationstats/:country/:year",(req,res)=>{
-    var country = req.params.country;
-    var year = req.params.year;
-    var filteredtotpop = totalpopulation.filter((t)=>{
-        return (t.country==country && t.year==year);
-    });
-    
-    if(filteredtotpop.length>=1){
-        res.send(filteredtotpop[0]);
-    }else {
-        res.sendStatus(404);
-    }
-});
 
-//POST /populationstat/country/year
-app.post("/api/v1/populationstats/:country/:year",(req,res)=>{
+//PUT /populationstats/
+app.put("/api/v1/populationstats", (req,res)=>{
+   
     res.sendStatus(405);
 });
 
-//PUT /populationstat/country/year
-app.put("/api/v1/populationstats/:country/:year",(req,res)=>{
+// GET /populationstats/country/
+app.get("/api/v1/populationstats/:country/", (req,res)=>{
     var country = req.params.country;
-    var year = req.params.year;
-    var updatedpop = req.body;
-    var found = false;
-    
-    var updatedpops = totalpopulation.map((t)=>{
-        if(t.country==country && t.year==year){
-            found=true;
-            return updatedpop;
-        }else {
-            return t;
-        }
-    });
-    
-    if(found==false){
-        res.sendStatus(404);
-    }else {
-        totalpopulation=updatedpops;
-        res.sendStatus(200);
-    }
+    if (req.query.from != undefined && req.query.to != undefined){
+        var from = req.query.from;
+        var to = req.query.to;
+        popstats.find({country: country, year: {$gte: from, $lte: to }}).toArray((err,popstatsArray)=>{
+            if(err)
+                console.log("Error: "+err);
+            if(popstatsArray != 0)
+                res.send(popstatsArray);
+            else res.sendStatus(404);
+        });
+    }else
+        popstats.find({country: country}).toArray((err,popstatsArray)=>{
+            if(err)
+                console.log("Error: "+err);
+            if(popstatsArray != 0)
+                res.send(popstatsArray);
+            else res.sendStatus(404);
+        });
 });
 
-//DELETE /populationstat/country/year
-app.delete("/api/v1/populationstats/:country/:year",(req,res)=>{
+// GET /populationstats/country/year
+app.get("/api/v1/populationstats/:country/:year", (req,res)=>{
     var country = req.params.country;
     var year = req.params.year;
-    var found = false;
-    
-    var updatedpops = totalpopulation.filter((t)=>{
-            if(t.country==country && t.year==year){
-                found=true;
+    console.log(year);
+    //var findResult=popstats.find({country: country, year: parseInt(year)});
+    //if (findResult.totalSize != undefined){
+        popstats.find({country: country,
+        year: parseInt(year)}).toArray((err,popstatsArray)=>{
+            if(err)
+                console.log("Error: "+err);
+            if(popstatsArray != 0)
+            res.send(popstatsArray);
+            else {
+                res.sendStatus(404);
             }
-            return (t.country != country || t.year != year);
-       
-    });
-    
-    if(found==false){
+        });
+    /*}else
         res.sendStatus(404);
-    }else {
-        totalpopulation=updatedpops;
+        console.log(findResult.totalSize);*/
+});
+
+
+
+// PUT /populationstats/:country/:year
+app.put("/api/v1/populationstats/:country/:year", (req,res)=>{
+    var country = req.params.country;
+    var year = req.params.year;
+    var toUpdate = popstats.find({country: country,
+                    year: year});
+    if (toUpdate.totalSize==undefined){
+    res.sendStatus(400);
+    }else if(req.body.country==country){
+        popstats.update({country: country, year: year},req.body);
         res.sendStatus(200);
+    }else
+        res.sendStatus(400);
+});
+
+// POST /populationstats/:country/:year
+app.post("/api/v1/populationstats/:country/:year", (req,res)=>{
+    res.sendStatus(405);
+});
+
+
+// DELETE /populationstats/:country/:year
+app.delete("/api/v1/populationstats/:country/:year", (req,res)=>{
+    var country = req.params.country;
+    var year = req.params.year;
+    var toDelete = popstats.find({country: country,
+                    year: year});
+    if (toDelete.totalSize==undefined){
+    res.sendStatus(404);
+    }else {
+        popstats.deleteMany({country: country, year: year});
+        res.sendStatus(200);
+        console.log(toDelete.totalSize);
     }
+
+});
+
+app.listen(port,()=>{
+    console.log("server ready!");
 });
 
 // ___________________________economy_stats_____________________________________
