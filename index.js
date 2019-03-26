@@ -437,7 +437,7 @@ app.get("/api/v1/secure/climate-stats",(req,res)=>{
         
             }else if(!country){
                 
-                climate_stats_secure.find({"year":year}).toArray((err, climateArray)=>{
+                climate_stats_secure.find({"year":parseInt(year,10)}).toArray((err, climateArray)=>{
                     if(err)
                         console.log("Error: "+err);
                     
@@ -446,7 +446,7 @@ app.get("/api/v1/secure/climate-stats",(req,res)=>{
         
             }else{
                 
-               climate_stats_secure.find({"country":country, "year":year}).toArray((err, climateArray)=>{
+               climate_stats_secure.find({"country":country, "year":parseInt(year,10)}).toArray((err, climateArray)=>{
                     if(err)
                         console.log("Error: "+err);
                     
@@ -575,7 +575,7 @@ app.get("/api/v1/secure/climate-stats/:country/:year", (req,res)=>{
     
     if(apikey == "123456"){
         
-            climate_stats_secure.find({"country":country,"year":year}).toArray((err, climateArray)=>{
+            climate_stats_secure.find({"country":country,"year":parseInt(year,10)}).toArray((err, climateArray)=>{
             if(err)
                 console.log(err);
             
@@ -600,7 +600,7 @@ app.delete("/api/v1/secure/climate-stats/:country/:year",(req,res)=>{
     
     if(apikey == "123456"){
         
-        climate_stats_secure.find({"country":country,"year":year}).toArray((err, climateArray)=>{
+        climate_stats_secure.find({"country":country,"year":parseInt(year,10)}).toArray((err, climateArray)=>{
             if(err)
                 console.log(err);
             
@@ -611,7 +611,7 @@ app.delete("/api/v1/secure/climate-stats/:country/:year",(req,res)=>{
                 
             }else{
                 
-                climate_stats_secure.deleteOne({"country":country,"year":year});
+                climate_stats_secure.deleteOne({"country":country,"year":parseInt(year,10)});
                 res.sendStatus(205);
         
             }
