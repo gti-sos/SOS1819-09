@@ -13,15 +13,15 @@ app.use(bodyParser.json());
 
 // MongoDb
 
-const MongoClient = require("mongodb").MongoClient;
-const uri = "mongodb+srv://Gauthier:gauthier@climate-stats-2wtji.mongodb.net/sos?retryWrites=true";
-const client = new MongoClient(uri, { useNewUrlParser: true });
+const MongoClientGauthier = require("mongodb").MongoClient;
+const uriGauthier = "mongodb+srv://Gauthier:gauthier@climate-stats-2wtji.mongodb.net/sos?retryWrites=true";
+const client = new MongoClientGauthier(uriGauthier, { useNewUrlParser: true });
 
 var climate_stats;
 
 client.connect(err => {
   climate_stats = client.db("sos1819-09").collection("climate-stats");
-  console.log("Connected");
+  console.log("Connected to climate_stats");
 });
 
 // GET /api/v1/climate-stats/docs/
@@ -338,7 +338,7 @@ var climate_stats_secure;
 
 client.connect(err => {
   climate_stats_secure = client.db("sos1819-09-secure").collection("climate-stats");
-  console.log("Connection secured");
+  console.log("Connection secured to climate-stats");
 });
 
 // GET /api/v1/climate-stats/docs/
@@ -728,16 +728,7 @@ app.delete("/api/v1/secure/climate-stats/", (req,res)=>{
     }
 });
 
-
 // _______________________ populationstats ____________________________________
-
-//var express = require("express");
-//const port = process.env.PORT || 8080;
-//var app = express();
-//var queryParser = require('express-query-int');
-//var bodyParser = require("body-parser");
-//app.use(bodyParser.json());
-//app.use(queryParser());
 
 var MongoClientEmma = require('mongodb').MongoClient;
 const uriEmma = "mongodb+srv://user:user@sos-1gum3.mongodb.net/test?retryWrites=true";
@@ -748,7 +739,7 @@ var popstats;
 clientEmma.connect(err => {
   popstats = client.db("sos181909").collection("populationstats");
   // perform actions on the collection object
-  console.log("connected");
+  console.log("connected to populationstats");
 });
 
 
@@ -958,10 +949,6 @@ app.delete("/api/v1/populationstats/:country/:year", (req,res)=>{
 
 });
 
-app.listen(port,()=>{
-    console.log("server ready!");
-});
-
 // ___________________________economy_stats_____________________________________
 
 // GET /api/v1/economy-stats/loadInitialData
@@ -1050,7 +1037,7 @@ app.delete("/api/v1/economy-stats/:country/:year",(req,res)=>{
         res.sendStatus(404);
     }else {
         economy_stats=updatedEconomies;
-        res.sendStatus(200);
+        res.sendStatus(204);
     }
 });
 
@@ -1100,10 +1087,11 @@ app.post("/api/v1/economy-stats/",(req,res)=>{
 app.delete("/api/v1/economy-stats/", (req,res)=>{
     economy_stats = [];
     
-    res.sendStatus(200);
+    res.sendStatus(204);
 });
 
 
+//_____________________________Listen port______________________________________
 
 app.listen(port, () => {
     console.log('Magic is happening in port'+port);
