@@ -67,7 +67,6 @@ app.get("/api/v1/climate-stats/loadInitialData",(req,res)=>{
     }];
     
     
-    // Verification of the no-emptyness of the base
      climate_stats.find({}).toArray((err, climateArray)=>{
         if(err)
             console.log(err);
