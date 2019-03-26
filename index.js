@@ -11,8 +11,26 @@ app.use(bodyParser.json());
 
 // ___________________________________ climate_stats ___________________________
 
-// GET /api/v1/climate-stats/loadInitialData 2 recursos
-var climate_stats = [{}];
+// MongoDb
+
+const MongoClient = require("mongodb").MongoClient;
+const uri = "mongodb+srv://Gauthier:gauthier@climate-stats-2wtji.mongodb.net/sos?retryWrites=true";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+
+var climate_stats;
+
+client.connect(err => {
+  climate_stats = client.db("sos1819-09").collection("climate-stats");
+  console.log("Connected");
+});
+
+// GET /api/v1/climate-stats/docs/
+
+app.get("/api/v1/climate-stats/docs/", (req,res)=>{
+    res.redirect('https://documenter.getpostman.com/view/6904229/S17tPT8R');
+});
+
+// GET /api/v1/climate-stats/loadInitialData
 
 app.get("/api/v1/climate-stats/loadInitialData",(req,res)=>{
     
@@ -48,12 +66,33 @@ app.get("/api/v1/climate-stats/loadInitialData",(req,res)=>{
         nitrous_oxide_stats : 3423.68712
     }];
     
-    climate_stats = climate_stats_initial;
     
-   res.send(climate_stats);
+    // Verification of the no-emptyness of the base
+     climate_stats.find({}).toArray((err, climateArray)=>{
+        if(err)
+            console.log(err);
+        
+        
+        if (climateArray==0){ // if empty, create the data
+            
+            climate_stats.insert(climate_stats_initial);
+    
+            climate_stats.find({}).toArray((err, climateArray)=>{
+                if(err)
+                    console.log("Error: "+err);
+                
+                res.send(climateArray);
+            });
+            
+        }else{ // if not empty, send an error
+            
+            res.sendStatus(409);
+    
+        }
+    });
 });
 
-// GET /api/v1/climate-stats/
+// GET /api/v1/climate-stats
 
 app.get("/api/v1/climate-stats",(req,res)=>{
     
@@ -198,13 +237,6 @@ app.get("/api/v1/climate-stats/:country/:year", (req,res)=>{
             res.send(climateArray);
         }
     });
-    
-    if (filteredClimates.length >= 1){
-        res.send(filteredClimates[0]);
-    }else{
-        res.sendStatus(404);
-    }
-
 });
 
 // DELETE /api/v1/climate-stats/:country/:year
@@ -212,8 +244,7 @@ app.get("/api/v1/climate-stats/:country/:year", (req,res)=>{
 app.delete("/api/v1/climate-stats/:country/:year",(req,res)=>{
     var country = req.params.country;
     var year = req.params.year;
-    var found = false;
-
+    
     climate_stats.find({"country":country,"year":parseInt(year,10)}).toArray((err, climateArray)=>{
         if(err)
             console.log(err);
@@ -230,13 +261,6 @@ app.delete("/api/v1/climate-stats/:country/:year",(req,res)=>{
     
         }
     });
-    
-    if(found==false){
-        res.sendStatus(404);
-    }else {
-        climate_stats=updatedClimates;
-        res.sendStatus(200);
-    }
 });
 
 // PUT /api/v1/climate-stats/:country/:year
@@ -283,16 +307,7 @@ app.put("/api/v1/climate-stats/:country/:year", (req,res)=>{
                 }
             });
         }
-  
     });
-    
-    if (found == false){
-        res.sendStatus(404);
-    }else{
-        climate_stats = updatedClimates;
-        res.sendStatus(200);
-    }
-
 });
 
 // POST /api/v1/climate-stats/:country/:year error
@@ -310,7 +325,6 @@ app.put("/api/v1/climate-stats/",(req,res)=>{
 // DELETE /api/v1/climate-stats/
 
 app.delete("/api/v1/climate-stats/", (req,res)=>{
-
     climate_stats.deleteMany({});
 
     res.sendStatus(205);
@@ -698,6 +712,21 @@ app.put("/api/v1/secure/climate-stats/",(req,res)=>{
     }
 });
 
+// DELETE /api/v1/secure/climate-stats/
+
+app.delete("/api/v1/secure/climate-stats/", (req,res)=>{
+    var apikey = req.query.apikey;
+    
+    if(apikey == "123456"){
+        
+        climate_stats_secure.deleteMany({});
+
+        res.sendStatus(205);
+        
+    }else{
+        res.sendStatus(401);
+    }
+});
 
 
 // _______________________ populationstats ____________________________________
@@ -710,13 +739,13 @@ app.put("/api/v1/secure/climate-stats/",(req,res)=>{
 //app.use(bodyParser.json());
 //app.use(queryParser());
 
-var MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://user:user@sos-1gum3.mongodb.net/test?retryWrites=true";
-const client = new MongoClient(uri, { useNewUrlParser: true });
+var MongoClientEmma = require('mongodb').MongoClient;
+const uriEmma = "mongodb+srv://user:user@sos-1gum3.mongodb.net/test?retryWrites=true";
+const clientEmma = new MongoClientEmma(uriEmma, { useNewUrlParser: true });
 
 var popstats;
 
-client.connect(err => {
+clientEmma.connect(err => {
   popstats = client.db("sos181909").collection("populationstats");
   // perform actions on the collection object
   console.log("connected");
