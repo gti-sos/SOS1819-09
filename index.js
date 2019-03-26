@@ -343,8 +343,14 @@ client.connect(err => {
 
 // GET /api/v1/climate-stats/docs/
 
-app.get("/api/v1/climate-stats/docs/", (req,res)=>{
-    res.redirect('https://documenter.getpostman.com/view/6904229/S17tRTwb');
+app.get("/api/v1/climate-stats/docs", (req,res)=>{
+    var apikey = req.query.apikey;
+    
+    if(apikey == "123456"){
+        res.redirect('https://documenter.getpostman.com/view/6904229/S17tRTwb');
+    }else{
+        res.sendStatus(401);
+    }
 });
 
 // GET /api/v1/secure/climate-stats/loadInitialData
