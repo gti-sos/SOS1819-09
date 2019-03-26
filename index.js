@@ -333,6 +333,7 @@ app.delete("/api/v1/climate-stats/", (req,res)=>{
 
 // MongoDb
 
+const KEY_CLIMATE = "123456";
 var climate_stats_secure;
 
 client.connect(err => {
@@ -345,7 +346,7 @@ client.connect(err => {
 app.get("/api/v1/climate-stats/docs", (req,res)=>{
     var apikey = req.query.apikey;
     
-    if(apikey == "123456"){
+    if(apikey == KEY_CLIMATE){
         res.redirect('https://documenter.getpostman.com/view/6904229/S17tRTwb');
     }else{
         res.sendStatus(401);
@@ -391,7 +392,7 @@ app.get("/api/v1/secure/climate-stats/loadInitialData",(req,res)=>{
     
     var apikey = req.query.apikey;
     
-    if(apikey == "123456"){
+    if(apikey == KEY_CLIMATE){
         
          // Verification of the no-emptyness of the base
          climate_stats_secure.find({}).toArray((err, climateArray)=>{
@@ -433,7 +434,7 @@ app.get("/api/v1/secure/climate-stats",(req,res)=>{
     var from = req.query.from;
     var apikey = req.query.apikey;
     
-    if(apikey == "123456"){
+    if(apikey == KEY_CLIMATE){
         
         // ?country= &year=
         if(country || year){
@@ -511,7 +512,7 @@ app.post("/api/v1/secure/climate-stats/",(req,res)=>{
     var newClimate = req.body;
     var apikey = req.query.apikey;
     
-    if(apikey == "123456"){
+    if(apikey == KEY_CLIMATE){
         
         climate_stats_secure.find({"country":newClimate.country, "year":newClimate.year}).toArray((err, climateArray)=>{
             if(err)
@@ -544,7 +545,7 @@ app.get("/api/v1/secure/climate-stats/:country", (req,res)=>{
     var from = req.query.from;
     var apikey = req.query.apikey;
     
-    if(apikey == "123456"){
+    if(apikey == KEY_CLIMATE){
         
         climate_stats_secure.find({"country":country,}).toArray((err, climateArray)=>{
             if(err)
@@ -584,7 +585,7 @@ app.get("/api/v1/secure/climate-stats/:country/:year", (req,res)=>{
     var year = req.params.year;
     var apikey = req.query.apikey;
     
-    if(apikey == "123456"){
+    if(apikey == KEY_CLIMATE){
         
             climate_stats_secure.find({"country":country,"year":parseInt(year,10)}).toArray((err, climateArray)=>{
             if(err)
@@ -609,7 +610,7 @@ app.delete("/api/v1/secure/climate-stats/:country/:year",(req,res)=>{
     var year = req.params.year;
     var apikey = req.query.apikey;
     
-    if(apikey == "123456"){
+    if(apikey == KEY_CLIMATE){
         
         climate_stats_secure.find({"country":country,"year":parseInt(year,10)}).toArray((err, climateArray)=>{
             if(err)
@@ -642,7 +643,7 @@ app.put("/api/v1/secure/climate-stats/:country/:year", (req,res)=>{
     var updatedClimate = req.body;
     var apikey = req.query.apikey;
     
-    if(apikey == "123456"){
+    if(apikey == KEY_CLIMATE){
         
         climate_stats_secure.find({"country":country,"year":parseInt(year,10)}).toArray((err, climateArray)=>{
             if(err)
@@ -692,7 +693,7 @@ app.put("/api/v1/secure/climate-stats/:country/:year", (req,res)=>{
 app.post("/api/v1/secure/climate-stats/:country/:year",(req,res)=>{
     var apikey = req.query.apikey;
     
-    if(apikey == "123456"){
+    if(apikey == KEY_CLIMATE){
         res.sendStatus(405);
     }else{
         res.sendStatus(401);
@@ -704,7 +705,7 @@ app.post("/api/v1/secure/climate-stats/:country/:year",(req,res)=>{
 app.put("/api/v1/secure/climate-stats/",(req,res)=>{
     var apikey = req.query.apikey;
     
-    if(apikey == "123456"){
+    if(apikey == KEY_CLIMATE){
         res.sendStatus(405);
     }else{
         res.sendStatus(401);
@@ -716,7 +717,7 @@ app.put("/api/v1/secure/climate-stats/",(req,res)=>{
 app.delete("/api/v1/secure/climate-stats/", (req,res)=>{
     var apikey = req.query.apikey;
     
-    if(apikey == "123456"){
+    if(apikey == KEY_CLIMATE){
         
         climate_stats_secure.deleteMany({});
 
