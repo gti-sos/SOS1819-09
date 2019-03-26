@@ -953,14 +953,14 @@ app.delete("/api/v1/populationstats/:country/:year", (req,res)=>{
 
 //MongoDB--------------------------------------------------------------------------------------
 
-const MongoClientEconomy = require("mongodb").MongoClientEconomy;
-const uriEconomy = "mongodb+srv://Giuseppe:Giuseppe@sos-qhbyw.mongodb.net/test?retryWrites=true";
-const clientEconomy = new MongoClientEconomy(uriEconomy, { useNewUrlParser: true });
+const MongoClientGiuseppe = require("mongodb").MongoClientGiuseppe;
+const uriGiuseppe = "mongodb+srv://Giuseppe:Giuseppe@sos-qhbyw.mongodb.net/test?retryWrites=true";
+const clientGiuseppe = new MongoClientGiuseppe(uriGiuseppe, { useNewUrlParser: true });
 
 var economy_stats = [{}];
 
-clientEconomy.connect(err => {
-  economy_stats = clientEconomy.db("sos1819-09").collection("economy-stats"); //sos1819-09 name database and sos name of the cluster
+clientGiuseppe.connect(err => {
+  economy_stats = clientGiuseppe.db("sos1819-09").collection("economy-stats"); //sos1819-09 name database and sos name of the cluster
   console.log("Connected!");
 });
 
