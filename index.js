@@ -96,7 +96,7 @@ app.get("/api/v1/climate-stats/loadInitialData",(req,res)=>{
 // GET /api/v1/climate-stats
 
 app.get("/api/v1/climate-stats",(req,res)=>{
-
+    
     var year = req.query.year;
     var country = req.query.country;
     var limit = req.query.limit;
