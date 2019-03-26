@@ -99,6 +99,7 @@ app.get("/api/v1/climate-stats",(req,res)=>{
     var year = req.query.year;
     var country = req.query.country;
     var limit = req.query.limit;
+    var from = req.query.from;
     
     // ?country= &year=
     if(country || year){
@@ -113,7 +114,7 @@ app.get("/api/v1/climate-stats",(req,res)=>{
     
         }else if(!country){
             
-            climate_stats.find({"year":year}).toArray((err, climateArray)=>{
+            climate_stats.find({"year":parseInt(year,10)}).toArray((err, climateArray)=>{
                 if(err)
                     console.log("Error: "+err);
                 
@@ -122,12 +123,12 @@ app.get("/api/v1/climate-stats",(req,res)=>{
     
         }else{
             
-           climate_stats.find({"country":country, "year":year}).toArray((err, climateArray)=>{
+            climate_stats.find({"country":country, "year":parseInt(year,10)}).toArray((err, climateArray)=>{
                 if(err)
                     console.log("Error: "+err);
                 
                 res.send(climateArray);
-            }); 
+            });
         }
         
     // ?offset= &limit=
@@ -140,6 +141,16 @@ app.get("/api/v1/climate-stats",(req,res)=>{
             res.send(climateArray);
         });
         
+    //from to
+    }else if(from){
+        
+        climate_stats.find({ "year" : { $gte : parseInt(from,10), $lte : parseInt(req.query.to,10) }}).toArray((err, climateArray)=>{
+                if(err)
+                    console.log("Error: "+err);
+                
+                res.send(climateArray);
+            });
+    
     // Without query
     }else{
         
@@ -158,10 +169,9 @@ app.get("/api/v1/climate-stats",(req,res)=>{
 app.post("/api/v1/climate-stats/",(req,res)=>{
     var newClimate = req.body;
     
-     climate_stats.find(newClimate).toArray((err, climateArray)=>{
+     climate_stats.find({"country":newClimate.country, "year":newClimate.year}).toArray((err, climateArray)=>{
         if(err)
             console.log(err);
-        
         
         if (climateArray==0){ // if empty, create the data
             
@@ -177,6 +187,37 @@ app.post("/api/v1/climate-stats/",(req,res)=>{
     
 });
 
+// GET /api/v1/climate-stats/:country
+
+app.get("/api/v1/climate-stats/:country", (req,res)=>{
+
+    var country = req.params.country;
+    var from = req.query.from;
+    
+    if(from){
+        
+        climate_stats.find({"country":country,"year" : { $gte : parseInt(from,10), $lte : parseInt(req.query.to,10) }}).toArray((err, climateArray)=>{
+            if(err)
+                console.log("Error: "+err);
+            
+            res.send(climateArray);
+        });
+        
+    }else{
+        
+        climate_stats.find({"country":country,}).toArray((err, climateArray)=>{
+            if(err)
+                console.log(err);
+            
+            if (climateArray==0){
+                res.sendStatus(404);
+            }else{
+                res.send(climateArray);
+            }
+        });
+        
+    }
+});
 
 // GET /api/v1/climate-stats/:country/:year
 
@@ -185,7 +226,7 @@ app.get("/api/v1/climate-stats/:country/:year", (req,res)=>{
     var country = req.params.country;
     var year = req.params.year;
 
-    climate_stats.find({"country":country,"year":year}).toArray((err, climateArray)=>{
+    climate_stats.find({"country":country,"year":parseInt(year,10)}).toArray((err, climateArray)=>{
         if(err)
             console.log(err);
         
@@ -203,7 +244,7 @@ app.delete("/api/v1/climate-stats/:country/:year",(req,res)=>{
     var country = req.params.country;
     var year = req.params.year;
     
-    climate_stats.find({"country":country,"year":year}).toArray((err, climateArray)=>{
+    climate_stats.find({"country":country,"year":parseInt(year,10)}).toArray((err, climateArray)=>{
         if(err)
             console.log(err);
         
@@ -214,7 +255,7 @@ app.delete("/api/v1/climate-stats/:country/:year",(req,res)=>{
             
         }else{
             
-            climate_stats.deleteOne({"country":country,"year":year});
+            climate_stats.deleteOne({"country":country,"year":parseInt(year,10)});
             res.sendStatus(205);
     
         }
@@ -229,7 +270,7 @@ app.put("/api/v1/climate-stats/:country/:year", (req,res)=>{
     var year = req.params.year;
     var updatedClimate = req.body;
 
-    climate_stats.find({"country":country,"year":year}).toArray((err, climateArray)=>{
+    climate_stats.find({"country":country,"year":parseInt(year,10)}).toArray((err, climateArray)=>{
         if(err)
             console.log(err);
         
@@ -243,7 +284,7 @@ app.put("/api/v1/climate-stats/:country/:year", (req,res)=>{
             climate_stats.updateOne(
             {
                 "country":country,
-                "year":year
+                "year":parseInt(year,10)
             },
             {
                 $set :  updatedClimate
@@ -434,7 +475,7 @@ app.post("/api/v1/secure/climate-stats/",(req,res)=>{
     
     if(apikey == "123456"){
         
-        climate_stats_secure.find(newClimate).toArray((err, climateArray)=>{
+        climate_stats_secure.find({"country":newClimate.country, "year":newClimate.year}).toArray((err, climateArray)=>{
             if(err)
                 console.log(err);
             
@@ -456,6 +497,31 @@ app.post("/api/v1/secure/climate-stats/",(req,res)=>{
     }
 });
 
+
+// GET /api/v1/secure/climate-stats/:country
+
+app.get("/api/v1/secure/climate-stats/:country", (req,res)=>{
+
+    var country = req.params.country;
+    var apikey = req.query.apikey;
+    
+    if(apikey == "123456"){
+        
+            climate_stats_secure.find({"country":country,}).toArray((err, climateArray)=>{
+            if(err)
+                console.log(err);
+            
+            if (climateArray==0){
+                res.sendStatus(404);
+            }else{
+                res.send(climateArray);
+            }
+        });
+        
+    }else{
+        res.sendStatus(401);
+    }
+});
 
 // GET /api/v1/secure/climate-stats/:country/:year
 
