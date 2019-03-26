@@ -36,31 +36,31 @@ app.get("/api/v1/climate-stats/loadInitialData",(req,res)=>{
     
     var climate_stats_initial = [{
         country : "Spain",
-        year : "1970",
+        year : 1970,
         methane_stats : 26508.8,
         co2_stats : 3.457969859,
         nitrous_oxide_stats : 18686.862
     },{
         country : "France",
-        year : "1970",
+        year : 1970,
         methane_stats : 82882.3,
         co2_stats : 8.436868233,
         nitrous_oxide_stats : 64736.37
     },{
         country : "Spain",
-        year : "2012",
+        year : 2012,
         methane_stats : 37208.10558,
         co2_stats : 5.660938803,
         nitrous_oxide_stats : 20873.14001
     },{
         country : "France",
-        year : "2012",
+        year : 2012,
         methane_stats : 81178.5035,
         co2_stats : 5.075063887,
         nitrous_oxide_stats : 36865.68363
     },{
         country : "Afghanistan",
-        year : "2012",
+        year : 2012,
         methane_stats : 13763.166,
         co2_stats : 0.3503705807,
         nitrous_oxide_stats : 3423.68712
@@ -193,30 +193,31 @@ app.get("/api/v1/climate-stats/:country", (req,res)=>{
 
     var country = req.params.country;
     var from = req.query.from;
-    
-    if(from){
         
-        climate_stats.find({"country":country,"year" : { $gte : parseInt(from,10), $lte : parseInt(req.query.to,10) }}).toArray((err, climateArray)=>{
-            if(err)
-                console.log("Error: "+err);
+    climate_stats.find({"country":country,}).toArray((err, climateArray)=>{
+        if(err)
+            console.log(err);
             
-            res.send(climateArray);
-        });
+        if (climateArray==0){
+            res.sendStatus(404);
+        }else{
+                
+             if(from){
         
-    }else{
-        
-        climate_stats.find({"country":country,}).toArray((err, climateArray)=>{
-            if(err)
-                console.log(err);
-            
-            if (climateArray==0){
-                res.sendStatus(404);
+                climate_stats.find({"country":country,"year" : { $gte : parseInt(from,10), $lte : parseInt(req.query.to,10) }}).toArray((err, climateArray)=>{
+                    if(err)
+                        console.log("Error: "+err);
+                        
+                    res.send(climateArray);
+                });
+                    
             }else{
+                
                 res.send(climateArray);
+            
             }
-        });
-        
-    }
+        }
+    });
 });
 
 // GET /api/v1/climate-stats/:country/:year
@@ -281,16 +282,30 @@ app.put("/api/v1/climate-stats/:country/:year", (req,res)=>{
             
         }else{
             
-            climate_stats.updateOne(
-            {
-                "country":country,
-                "year":parseInt(year,10)
-            },
-            {
-                $set :  updatedClimate
+            climate_stats.find({"country":updatedClimate.country,"year":parseInt(updatedClimate.year,10)}).toArray((err, climateArray)=>{
+                if(err)
+                    console.log(err);
+                
+                
+                if (climateArray==0){
+                    
+                    res.sendStatus(400);
+                    
+                }else{
+                    
+                    
+                    climate_stats.updateOne(
+                    {
+                        "country":country,
+                        "year":parseInt(year,10)
+                    },
+                    {
+                        $set :  updatedClimate
+                    });
+                    res.sendStatus(200);
+                    
+                }
             });
-            res.sendStatus(200);
-            
         }
     });
 });
@@ -332,31 +347,31 @@ app.get("/api/v1/secure/climate-stats/loadInitialData",(req,res)=>{
     
     var climate_stats_initial = [{
         country : "Spain",
-        year : "1970",
+        year : 1970,
         methane_stats : 26508.8,
         co2_stats : 3.457969859,
         nitrous_oxide_stats : 18686.862
     },{
         country : "France",
-        year : "1970",
+        year : 1970,
         methane_stats : 82882.3,
         co2_stats : 8.436868233,
         nitrous_oxide_stats : 64736.37
     },{
         country : "Spain",
-        year : "2012",
+        year : 2012,
         methane_stats : 37208.10558,
         co2_stats : 5.660938803,
         nitrous_oxide_stats : 20873.14001
     },{
         country : "France",
-        year : "2012",
+        year : 2012,
         methane_stats : 81178.5035,
         co2_stats : 5.075063887,
         nitrous_oxide_stats : 36865.68363
     },{
         country : "Afghanistan",
-        year : "2012",
+        year : 2012,
         methane_stats : 13763.166,
         co2_stats : 0.3503705807,
         nitrous_oxide_stats : 3423.68712
@@ -404,6 +419,7 @@ app.get("/api/v1/secure/climate-stats",(req,res)=>{
     var year = req.query.year;
     var country = req.query.country;
     var limit = req.query.limit;
+    var from = req.query.from;
     var apikey = req.query.apikey;
     
     if(apikey == "123456"){
@@ -448,6 +464,17 @@ app.get("/api/v1/secure/climate-stats",(req,res)=>{
                 res.send(climateArray);
             });
             
+            
+        //from to
+        }else if(from){
+            
+            climate_stats_secure.find({ "year" : { $gte : parseInt(from,10), $lte : parseInt(req.query.to,10) }}).toArray((err, climateArray)=>{
+                if(err)
+                    console.log("Error: "+err);
+                    
+                res.send(climateArray);
+             });    
+        
         // Without query
         }else{
             
@@ -503,18 +530,33 @@ app.post("/api/v1/secure/climate-stats/",(req,res)=>{
 app.get("/api/v1/secure/climate-stats/:country", (req,res)=>{
 
     var country = req.params.country;
+    var from = req.query.from;
     var apikey = req.query.apikey;
     
     if(apikey == "123456"){
         
-            climate_stats_secure.find({"country":country,}).toArray((err, climateArray)=>{
+        climate_stats_secure.find({"country":country,}).toArray((err, climateArray)=>{
             if(err)
                 console.log(err);
-            
+                
             if (climateArray==0){
                 res.sendStatus(404);
             }else{
-                res.send(climateArray);
+                    
+                 if(from){
+            
+                    climate_stats_secure.find({"country":country,"year" : { $gte : parseInt(from,10), $lte : parseInt(req.query.to,10) }}).toArray((err, climateArray)=>{
+                        if(err)
+                            console.log("Error: "+err);
+                            
+                        res.send(climateArray);
+                    });
+                        
+                }else{
+                    
+                    res.send(climateArray);
+                
+                }
             }
         });
         
@@ -591,7 +633,7 @@ app.put("/api/v1/secure/climate-stats/:country/:year", (req,res)=>{
     
     if(apikey == "123456"){
         
-        climate_stats_secure.find({"country":country,"year":year}).toArray((err, climateArray)=>{
+        climate_stats_secure.find({"country":country,"year":parseInt(year,10)}).toArray((err, climateArray)=>{
             if(err)
                 console.log(err);
             
@@ -602,16 +644,30 @@ app.put("/api/v1/secure/climate-stats/:country/:year", (req,res)=>{
                 
             }else{
                 
-                climate_stats_secure.updateOne(
-                {
-                    "country":country,
-                    "year":year
-                },
-                {
-                    $set :  updatedClimate
+                climate_stats_secure.find({"country":updatedClimate.country,"year":parseInt(updatedClimate.year,10)}).toArray((err, climateArray)=>{
+                    if(err)
+                        console.log(err);
+                    
+                    
+                    if (climateArray==0){
+                        
+                        res.sendStatus(400);
+                        
+                    }else{
+                        
+                        
+                        climate_stats_secure.updateOne(
+                        {
+                            "country":country,
+                            "year":parseInt(year,10)
+                        },
+                        {
+                            $set :  updatedClimate
+                        });
+                        res.sendStatus(200);
+                        
+                    }
                 });
-                res.sendStatus(200);
-                
             }
         });
         
