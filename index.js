@@ -341,6 +341,12 @@ client.connect(err => {
   console.log("Connection secured");
 });
 
+// GET /api/v1/climate-stats/docs/
+
+app.get("/api/v1/climate-stats/docs/", (req,res)=>{
+    res.redirect('https://documenter.getpostman.com/view/6904229/S17tRTwb');
+});
+
 // GET /api/v1/secure/climate-stats/loadInitialData
 
 app.get("/api/v1/secure/climate-stats/loadInitialData",(req,res)=>{
