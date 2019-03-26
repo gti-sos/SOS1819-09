@@ -745,6 +745,11 @@ clientEmma.connect(err => {
 
 app.use(bodyParser.json());
 
+// populationstats/docs
+app.get("/api/v1/populationstats/docs",(req,res)=>{
+    res.redirect("https://documenter.getpostman.com/view/7060843/S17tRoGf");
+});
+
 // loadInitialData /populationstats/loadInitialData
 app.get("/api/v1/populationstats/loadInitialData",(req,res)=>{
     var totalpopulationInitial = [{
@@ -824,6 +829,16 @@ app.get("/api/v1/populationstats", (req,res)=>{
             res.send(popstatsArray);        
         });
     
+    } else if (req.query.limit != undefined && req.query.offset != undefined){
+        var limit = req.query.limit;
+        var skip = req.query.offset;
+        popstats.find({}).skip(parseInt(skip)).limit(parseInt(limit)).toArray((err,popstatsArray)=>{
+            
+            if(err)
+                console.log("Error: "+err);
+            
+            res.send(popstatsArray);        
+        });
     } else res.sendStatus(400);
 });
 
