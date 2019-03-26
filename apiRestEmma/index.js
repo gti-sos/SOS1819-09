@@ -61,7 +61,6 @@ app.get("/api/v1/populationstats/loadInitialData",(req,res)=>{
     ];
     popstats.count(function(err, count) {
     
-
     if( count == 0) {
         popstats.insertMany(totalpopulationInitial);
         res.sendStatus(200);
@@ -85,7 +84,7 @@ app.get("/api/v1/populationstats", (req,res)=>{
     } else if (req.query.from != undefined && req.query.to != undefined){
         var from = req.query.from;
         var to = req.query.to;
-        popstats.find({year: {$gte: from, $lte: to }}).toArray((err,popstatsArray)=>{
+        popstats.find({year: {$gte: parseInt(from), $lte: parseInt(to) }}).toArray((err,popstatsArray)=>{
             if(err)
                 console.log("Error: "+err);
             
@@ -93,7 +92,7 @@ app.get("/api/v1/populationstats", (req,res)=>{
         });
     }else if(req.query.year != "undefined"){
         var year = req.query.year;
-        popstats.find({year: year}).toArray((err,popstatsArray)=>{
+        popstats.find({year: parseInt(year)}).toArray((err,popstatsArray)=>{
             
             if(err)
                 console.log("Error: "+err);
@@ -101,7 +100,7 @@ app.get("/api/v1/populationstats", (req,res)=>{
             res.send(popstatsArray);        
         });
     
-    }
+    } else res.sendStatus(400)
 });
 
 
@@ -114,11 +113,15 @@ app.post("/api/v1/populationstats", (req,res)=>{
     if(country==undefined || year==undefined){
     res.sendStatus(400);
     } else {
-        var findResult = popstats.find({country: country, year: year});
-        if(findResult.totalSize==undefined){
-            popstats.insertOne(newPopstat);
-            res.sendStatus(201);
-        }else res.sendStatus(409);
+        popstats.find({country: country, year: year}).toArray((err,popstatsArray)=>{
+            if(err)
+                console.log("Error: "+err);
+            if(popstatsArray != 0)
+                res.sendStatus(409);
+            else {res.insert(newPopstat);
+                res.sendStatus(201);
+            }
+        });
     }
 });
 
@@ -147,33 +150,40 @@ app.get("/api/v1/populationstats/:country/", (req,res)=>{
         popstats.find({country: country, year: {$gte: from, $lte: to }}).toArray((err,popstatsArray)=>{
             if(err)
                 console.log("Error: "+err);
-            
-            res.send(popstatsArray);        
+            if(popstatsArray != 0)
+                res.send(popstatsArray);
+            else res.sendStatus(404);
         });
     }else
         popstats.find({country: country}).toArray((err,popstatsArray)=>{
             if(err)
                 console.log("Error: "+err);
-            res.send(popstatsArray);        
+            if(popstatsArray != 0)
+                res.send(popstatsArray);
+            else res.sendStatus(404);
         });
 });
 
 // GET /populationstats/country/year
 app.get("/api/v1/populationstats/:country/:year", (req,res)=>{
     var country = req.params.country;
-    var year = parseInt(req.params.year,10);
+    var year = req.params.year;
     console.log(year);
-    var findResult=popstats.find({country: "Aruba", year: 1990});
-    if (findResult.totalSize != undefined){
+    //var findResult=popstats.find({country: country, year: parseInt(year)});
+    //if (findResult.totalSize != undefined){
         popstats.find({country: country,
-        year: year}).toArray((err,popstatsArray)=>{
+        year: parseInt(year)}).toArray((err,popstatsArray)=>{
             if(err)
                 console.log("Error: "+err);
-            res.send(popstatsArray);        
+            if(popstatsArray != 0)
+            res.send(popstatsArray);
+            else {
+                res.sendStatus(404)
+            }
         });
-    }else
+    /*}else
         res.sendStatus(404);
-        console.log(findResult.totalSize);
+        console.log(findResult.totalSize);*/
 });
 
 
