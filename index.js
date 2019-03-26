@@ -595,12 +595,12 @@ app.delete("/api/v1/secure/climate-stats/", (req,res)=>{
     }
 });
 
-// _______________________ population_stats ____________________________________
+// _______________________ populationstats ____________________________________
 
 var totalpopulation=[{}];
 
 // /api/v1/populationstat/loadInitialData
-app.get("/api/v1/populationstat/loadInitialData",(req,res)=>{
+app.get("/api/v1/populationstats/loadInitialData",(req,res)=>{
     var totalpopulationInitial = [{
     country:"Aruba",
     year:"1990",
@@ -628,30 +628,30 @@ app.get("/api/v1/populationstat/loadInitialData",(req,res)=>{
 });
 
 //GET /populationstat/
-app.get("/api/v1/populationstat",(req,res)=>{
+app.get("/api/v1/populationstats",(req,res)=>{
     res.send(totalpopulation);
 });
 
 //POST /populationstat/
-app.post("/api/v1/populationstat",(req,res)=>{
+app.post("/api/v1/populationstats",(req,res)=>{
     var newtotpop = req.body;
     totalpopulation.push(newtotpop);
     res.sendStatus(201);
 });
 
 //PUT /populationstat/
-app.put("/api/v1/populationstat",(req,res)=>{
+app.put("/api/v1/populationstats",(req,res)=>{
     res.sendStatus(405);
 });
 
 //DELETE /populationstat/
-app.delete("/api/v1/populationstat",(req,res)=>{
+app.delete("/api/v1/populationstats",(req,res)=>{
     totalpopulation = [];
     res.sendStatus(200);
 });
 
 //GET /populationstat/country/year
-app.get("/api/v1/populationstat/:country/:year",(req,res)=>{
+app.get("/api/v1/populationstats/:country/:year",(req,res)=>{
     var country = req.params.country;
     var year = req.params.year;
     var filteredtotpop = totalpopulation.filter((t)=>{
@@ -666,12 +666,12 @@ app.get("/api/v1/populationstat/:country/:year",(req,res)=>{
 });
 
 //POST /populationstat/country/year
-app.post("/api/v1/populationstat/:country/:year",(req,res)=>{
+app.post("/api/v1/populationstats/:country/:year",(req,res)=>{
     res.sendStatus(405);
 });
 
 //PUT /populationstat/country/year
-app.put("/api/v1/populationstat/:country/:year",(req,res)=>{
+app.put("/api/v1/populationstats/:country/:year",(req,res)=>{
     var country = req.params.country;
     var year = req.params.year;
     var updatedpop = req.body;
@@ -695,7 +695,7 @@ app.put("/api/v1/populationstat/:country/:year",(req,res)=>{
 });
 
 //DELETE /populationstat/country/year
-app.delete("/api/v1/populationstat/:country/:year",(req,res)=>{
+app.delete("/api/v1/populationstats/:country/:year",(req,res)=>{
     var country = req.params.country;
     var year = req.params.year;
     var found = false;
