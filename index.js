@@ -1112,7 +1112,7 @@ app.get("/api/v1/economy-stats",(req,res)=>{
     //from to
     }else if(from){
         
-        economy_stats.find({ "year" : { $gte : parseInt(from,10), $lte : parseInt(req.query.to,10) }}).toArray((err, economyArray)=>{
+        economy_stats.find({ "year" : { $gte : from, $lte : req.query.to }}).toArray((err, economyArray)=>{
                 if(err)
                     console.log("Error: "+err);
                 
@@ -1285,7 +1285,7 @@ app.post("/api/v1/economy-stats/:country/:year",(req,res)=>{
 
 // PUT /api/v1/economy-stats/ error method not allowed
 
-app.post("/api/v1/economy-stats/",(req,res)=>{
+app.put("/api/v1/economy-stats/",(req,res)=>{
     res.sendStatus(405);
 });
 
