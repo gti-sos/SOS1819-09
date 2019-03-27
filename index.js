@@ -1195,7 +1195,7 @@ app.get("/api/v1/economy-stats/:country/:year", (req,res)=>{
         if (economyArray==0){
             res.sendStatus(404); //not found
         }else{
-            res.send(economyArray);
+            res.send(economyArray[0]);
         }
     });
 });
