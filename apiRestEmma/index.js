@@ -78,7 +78,7 @@ app.get("/api/v1/populationstats", (req,res)=>{
         
         if(err)
             console.log("Error: "+err);
-        
+        console.log('ici1');
         res.send(popstatsArray);
     }); 
     } else if (req.query.from != undefined && req.query.to != undefined){
@@ -90,7 +90,7 @@ app.get("/api/v1/populationstats", (req,res)=>{
             
             res.send(popstatsArray);        
         });
-    }else if(req.query.year != "undefined"){
+    }else if(req.query.year){
         var year = req.query.year;
         popstats.find({year: parseInt(year)}).toArray((err,popstatsArray)=>{
             
@@ -100,7 +100,8 @@ app.get("/api/v1/populationstats", (req,res)=>{
             res.send(popstatsArray);        
         });
     
-    } else if (req.query.limit && req.query.offset){
+    } else if (req.query.limit){
+        
         var limit = req.query.limit;
         var skip = req.query.offset;
         popstats.find({}).limit(parseInt(limit)).skip(parseInt(skip)).toArray((err,popstatsArray)=>{
