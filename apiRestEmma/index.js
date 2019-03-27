@@ -6,14 +6,14 @@ var bodyParser = require("body-parser");
 app.use(bodyParser.json());
 //app.use(queryParser());
 
-var MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://user:user@sos-1gum3.mongodb.net/test?retryWrites=true";
-const client = new MongoClient(uri, { useNewUrlParser: true });
+var MongoClientEmma = require('mongodb').MongoClient;
+const uriEmma = "mongodb+srv://user:user@sos-1gum3.mongodb.net/test?retryWrites=true";
+const clientEmma = new MongoClientEmma(uriEmma, { useNewUrlParser: true });
 
 var popstats;
 
-client.connect(err => {
-  popstats = client.db("sos181909").collection("populationstats");
+clientEmma.connect(err => {
+  popstats = clientEmma.db("sos181909").collection("populationstats");
   // perform actions on the collection object
   console.log("connected");
 });
@@ -78,7 +78,7 @@ app.get("/api/v1/populationstats", (req,res)=>{
         
         if(err)
             console.log("Error: "+err);
-        
+        console.log('ici1');
         res.send(popstatsArray);
     }); 
     } else if (req.query.from != undefined && req.query.to != undefined){
@@ -90,7 +90,7 @@ app.get("/api/v1/populationstats", (req,res)=>{
             
             res.send(popstatsArray);        
         });
-    }else if(req.query.year != "undefined"){
+    }else if(req.query.year){
         var year = req.query.year;
         popstats.find({year: parseInt(year)}).toArray((err,popstatsArray)=>{
             
@@ -100,7 +100,18 @@ app.get("/api/v1/populationstats", (req,res)=>{
             res.send(popstatsArray);        
         });
     
-    } else res.sendStatus(400)
+    } else if (req.query.limit){
+        
+        var limit = req.query.limit;
+        var skip = req.query.offset;
+        popstats.find({}).limit(parseInt(limit)).skip(parseInt(skip)).toArray((err,popstatsArray)=>{
+            
+            if(err)
+                console.log("Error: "+err);
+            
+            res.send(popstatsArray);        
+        });
+    } else res.sendStatus(400);
 });
 
 
