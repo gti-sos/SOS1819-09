@@ -754,7 +754,7 @@ clientEmma.connect(err => {
 app.use(bodyParser.json());
 
 // GET docs
-app.get("api/v1/populationstats/docs",(req,res)=>{
+app.get("/api/v1/populationstats/docs",(req,res)=>{
     res.redirect("https://documenter.getpostman.com/view/7060843/S17tRoGf");
 });
 
