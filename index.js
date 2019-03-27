@@ -730,25 +730,28 @@ app.delete("/api/v1/secure/climate-stats/", (req,res)=>{
 
 // _______________________ populationstats ____________________________________
 
-var MongoClientEmma = require('mongodb').MongoClient;
+//var express = require("express");
+//const port = process.env.PORT || 8080;
+//var app = express();
+//var queryParser = require('express-query-int');
+//var bodyParser = require("body-parser");
+//app.use(bodyParser.json());
+//app.use(queryParser());
+
+const MongoClientEmma = require('mongodb').MongoClient;
 const uriEmma = "mongodb+srv://user:user@sos-1gum3.mongodb.net/test?retryWrites=true";
 const clientEmma = new MongoClientEmma(uriEmma, { useNewUrlParser: true });
 
 var popstats;
 
 clientEmma.connect(err => {
-  popstats = client.db("sos181909").collection("populationstats");
+  popstats = clientEmma.db("sos181909").collection("populationstats");
   // perform actions on the collection object
-  console.log("connected to populationstats");
+  console.log("connected");
 });
 
 
 app.use(bodyParser.json());
-
-// populationstats/docs
-app.get("/api/v1/populationstats/docs",(req,res)=>{
-    res.redirect("https://documenter.getpostman.com/view/7060843/S17tRoGf");
-});
 
 // loadInitialData /populationstats/loadInitialData
 app.get("/api/v1/populationstats/loadInitialData",(req,res)=>{
@@ -829,10 +832,10 @@ app.get("/api/v1/populationstats", (req,res)=>{
             res.send(popstatsArray);        
         });
     
-    } else if (req.query.limit != undefined && req.query.offset != undefined){
+    } else if (req.query.limit && req.query.offset){
         var limit = req.query.limit;
         var skip = req.query.offset;
-        popstats.find({}).skip(parseInt(skip)).limit(parseInt(limit)).toArray((err,popstatsArray)=>{
+        popstats.find({}).limit(parseInt(limit)).skip(parseInt(skip)).toArray((err,popstatsArray)=>{
             
             if(err)
                 console.log("Error: "+err);
@@ -917,7 +920,7 @@ app.get("/api/v1/populationstats/:country/:year", (req,res)=>{
             if(popstatsArray != 0)
             res.send(popstatsArray);
             else {
-                res.sendStatus(404);
+                res.sendStatus(404)
             }
         });
     /*}else
@@ -963,6 +966,7 @@ app.delete("/api/v1/populationstats/:country/:year", (req,res)=>{
     }
 
 });
+
 
 // ___________________________economy_stats_____________________________________
 
