@@ -233,7 +233,7 @@ app.get("/api/v1/climate-stats/:country/:year", (req,res)=>{
         if (climateArray==0){
             res.sendStatus(404);
         }else{
-            res.send(climateArray);
+            res.send(climateArray[0]);
         }
     });
 });
@@ -594,7 +594,7 @@ app.get("/api/v1/secure/climate-stats/:country/:year", (req,res)=>{
             if (climateArray==0){
                 res.sendStatus(404);
             }else{
-                res.send(climateArray);
+                res.send(climateArray[0]);
             }
         });
         
