@@ -74,17 +74,17 @@ app.get("/api/v1/populationstats/loadInitialData",(req,res)=>{
 // GET /populationstats/
 app.get("/api/v1/populationstats", (req,res)=>{
     if(Object.keys(req.query).length === 0){
-       popstats.find({}).toArray((err,popstatsArray)=>{
+       popstats.find( {}, { fields: { _id: 0 }}).toArray((err,popstatsArray)=>{
         
         if(err)
             console.log("Error: "+err);
-        console.log('ici1');
+        
         res.send(popstatsArray);
     }); 
     } else if (req.query.from != undefined && req.query.to != undefined){
         var from = req.query.from;
         var to = req.query.to;
-        popstats.find({year: {$gte: parseInt(from), $lte: parseInt(to) }}).toArray((err,popstatsArray)=>{
+        popstats.find({year: {$gte: parseInt(from), $lte: parseInt(to) }}, { fields: { _id: 0 }}).toArray((err,popstatsArray)=>{
             if(err)
                 console.log("Error: "+err);
             
@@ -92,7 +92,7 @@ app.get("/api/v1/populationstats", (req,res)=>{
         });
     }else if(req.query.year){
         var year = req.query.year;
-        popstats.find({year: parseInt(year)}).toArray((err,popstatsArray)=>{
+        popstats.find({year: parseInt(year)}, { fields: { _id: 0 }}).toArray((err,popstatsArray)=>{
             
             if(err)
                 console.log("Error: "+err);
@@ -101,10 +101,9 @@ app.get("/api/v1/populationstats", (req,res)=>{
         });
     
     } else if (req.query.limit){
-        
         var limit = req.query.limit;
         var skip = req.query.offset;
-        popstats.find({}).limit(parseInt(limit)).skip(parseInt(skip)).toArray((err,popstatsArray)=>{
+        popstats.find({}, { fields: { _id: 0 }}).limit(parseInt(limit)).skip(parseInt(skip)).toArray((err,popstatsArray)=>{
             
             if(err)
                 console.log("Error: "+err);
@@ -117,14 +116,14 @@ app.get("/api/v1/populationstats", (req,res)=>{
 
 // POST /populationstats/
 app.post("/api/v1/populationstats", (req,res)=>{
-    
     var newPopstat = req.body;
     var country = req.body.country;
     var year = req.body.year;
+    
     if(country==undefined || year==undefined){
     res.sendStatus(400);
     } else {
-        popstats.find({country: country, year: year}).toArray((err,popstatsArray)=>{
+        popstats.find({country: country, year: year}, { fields: { _id: 0 }}).toArray((err,popstatsArray)=>{
             if(err)
                 console.log("Error: "+err);
             if(popstatsArray != 0)
@@ -158,7 +157,7 @@ app.get("/api/v1/populationstats/:country/", (req,res)=>{
     if (req.query.from != undefined && req.query.to != undefined){
         var from = req.query.from;
         var to = req.query.to;
-        popstats.find({country: country, year: {$gte: from, $lte: to }}).toArray((err,popstatsArray)=>{
+        popstats.find({country: country, year: {$gte: from, $lte: to }}, { fields: { _id: 0 }}).toArray((err,popstatsArray)=>{
             if(err)
                 console.log("Error: "+err);
             if(popstatsArray != 0)
@@ -166,7 +165,7 @@ app.get("/api/v1/populationstats/:country/", (req,res)=>{
             else res.sendStatus(404);
         });
     }else
-        popstats.find({country: country}).toArray((err,popstatsArray)=>{
+        popstats.find({country: country}, { fields: { _id: 0 }}).toArray((err,popstatsArray)=>{
             if(err)
                 console.log("Error: "+err);
             if(popstatsArray != 0)
@@ -179,15 +178,11 @@ app.get("/api/v1/populationstats/:country/", (req,res)=>{
 app.get("/api/v1/populationstats/:country/:year", (req,res)=>{
     var country = req.params.country;
     var year = req.params.year;
-    console.log(year);
-    //var findResult=popstats.find({country: country, year: parseInt(year)});
-    //if (findResult.totalSize != undefined){
-        popstats.find({country: country,
-        year: parseInt(year)}).toArray((err,popstatsArray)=>{
+    popstats.find({country: country, year: parseInt(year)}, { fields: { _id: 0 }}).toArray((err,popstatsArray)=>{
             if(err)
                 console.log("Error: "+err);
             if(popstatsArray != 0)
-            res.send(popstatsArray);
+            res.send(popstatsArray[0]);
             else {
                 res.sendStatus(404)
             }
@@ -204,7 +199,7 @@ app.put("/api/v1/populationstats/:country/:year", (req,res)=>{
     var country = req.params.country;
     var year = req.params.year;
     var toUpdate = popstats.find({country: country,
-                    year: year});
+                    year: year}, { fields: { _id: 0 }});
     if (toUpdate.totalSize==undefined){
     res.sendStatus(400);
     }else if(req.body.country==country){
@@ -225,7 +220,7 @@ app.delete("/api/v1/populationstats/:country/:year", (req,res)=>{
     var country = req.params.country;
     var year = req.params.year;
     var toDelete = popstats.find({country: country,
-                    year: year});
+                    year: year}, { fields: { _id: 0 }});
     if (toDelete.totalSize==undefined){
     res.sendStatus(404);
     }else {
