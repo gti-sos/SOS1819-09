@@ -634,12 +634,14 @@ app.get("/api/v1/economy-stats",(req,res)=>{
     var country = req.query.country;
     var year = req.query.year;
     var limit = req.query.limit;
+    var offset = req.query.offset;
     var from = req.query.from;
     
     // ?country= &year=
     if(country || year){
         //case errors
-        if(!year){
+        if(!year) //if we don't have of the years selected
+        { 
             
             economy_stats.find({"country":country}).toArray((err, economyArray)=>{ 
                 if(err)
@@ -648,7 +650,8 @@ app.get("/api/v1/economy-stats",(req,res)=>{
                 res.send(economyArray);
             });
     
-        }else if(!country){
+        }else if(!country)
+        { //if we don't have of the years selected
             
             economy_stats.find({"year":year}).toArray((err, economyArray)=>{ 
                 if(err)
@@ -656,8 +659,10 @@ app.get("/api/v1/economy-stats",(req,res)=>{
                 
                 res.send(economyArray);
             });
-        //good case
-        }else{
+        
+        }
+        else //good case we have both data
+        {
             
             economy_stats.find({"country":country, "year":year}).toArray((err, economyArray)=>{ //find all countries passed by query with that year
                 if(err)
@@ -670,7 +675,7 @@ app.get("/api/v1/economy-stats",(req,res)=>{
     // ?offset= &limit=
     }else if(limit){
         
-        economy_stats.find().limit(parseInt(limit,10)).skip(parseInt(req.query.offset,10)).toArray((err, economyArray)=>{
+        economy_stats.find().limit(parseInt(limit,10)).skip(parseInt(offset,10)).toArray((err, economyArray)=>{
             if(err)
                 console.log("Error: "+err);
             
@@ -710,16 +715,13 @@ app.post("/api/v1/economy-stats/",(req,res)=>{
         if(err)
             console.log(err);
         
-        if (economyArray==0){ //case that you can create
-            
+        if (economyArray==0) //case that you can create
+        {
             economy_stats.insert(newEconomy);
             res.sendStatus(201); //created
             
-        }else{ //case that you can't create
-            
-            res.sendStatus(409); //conflict
-    
         }
+        else res.sendStatus(409); //conflict case that you can't create
     });
     
 });
@@ -731,16 +733,16 @@ app.get("/api/v1/economy-stats/:country", (req,res)=>{
     var country = req.params.country;
     var from = req.query.from;
         
-    economy_stats.find({"country":country,}).toArray((err, economyArray)=>{
+    economy_stats.find({"country":country}).toArray((err, economyArray)=>{
         if(err)
             console.log(err);
             
-        if (economyArray==0){
-            res.sendStatus(404); //not found
-        }else{
+        if (economyArray==0) res.sendStatus(404); //not found
+        else
+        {
                 
-             if(from){
-        
+             if(from)
+             {
                 economy_stats.find({"country":country,"year" : { $gte : parseInt(from,10), $lte : parseInt(req.query.to,10) }}).toArray((err, economyArray)=>{
                     if(err)
                         console.log("Error: "+err);
@@ -748,8 +750,12 @@ app.get("/api/v1/economy-stats/:country", (req,res)=>{
                     res.send(economyArray);
                 });
                     
-            }else{
-                res.send(economyArray);
+            }
+            else
+            {
+                if (economyArray.length>1)
+                    res.send(economyArray);
+                else res.send(economyArray[0]);
             }
         }
     });
@@ -763,14 +769,10 @@ app.get("/api/v1/economy-stats/:country/:year", (req,res)=>{
     var year = req.params.year;
 
     economy_stats.find({"country":country,"year":year}).toArray((err, economyArray)=>{
-        if(err)
-            console.log(err);
+        if(err) console.log(err);
         
-        if (economyArray==0){
-            res.sendStatus(404); //not found
-        }else{
-            res.send(economyArray[0]);
-        }
+        if (economyArray==0) res.sendStatus(404); //not found
+        else res.send(economyArray[0]);
     });
 });
 
@@ -785,15 +787,11 @@ app.delete("/api/v1/economy-stats/:country/:year",(req,res)=>{
             console.log(err);
         
         
-        if (economyArray==0){
-            
-            res.sendStatus(404); //not found
-            
-        }else{
-            
+        if (economyArray==0) res.sendStatus(404); //not found
+        else
+        {
             economy_stats.deleteOne({"country":country,"year":year});
             res.sendStatus(200); //delete ok
-    
         }
     });
 });
@@ -807,38 +805,29 @@ app.put("/api/v1/economy-stats/:country/:year", (req,res)=>{
     var updatedEconomy = req.body; //what we update
 
     economy_stats.find({"country":country,"year":year}).toArray((err, economyArray)=>{
-        if(err)
-            console.log(err);
+        if(err) console.log(err);
         
         
-        if (economyArray==0){
-            
-            res.sendStatus(400); //bad request
-            
-        }else{
-            
+        if (economyArray==0) res.sendStatus(400); //bad request
+        else
+        {
             economy_stats.find({"country":updatedEconomy.country,"year":updatedEconomy.year}).toArray((err, economyArray)=>{ //looking if there is already
-                if(err)
-                    console.log(err);
+                if(err) console.log(err);
                 
-                
-                if (economyArray==0){
-                    
-                    res.sendStatus(400); //bad request if the array is empty
-                    
-                }else{
-                    
-                    
-                    economy_stats.updateOne( //to update the element
-                    {
-                        "country":country,
-                        "year":year
-                    },
-                    {
-                        $set :  updatedEconomy
-                    });
+                if (economyArray==0) res.sendStatus(400); //bad request if the array is empty
+                else
+                {
+                    economy_stats.updateOne //to update the element
+                    ( 
+                        {
+                            "country":country,
+                            "year":year
+                        },
+                        {
+                            $set :  updatedEconomy
+                        }
+                    );
                     res.sendStatus(200); //ok
-                    
                 }
             });
         }
