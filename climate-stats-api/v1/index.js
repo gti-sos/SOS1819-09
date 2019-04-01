@@ -53,7 +53,7 @@ module.exports =function(app, climate_stats) {
                 
                 climate_stats.insert(climate_stats_initial);
         
-                climate_stats.find({}).toArray((err, climateArray)=>{
+                climate_stats.find({},{fields : {_id : 0}}).toArray((err, climateArray)=>{
                     if(err)
                         console.log("Error: "+err);
                     
@@ -81,7 +81,7 @@ module.exports =function(app, climate_stats) {
         if(country || year){
             if(!year){
                 
-                climate_stats.find({"country":country}).toArray((err, climateArray)=>{
+                climate_stats.find({"country":country},{fields : {_id : 0}}).toArray((err, climateArray)=>{
                     if(err)
                         console.log("Error: "+err);
                     
@@ -90,7 +90,7 @@ module.exports =function(app, climate_stats) {
         
             }else if(!country){
                 
-                climate_stats.find({"year":parseInt(year,10)}).toArray((err, climateArray)=>{
+                climate_stats.find({"year":parseInt(year,10)},{fields : {_id : 0}}).toArray((err, climateArray)=>{
                     if(err)
                         console.log("Error: "+err);
                     
@@ -99,7 +99,7 @@ module.exports =function(app, climate_stats) {
         
             }else{
                 
-                climate_stats.find({"country":country, "year":parseInt(year,10)}).toArray((err, climateArray)=>{
+                climate_stats.find({"country":country, "year":parseInt(year,10)},{fields : {_id : 0}}).toArray((err, climateArray)=>{
                     if(err)
                         console.log("Error: "+err);
                     
@@ -110,7 +110,7 @@ module.exports =function(app, climate_stats) {
         // ?offset= &limit=
         }else if(limit){
             
-            climate_stats.find().limit(parseInt(limit,10)).skip(parseInt(req.query.offset,10)).toArray((err, climateArray)=>{
+            climate_stats.find({},{fields : {_id : 0}}).limit(parseInt(limit,10)).skip(parseInt(req.query.offset,10)).toArray((err, climateArray)=>{
                 if(err)
                     console.log("Error: "+err);
                 
@@ -120,7 +120,7 @@ module.exports =function(app, climate_stats) {
         //from to
         }else if(from){
             
-            climate_stats.find({ "year" : { $gte : parseInt(from,10), $lte : parseInt(req.query.to,10) }}).toArray((err, climateArray)=>{
+            climate_stats.find({ "year" : { $gte : parseInt(from,10), $lte : parseInt(req.query.to,10) }},{fields : {_id : 0}}).toArray((err, climateArray)=>{
                     if(err)
                         console.log("Error: "+err);
                     
@@ -130,7 +130,7 @@ module.exports =function(app, climate_stats) {
         // Without query
         }else{
             
-            climate_stats.find({}).toArray((err, climateArray)=>{
+            climate_stats.find({},{fields : {_id : 0}}).toArray((err, climateArray)=>{
                 if(err)
                     console.log("Error: "+err);
                 
@@ -170,7 +170,7 @@ module.exports =function(app, climate_stats) {
         var country = req.params.country;
         var from = req.query.from;
             
-        climate_stats.find({"country":country,}).toArray((err, climateArray)=>{
+        climate_stats.find({"country":country,},{fields : {_id : 0}}).toArray((err, climateArray)=>{
             if(err)
                 console.log(err);
                 
@@ -180,7 +180,7 @@ module.exports =function(app, climate_stats) {
                     
                  if(from){
             
-                    climate_stats.find({"country":country,"year" : { $gte : parseInt(from,10), $lte : parseInt(req.query.to,10) }}).toArray((err, climateArray)=>{
+                    climate_stats.find({"country":country,"year" : { $gte : parseInt(from,10), $lte : parseInt(req.query.to,10) }},{fields : {_id : 0}}).toArray((err, climateArray)=>{
                         if(err)
                             console.log("Error: "+err);
                             
@@ -203,7 +203,7 @@ module.exports =function(app, climate_stats) {
         var country = req.params.country;
         var year = req.params.year;
     
-        climate_stats.find({"country":country,"year":parseInt(year,10)}).toArray((err, climateArray)=>{
+        climate_stats.find({"country":country,"year":parseInt(year,10)},{fields : {_id : 0}}).toArray((err, climateArray)=>{
             if(err)
                 console.log(err);
             
