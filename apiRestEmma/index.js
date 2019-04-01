@@ -239,3 +239,260 @@ app.delete("/api/v1/populationstats/:country/:year", (req,res)=>{
 app.listen(port,()=>{
     console.log("server ready!");
 });
+
+// Secure
+// Secure--------------------------------------------------------
+/*
+var popstats_secure;
+
+clientEmma.connect(err => {
+  popstats = clientEmma.db("sos181909-secure").collection("populationstats-secure");
+  // perform actions on the collection object
+  console.log("connected secure to popstats_secure");
+});
+
+const KEY_POP = "123";
+
+// loadInitialData /populationstats/loadInitialData
+app.get("/api/v1/secure/populationstats/loadInitialData",(req,res)=>{
+    var apiKey= req.query.apikey;
+    var totalpopulationInitial = [{
+    country:"Aruba",
+    year:1990,
+    totalpopulation:"62149",
+    urbanpopulation:"31273",
+    accesstoelectricity:"88.44"
+},
+    {
+    country:"Afghanistan",
+    year:1990,
+    totalpopulation:"12249114",
+    urbanpopulation:"2593995",
+    accesstoelectricity:"0.01"
+},
+    {
+    country:"Aruba",
+    year:2010,
+    totalpopulation:"101669",
+    urbanpopulation:"43778",
+    accesstoelectricity:"93.36"
+},
+{
+    country:"Angola",
+    year:1990,
+    totalpopulation:"12171441",
+    urbanpopulation:"4225990",
+    accesstoelectricity:"11.4"
+},
+{
+    country:"Andora",
+    year:1990,
+    totalpopulation:"52448",
+    urbanpopulation:"51627",
+    accesstoelectricity:"93.36"
+},
+    ];
+    popstats_secure.count(function(err, count) {
+    if(apiKey==KEY_POP){
+    if( count == 0) {
+        popstats_secure.insertMany(totalpopulationInitial);
+        res.sendStatus(200);
+    }
+    else {
+        res.sendStatus(409);
+    }
+    }else {
+        res.sendStatus(401);
+    }
+});
+});
+
+// GET /populationstats/
+app.get("/api/v1/secure/populationstats", (req,res)=>{
+    var apiKey = req.query.apikey;
+    if(apiKey==KEY_POP){
+    if(Object.keys(req.query).length === 0){
+       popstats_secure.find({}).toArray((err,popstats_secureArray)=>{
+        
+        if(err)
+            console.log("Error: "+err);
+        console.log('ici1');
+        res.send(popstats_secureArray);
+    }); 
+    } else if (req.query.from != undefined && req.query.to != undefined){
+        var from = req.query.from;
+        var to = req.query.to;
+        popstats_secure.find({year: {$gte: parseInt(from), $lte: parseInt(to) }}).toArray((err,popstats_secureArray)=>{
+            if(err)
+                console.log("Error: "+err);
+            
+            res.send(popstats_secureArray);        
+        });
+    }else if(req.query.year){
+        var year = req.query.year;
+        popstats_secure.find({year: parseInt(year)}).toArray((err,popstats_secureArray)=>{
+            
+            if(err)
+                console.log("Error: "+err);
+            
+            res.send(popstats_secureArray);        
+        });
+    
+    } else if (req.query.limit){
+        
+        var limit = req.query.limit;
+        var skip = req.query.offset;
+        popstats_secure.find({}).limit(parseInt(limit)).skip(parseInt(skip)).toArray((err,popstats_secureArray)=>{
+            
+            if(err)
+                console.log("Error: "+err);
+            
+            res.send(popstats_secureArray);        
+        });
+    } else res.sendStatus(400);
+    }else res.sendStatus(401);
+});
+
+
+// POST /populationstats/
+app.post("/api/v1/secure/populationstats", (req,res)=>{
+    var apiKey = req.query.apikey;
+    var newPopstat = req.body;
+    var country = req.body.country;
+    var year = req.body.year;
+    if(apiKey==KEY_POP){
+        if(country==undefined || year==undefined){
+        res.sendStatus(400);
+        } else {
+            popstats_secure.find({country: country, year: year}).toArray((err,popstats_secureArray)=>{
+                if(err)
+                    console.log("Error: "+err);
+                if(popstats_secureArray != 0)
+                    res.sendStatus(409);
+                else {res.insert(newPopstat);
+                    res.sendStatus(201);
+                }
+            });
+        }
+    }else res.sendStatus(401);
+});
+
+
+// DELETE /populationstats/
+app.delete("/api/v1/secure/populationstats", (req,res)=>{
+    var apiKey = req.query.apikey;
+    if(apiKey==KEY_POP){
+        popstats_secure.deleteMany();
+        
+        res.sendStatus(200);
+    }else res.sendStatus(401);
+});
+
+
+//PUT /populationstats/
+app.put("/api/v1/secure/populationstats", (req,res)=>{
+   var apiKey = req.query.apikey;
+    if(apiKey==KEY_POP){
+    res.sendStatus(405);
+    } else res.sendStatus(401);
+});
+
+// GET /populationstats/country/
+app.get("/api/v1/secure/populationstats/:country/", (req,res)=>{
+    var country = req.params.country;
+    var apiKey = req.query.apikey;
+    if(apiKey==KEY_POP){
+    if (req.query.from != undefined && req.query.to != undefined){
+        var from = req.query.from;
+        var to = req.query.to;
+        popstats_secure.find({country: country, year: {$gte: from, $lte: to }}).toArray((err,popstats_secureArray)=>{
+            if(err)
+                console.log("Error: "+err);
+            if(popstats_secureArray != 0)
+                res.send(popstats_secureArray);
+            else res.sendStatus(404);
+        });
+    }else
+        popstats_secure.find({country: country}).toArray((err,popstats_secureArray)=>{
+            if(err)
+                console.log("Error: "+err);
+            if(popstats_secureArray != 0)
+                res.send(popstats_secureArray);
+            else res.sendStatus(404);
+        });
+    } else res.sendStatus(401);
+});
+
+// GET /populationstats/country/year
+app.get("/api/v1/secure/populationstats/:country/:year", (req,res)=>{
+    var country = req.params.country;
+    var year = req.params.year;
+    var apiKey= req.query.apikey;
+    //console.log(year);
+    //var findResult=popstats_secure.find({country: country, year: parseInt(year)});
+    //if (findResult.totalSize != undefined){
+    if(apiKey==KEY_POP){
+        popstats_secure.find({country: country,
+        year: parseInt(year)}).toArray((err,popstats_secureArray)=>{
+            if(err)
+                console.log("Error: "+err);
+            if(popstats_secureArray != 0)
+            res.send(popstats_secureArray);
+            else {
+                res.sendStatus(404)
+            }
+        });
+    } else res.sendStatus(401);
+    /*}else
+        res.sendStatus(404);
+        console.log(findResult.totalSize);
+});
+
+
+
+// PUT /populationstats/:country/:year
+app.put("/api/v1/secure/populationstats/:country/:year", (req,res)=>{
+    var country = req.params.country;
+    var year = req.params.year;
+    var toUpdate = popstats_secure.find({country: country,
+                    year: year});
+    var apiKey=req.query.apikey;
+    if(apiKey==KEY_POP){
+        if (toUpdate.totalSize==undefined){
+        res.sendStatus(400);
+        }else if(req.body.country==country){
+            popstats_secure.update({country: country, year: year},req.body);
+            res.sendStatus(200);
+        }else
+            res.sendStatus(400);
+    } else res.sendStatus(401);
+});
+
+// POST /populationstats/:country/:year
+app.post("/api/v1/secure/populationstats/:country/:year", (req,res)=>{
+    var apiKey=req.query.apikey;
+    if(apiKey==KEY_POP)
+        res.sendStatus(405);
+    else res.sendStatus(401);
+});
+
+
+// DELETE /populationstats/:country/:year
+app.delete("/api/v1/secure/populationstats/:country/:year", (req,res)=>{
+    var country = req.params.country;
+    var year = req.params.year;
+    var toDelete = popstats_secure.find({country: country,
+                    year: year});
+    var apiKey=req.query.apikey;
+    if(apiKey==KEY_POP){
+    if (toDelete.totalSize==undefined){
+    res.sendStatus(404);
+    }else {
+        popstats_secure.deleteMany({country: country, year: year});
+        res.sendStatus(200);
+        console.log(toDelete.totalSize);
+    }
+    }else res.sendStatus(401);
+
+});
+*/
