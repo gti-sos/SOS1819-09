@@ -747,7 +747,7 @@ var popstats;
 clientEmma.connect(err => {
   popstats = clientEmma.db("sos181909").collection("populationstats");
   // perform actions on the collection object
-  console.log("connected");
+  console.log("connected to popstats");
 });
 
 
@@ -812,7 +812,7 @@ app.get("/api/v1/populationstats/loadInitialData",(req,res)=>{
 // GET /populationstats/
 app.get("/api/v1/populationstats", (req,res)=>{
     if(Object.keys(req.query).length === 0){
-       popstats.find({}).toArray((err,popstatsArray)=>{
+       popstats.find({},{_id: 0}).toArray((err,popstatsArray)=>{
         
         if(err)
             console.log("Error: "+err);
@@ -822,7 +822,7 @@ app.get("/api/v1/populationstats", (req,res)=>{
     } else if (req.query.from != undefined && req.query.to != undefined){
         var from = req.query.from;
         var to = req.query.to;
-        popstats.find({year: {$gte: parseInt(from), $lte: parseInt(to) }}).toArray((err,popstatsArray)=>{
+        popstats.find({year: {$gte: parseInt(from), $lte: parseInt(to) }},{_id: 0}).toArray((err,popstatsArray)=>{
             if(err)
                 console.log("Error: "+err);
             
@@ -830,7 +830,7 @@ app.get("/api/v1/populationstats", (req,res)=>{
         });
     }else if(req.query.year){
         var year = req.query.year;
-        popstats.find({year: parseInt(year)}).toArray((err,popstatsArray)=>{
+        popstats.find({year: parseInt(year)},{_id: 0}).toArray((err,popstatsArray)=>{
             
             if(err)
                 console.log("Error: "+err);
@@ -841,7 +841,7 @@ app.get("/api/v1/populationstats", (req,res)=>{
     } else if (req.query.limit){
         var limit = req.query.limit;
         var skip = req.query.offset;
-        popstats.find({}).limit(parseInt(limit)).skip(parseInt(skip)).toArray((err,popstatsArray)=>{
+        popstats.find({},{_id: 0}).limit(parseInt(limit)).skip(parseInt(skip)).toArray((err,popstatsArray)=>{
             
             if(err)
                 console.log("Error: "+err);
@@ -895,7 +895,7 @@ app.get("/api/v1/populationstats/:country/", (req,res)=>{
     if (req.query.from != undefined && req.query.to != undefined){
         var from = req.query.from;
         var to = req.query.to;
-        popstats.find({country: country, year: {$gte: from, $lte: to }}).toArray((err,popstatsArray)=>{
+        popstats.find({country: country, year: {$gte: from, $lte: to }},{_id: 0}).toArray((err,popstatsArray)=>{
             if(err)
                 console.log("Error: "+err);
             if(popstatsArray != 0)
@@ -920,7 +920,7 @@ app.get("/api/v1/populationstats/:country/:year", (req,res)=>{
     //var findResult=popstats.find({country: country, year: parseInt(year)});
     //if (findResult.totalSize != undefined){
         popstats.find({country: country,
-        year: parseInt(year)}).toArray((err,popstatsArray)=>{
+        year: parseInt(year)},{_id: 0}).toArray((err,popstatsArray)=>{
             if(err)
                 console.log("Error: "+err);
             if(popstatsArray != 0)
