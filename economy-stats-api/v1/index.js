@@ -113,7 +113,7 @@ app.get(BASE_PATH, (req,res)=>{
             });
         
         }
-        else //good case we have both data
+        else //case without country & year
         {
             
             economy_stats.find({"country":country, "year":year}).toArray((err, economyArray)=>{ //find all countries passed by query with that year
