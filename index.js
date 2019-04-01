@@ -544,6 +544,9 @@ app.delete("/api/v1/secure/populationstats/:country/:year", (req,res)=>{
 
 // ___________________________economy_stats_____________________________________
 
+var economyAPI = require("./economy-stats-api");
+const BASE_PATH = "/api";
+
 //MongoDB--------------------------------------------------------------------------------------
 
 const MongoClientGiuseppe = require("mongodb").MongoClient;
@@ -554,9 +557,11 @@ var economy_stats = [{}];
 
 clientGiuseppe.connect(err => {
   economy_stats = clientGiuseppe.db("sos1819-09").collection("economy-stats"); //sos1819-09 name database and sos name of the cluster
+  economyAPI.checkALL(app, BASE_PATH, economy_stats);
   console.log("Connected to economy-stats");
 });
 
+/*
 //----------------------------------------------------------------------------------------------
 
 // GET /api/v1/economy-stats/docs/
@@ -854,6 +859,7 @@ app.delete("/api/v1/economy-stats/", (req,res)=>{
     res.sendStatus(200);
 });
 
+*/
 
 //_____________________________Listen port______________________________________
 
