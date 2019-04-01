@@ -51,12 +51,9 @@ app.get(path,(req,res)=>{
     }];
     
      economy_stats.find({}).toArray((err, economyArray)=>{
-        if(err)
-            console.log(err);
-        
-        
-        if (economyArray==0){
-            
+        if(err) console.log(err);
+        if (economyArray==0)
+        {
             economy_stats.insert(economy_stats_initial);
     
             economy_stats.find({}).toArray((err, economyArray)=>{
@@ -66,11 +63,8 @@ app.get(path,(req,res)=>{
                 res.send(economyArray);
             });
             
-        }else{
-            
-            res.sendStatus(409);
-    
         }
+        else res.sendStatus(409);
     });
 });
 
@@ -86,74 +80,59 @@ app.get(BASE_PATH, (req,res)=>{
     var from = req.query.from;
     
     // ?country= &year=
-    if(country || year){
+    if(country || year)
+    {
         //case errors
         if(!year) //if we don't have of the years selected
         { 
-            
             economy_stats.find({"country":country}).toArray((err, economyArray)=>{ 
-                if(err)
-                    console.log("Error: "+err);
-                
+                if(err) console.log("Error: "+err);
                 if (economyArray.length>1)
                     res.send(economyArray);
                 else res.send(economyArray[0]);
             });
-    
-        }else if(!country)
-        { //if we don't have of the years selected
-            
+        }
+        else if(!country) //if we don't have of the years selected
+        { 
             economy_stats.find({"year":year}).toArray((err, economyArray)=>{ 
-                if(err)
-                    console.log("Error: "+err);
-                
+                if(err) console.log("Error: "+err);
                 if (economyArray.length>1)
                     res.send(economyArray);
                 else res.send(economyArray[0]);
             });
-        
         }
         else //case without country & year
         {
-            
             economy_stats.find({"country":country, "year":year}).toArray((err, economyArray)=>{ //find all countries passed by query with that year
-                if(err)
-                    console.log("Error: "+err);
-                
+                if(err) console.log("Error: "+err);
                 res.send(economyArray[0]);
             });
         }
-        
-    // ?offset= &limit=
-    }else if(limit){
+    }
+    else if(limit)
+    {
         
         economy_stats.find().limit(parseInt(limit,10)).skip(parseInt(offset,10)).toArray((err, economyArray)=>{
-            if(err)
-                console.log("Error: "+err);
-            
+            if(err) console.log("Error: "+err);
             res.send(economyArray);
         });
-        
-    //from to
-    }else if(from){
+    }
+    else if(from) //from to
+    {
         
         economy_stats.find({ "year" : { $gte : from, $lte : req.query.to }}).toArray((err, economyArray)=>{
-                if(err)
-                    console.log("Error: "+err);
-                
+                if(err) console.log("Error: "+err);
                 res.send(economyArray);
             });
-    
-    // Without query
-    }else{
-        
+    }
+    else // Without query
+    {
         economy_stats.find({}).toArray((err, economyArray)=>{
             if(err)
                 console.log("Error: "+err);
             
             res.send(economyArray);
         });
-        
     }
 });
 
@@ -164,14 +143,11 @@ app.post(BASE_PATH, (req,res)=>{
     var newEconomy = req.body;
     
      economy_stats.find({"country":newEconomy.country, "year":newEconomy.year}).toArray((err, economyArray)=>{
-        if(err)
-            console.log(err);
-        
+        if(err) console.log(err);
         if (economyArray==0) //case that you can create
         {
             economy_stats.insert(newEconomy);
             res.sendStatus(201); //created
-            
         }
         else res.sendStatus(409); //conflict case that you can't create
     });
@@ -186,13 +162,10 @@ app.get(BASE_PATH + "/:country", (req,res)=>{
     var from = req.query.from;
         
     economy_stats.find({"country":country}).toArray((err, economyArray)=>{
-        if(err)
-            console.log(err);
-            
+        if(err) console.log(err);
         if (economyArray==0) res.sendStatus(404); //not found
         else
         {
-                
              if(from)
              {
                 economy_stats.find({"country":country,"year" : { $gte : parseInt(from,10), $lte : parseInt(req.query.to,10) }}).toArray((err, economyArray)=>{
@@ -201,7 +174,6 @@ app.get(BASE_PATH + "/:country", (req,res)=>{
                         
                     res.send(economyArray);
                 });
-                    
             }
             else
             {
@@ -222,7 +194,6 @@ app.get(BASE_PATH + "/:country/:year", (req,res)=>{
 
     economy_stats.find({"country":country,"year":year}).toArray((err, economyArray)=>{
         if(err) console.log(err);
-        
         if (economyArray==0) res.sendStatus(404); //not found
         else res.send(economyArray[0]);
     });
@@ -235,10 +206,7 @@ app.delete(BASE_PATH + "/:country/:year",(req,res)=>{
     var year = req.params.year;
     
     economy_stats.find({"country":country,"year":year}).toArray((err, economyArray)=>{
-        if(err)
-            console.log(err);
-        
-        
+        if(err) console.log(err);
         if (economyArray==0) res.sendStatus(404); //not found
         else
         {
@@ -258,14 +226,11 @@ app.put(BASE_PATH + "/:country/:year", (req,res)=>{
 
     economy_stats.find({"country":country,"year":year}).toArray((err, economyArray)=>{
         if(err) console.log(err);
-        
-        
         if (economyArray==0) res.sendStatus(400); //bad request
         else
         {
             economy_stats.find({"country":updatedEconomy.country,"year":updatedEconomy.year}).toArray((err, economyArray)=>{ //looking if there is already
                 if(err) console.log(err);
-                
                 if (economyArray==0) res.sendStatus(400); //bad request if the array is empty
                 else
                 {
