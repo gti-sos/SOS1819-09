@@ -4,7 +4,7 @@ module.exports =function(app, climate_stats) {
     // GET /api/v1/climate-stats/docs/
     
     app.get("/api/v1/climate-stats/docs/", (req,res)=>{
-        res.redirect('https://documenter.getpostman.com/view/6904229/S17tPT8R');
+        res.redirect('https://documenter.getpostman.com/view/6904229/S17xskjc');
     });
     
     // GET /api/v1/climate-stats/loadInitialData
