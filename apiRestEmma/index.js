@@ -129,12 +129,13 @@ app.post("/api/v1/populationstats", (req,res)=>{
     if(Object.keys(req.body).length === 0 || country===undefined || year===undefined || req.body.totalpopulation===undefined || req.body.urbanpopulation===undefined || req.body.accesstoelectricity===undefined){
     res.sendStatus(400);
     } else {
-        popstats.find({country: country, year: year}, { fields: { _id: 0 }}).toArray((err,popstatsArray)=>{
+        popstats.find({"country": country, "year": year}).toArray((err,popstatsArray)=>{
             if(err)
                 console.log("Error: "+err);
             if(popstatsArray != 0)
                 res.sendStatus(409);
-            else {res.insert(newPopstat);
+            else {
+                popstats.insert(newPopstat);
                 res.sendStatus(201);
             }
         });
@@ -163,7 +164,7 @@ app.get("/api/v1/populationstats/:country/", (req,res)=>{
     if (req.query.from != undefined && req.query.to != undefined){
         var from = req.query.from;
         var to = req.query.to;
-        popstats.find({country: country, year: {$gte: from, $lte: to }}, { fields: { _id: 0 }}).toArray((err,popstatsArray)=>{
+        popstats.find({country: country, year: {$gte: from, $lte: to }}).toArray((err,popstatsArray)=>{
             if(err)
                 console.log("Error: "+err);
             if(popstatsArray != 0)
