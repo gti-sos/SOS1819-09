@@ -65,7 +65,7 @@ module.exports =function(app, climate_stats_secure) {
                     
                     climate_stats_secure.insert(climate_stats_initial);
             
-                    climate_stats_secure.find({},{fields : {_id : 0}}).toArray((err, climateArray)=>{
+                    climate_stats_secure.find({},{projection : {_id : 0}}).toArray((err, climateArray)=>{
                         if(err)
                             console.log("Error: "+err);
                         
@@ -101,7 +101,7 @@ module.exports =function(app, climate_stats_secure) {
             if(country || year){
                 if(!year){
                     
-                    climate_stats_secure.find({"country":country},{fields : {_id : 0}}).toArray((err, climateArray)=>{
+                    climate_stats_secure.find({"country":country},{projection : {_id : 0}}).toArray((err, climateArray)=>{
                         if(err)
                             console.log("Error: "+err);
                         
@@ -110,7 +110,7 @@ module.exports =function(app, climate_stats_secure) {
             
                 }else if(!country){
                     
-                    climate_stats_secure.find({"year":parseInt(year,10)},{fields : {_id : 0}}).toArray((err, climateArray)=>{
+                    climate_stats_secure.find({"year":parseInt(year,10)},{projection : {_id : 0}}).toArray((err, climateArray)=>{
                         if(err)
                             console.log("Error: "+err);
                         
@@ -119,7 +119,7 @@ module.exports =function(app, climate_stats_secure) {
             
                 }else{
                     
-                   climate_stats_secure.find({"country":country, "year":parseInt(year,10)},{fields : {_id : 0}}).toArray((err, climateArray)=>{
+                   climate_stats_secure.find({"country":country, "year":parseInt(year,10)},{projection : {_id : 0}}).toArray((err, climateArray)=>{
                         if(err)
                             console.log("Error: "+err);
                         
@@ -130,7 +130,7 @@ module.exports =function(app, climate_stats_secure) {
             // ?offset= &limit=
             }else if(limit){
                 
-                climate_stats_secure.find({},{fields : {_id : 0}}).limit(parseInt(limit,10)).skip(parseInt(req.query.offset,10)).toArray((err, climateArray)=>{
+                climate_stats_secure.find({},{projection : {_id : 0}}).limit(parseInt(limit,10)).skip(parseInt(req.query.offset,10)).toArray((err, climateArray)=>{
                     if(err)
                         console.log("Error: "+err);
                     
@@ -141,7 +141,7 @@ module.exports =function(app, climate_stats_secure) {
             //from to
             }else if(from){
                 
-                climate_stats_secure.find({ "year" : { $gte : parseInt(from,10), $lte : parseInt(req.query.to,10) }},{fields : {_id : 0}}).toArray((err, climateArray)=>{
+                climate_stats_secure.find({ "year" : { $gte : parseInt(from,10), $lte : parseInt(req.query.to,10) }},{projection : {_id : 0}}).toArray((err, climateArray)=>{
                     if(err)
                         console.log("Error: "+err);
                         
@@ -151,7 +151,7 @@ module.exports =function(app, climate_stats_secure) {
             // Without query
             }else{
                 
-                climate_stats_secure.find({},{fields : {_id : 0}}).toArray((err, climateArray)=>{
+                climate_stats_secure.find({},{projection : {_id : 0}}).toArray((err, climateArray)=>{
                     if(err)
                         console.log("Error: "+err);
                     
@@ -175,22 +175,29 @@ module.exports =function(app, climate_stats_secure) {
         
         if(apikey == KEY_CLIMATE){
             
-            climate_stats_secure.find({"country":newClimate.country, "year":newClimate.year}).toArray((err, climateArray)=>{
-                if(err)
-                    console.log(err);
-                
-                
-                if (climateArray==0){ // if empty, create the data
-                    
-                    climate_stats_secure.insert(newClimate);
-                    res.sendStatus(201);
-                    
-                }else{ // if not empty, send an error
-                    
-                    res.sendStatus(409);
+            if( Object.keys(newClimate).length == 0 || newClimate.country === undefined || newClimate.year === undefined || 
+            newClimate.methane_stats === undefined || newClimate.co2_stats === undefined || newClimate.nitrous_oxide_stats === undefined){
+                res.sendStatus(400);
+            }else{
             
-                }
-            });
+                climate_stats_secure.find({"country":newClimate.country, "year":newClimate.year}).toArray((err, climateArray)=>{
+                    if(err)
+                        console.log(err);
+                    
+                    
+                    if (climateArray==0){ // if empty, create the data
+                        
+                        climate_stats_secure.insert(newClimate);
+                        res.sendStatus(201);
+                        
+                    }else{ // if not empty, send an error
+                        
+                        res.sendStatus(409);
+                
+                    }
+                });
+                
+            }
             
         }else{
             res.sendStatus(401);
@@ -208,7 +215,7 @@ module.exports =function(app, climate_stats_secure) {
         
         if(apikey == KEY_CLIMATE){
             
-            climate_stats_secure.find({"country":country,},{fields : {_id : 0}}).toArray((err, climateArray)=>{
+            climate_stats_secure.find({"country":country,},{projection : {_id : 0}}).toArray((err, climateArray)=>{
                 if(err)
                     console.log(err);
                     
@@ -218,7 +225,7 @@ module.exports =function(app, climate_stats_secure) {
                         
                      if(from){
                 
-                        climate_stats_secure.find({"country":country,"year" : { $gte : parseInt(from,10), $lte : parseInt(req.query.to,10) }},{fields : {_id : 0}}).toArray((err, climateArray)=>{
+                        climate_stats_secure.find({"country":country,"year" : { $gte : parseInt(from,10), $lte : parseInt(req.query.to,10) }},{projection : {_id : 0}}).toArray((err, climateArray)=>{
                             if(err)
                                 console.log("Error: "+err);
                                 
@@ -248,7 +255,7 @@ module.exports =function(app, climate_stats_secure) {
         
         if(apikey == KEY_CLIMATE){
             
-                climate_stats_secure.find({"country":country,"year":parseInt(year,10)},{fields : {_id : 0}}).toArray((err, climateArray)=>{
+                climate_stats_secure.find({"country":country,"year":parseInt(year,10)},{projection : {_id : 0}}).toArray((err, climateArray)=>{
                 if(err)
                     console.log(err);
                 
