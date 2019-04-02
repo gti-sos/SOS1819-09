@@ -225,15 +225,22 @@ app.post("/api/v1/populationstats/:country/:year", (req,res)=>{
 app.delete("/api/v1/populationstats/:country/:year", (req,res)=>{
     var country = req.params.country;
     var year = req.params.year;
-    var toDelete = popstats.find({country: country,
-                    year: year}, { fields: { _id: 0 }});
-    if (toDelete.totalSize==undefined){
-    res.sendStatus(404);
-    }else {
-        popstats.deleteMany({country: country, year: year});
-        res.sendStatus(200);
-        console.log(toDelete.totalSize);
-    }
+     popstats.find({"country":country,"year":parseInt(year,10)}).toArray((err, popArray)=>{
+            if(err)
+                console.log(err);
+            
+            
+            if (popArray==0){
+                
+                res.sendStatus(404);
+                
+            }else{
+                
+                popstats.deleteOne({"country":country,"year":parseInt(year,10)});
+                res.sendStatus(200);
+        
+            }
+        });
 
 });
 

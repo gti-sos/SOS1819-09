@@ -147,8 +147,10 @@ app.get("/api/v1/populationstats", (req,res)=>{
             
             if(err)
                 console.log("Error: "+err);
-            
-            res.send(popstatsArray);        
+            if(popstatsArray == 0)
+                res.sendStatus(404);
+            else
+                res.send(popstatsArray);        
         });
     
     } else if (req.query.limit){
@@ -208,19 +210,23 @@ app.get("/api/v1/populationstats/:country/", (req,res)=>{
     if (req.query.from != undefined && req.query.to != undefined){
         var from = req.query.from;
         var to = req.query.to;
-        popstats.find({country: country, year: {$gte: from, $lte: to }}, { fields: { _id: 0 }}).toArray((err,popstatsArray)=>{
+        popstats.find({country: country, year: {$gte: from, $lte: to }}).toArray((err,popstatsArray)=>{
             if(err)
                 console.log("Error: "+err);
-            if(popstatsArray != 0)
+            if(popstatsArray != 0){
                 res.send(popstatsArray);
+                res.sendStatus(200);
+            }
             else res.sendStatus(404);
         });
     }else
         popstats.find({country: country}, { fields: { _id: 0 }}).toArray((err,popstatsArray)=>{
             if(err)
                 console.log("Error: "+err);
-            if(popstatsArray != 0)
+            if(popstatsArray != 0){
                 res.send(popstatsArray);
+                res.sendStatus(200);
+            }
             else res.sendStatus(404);
         });
 });
@@ -270,15 +276,22 @@ app.post("/api/v1/populationstats/:country/:year", (req,res)=>{
 app.delete("/api/v1/populationstats/:country/:year", (req,res)=>{
     var country = req.params.country;
     var year = req.params.year;
-    var toDelete = popstats.find({country: country,
-                    year: year}, { fields: { _id: 0 }});
-    if (toDelete.totalSize==undefined){
-    res.sendStatus(404);
-    }else {
-        popstats.deleteMany({country: country, year: year});
-        res.sendStatus(200);
-        console.log(toDelete.totalSize);
-    }
+     popstats.find({"country":country,"year":parseInt(year,10)}).toArray((err, popArray)=>{
+            if(err)
+                console.log(err);
+            
+            
+            if (popArray==0){
+                
+                res.sendStatus(404);
+                
+            }else{
+                
+                popstats.deleteOne({"country":country,"year":parseInt(year,10)});
+                res.sendStatus(200);
+        
+            }
+        });
 
 });
 
