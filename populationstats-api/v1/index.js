@@ -223,7 +223,4 @@ app.delete("/api/v1/populationstats/:country/:year", (req,res)=>{
 
 });
 
-app.listen(port,()=>{
-    console.log("server ready!");
-});
 }
