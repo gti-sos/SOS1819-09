@@ -78,6 +78,7 @@ app.get(BASE_PATH, (req,res)=>{
     var limit = req.query.limit;
     var offset = req.query.offset;
     var from = req.query.from;
+    var to = req.query.to;
     
     // ?country= &year=
     if(country || year)
@@ -117,13 +118,29 @@ app.get(BASE_PATH, (req,res)=>{
             res.send(economyArray);
         });
     }
-    else if(from) //from to
+    else if(from || to) //from to
     {
-        
-        economy_stats.find({ "year" : { $gte : from, $lte : req.query.to }}).toArray((err, economyArray)=>{
-                if(err) console.log("Error: "+err);
-                res.send(economyArray);
-            });
+        if (from && to)
+        {
+            economy_stats.find({ "year" : { $gte : from, $lte : to }}).toArray((err, economyArray)=>{
+                    if(err) console.log("Error: "+err);
+                    res.send(economyArray);
+                });
+        }
+        else if (from)
+        {
+            economy_stats.find({ "year" : { $gte : from }}).toArray((err, economyArray)=>{
+                    if(err) console.log("Error: "+err);
+                    res.send(economyArray);
+                });
+        }
+        else
+        {
+            economy_stats.find({ "year" : { $lte : to }}).toArray((err, economyArray)=>{
+                    if(err) console.log("Error: "+err);
+                    res.send(economyArray);
+                });
+        }
     }
     else // Without query
     {
