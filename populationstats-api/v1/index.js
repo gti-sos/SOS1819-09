@@ -71,8 +71,10 @@ app.get("/api/v1/populationstats", (req,res)=>{
         popstats.find({year: {$gte: parseInt(from), $lte: parseInt(to) }}, { fields: { _id: 0 }}).toArray((err,popstatsArray)=>{
             if(err)
                 console.log("Error: "+err);
-            
-            res.send(popstatsArray);        
+            if (popstatsArray != 0)
+                res.send(popstatsArray);
+            else
+                res.sendStatus(404);
         });
     }else if(req.query.year){
         var year = req.query.year;
@@ -80,8 +82,10 @@ app.get("/api/v1/populationstats", (req,res)=>{
             
             if(err)
                 console.log("Error: "+err);
-            
-            res.send(popstatsArray);        
+            if (popstatsArray != 0)
+                res.send(popstatsArray);
+            else
+                res.sendStatus(404);
         });
     
     } else if (req.query.limit){
