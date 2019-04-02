@@ -21,6 +21,12 @@ clientEmma.connect(err => {
 
 app.use(bodyParser.json());
 
+// GET docs
+app.get("/api/v1/populationstats/docs",(req,res)=>{
+    res.redirect("https://documenter.getpostman.com/view/7060843/S17tRoGf");
+});
+
+
 // loadInitialData /populationstats/loadInitialData
 app.get("/api/v1/populationstats/loadInitialData",(req,res)=>{
     var totalpopulationInitial = [{
@@ -120,7 +126,7 @@ app.post("/api/v1/populationstats", (req,res)=>{
     var country = req.body.country;
     var year = req.body.year;
     
-    if(country==undefined || year==undefined){
+    if(Object.keys(req.body).length === 0 || country===undefined || year===undefined || req.body.totalpopulation===undefined || req.body.urbanpopulation===undefined || req.body.accesstoelectricity===undefined){
     res.sendStatus(400);
     } else {
         popstats.find({country: country, year: year}, { fields: { _id: 0 }}).toArray((err,popstatsArray)=>{
@@ -200,9 +206,9 @@ app.put("/api/v1/populationstats/:country/:year", (req,res)=>{
     var year = req.params.year;
     var toUpdate = popstats.find({country: country,
                     year: year}, { fields: { _id: 0 }});
-    if (toUpdate.totalSize==undefined){
+    if(Object.keys(req.body).length === 0 || country===undefined || year===undefined || req.body.totalpopulation===undefined || req.body.urbanpopulation===undefined || req.body.accesstoelectricity===undefined){
     res.sendStatus(400);
-    }else if(req.body.country==country){
+    } else if(req.body.country==country){
         popstats.update({country: country, year: year},req.body);
         res.sendStatus(200);
     }else
