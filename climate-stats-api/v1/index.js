@@ -76,6 +76,10 @@ module.exports =function(app, climate_stats) {
         var country = req.query.country;
         var limit = req.query.limit;
         var from = req.query.from;
+        var meth = req.query.methane_stats;
+        var co2 = req.query.co2_stats;
+        var no = req.query.nitrous_oxide_stats;
+        
         
         // ?country= &year=
         if(country || year){
@@ -106,7 +110,40 @@ module.exports =function(app, climate_stats) {
                     res.send(climateArray);
                 });
             }
-            
+        
+        
+        // methane_stats
+        }else if(meth){
+                
+                climate_stats.find({"methane_stats":parseFloat(meth)},{projection : {_id : 0}}).toArray((err, climateArray)=>{
+                    if(err)
+                        console.log("Error: "+err);
+                    
+                    res.send(climateArray);
+                });
+        
+        // c02_stats
+        
+        }else if(co2){
+                
+                climate_stats.find({"co2_stats":parseFloat(co2)},{projection : {_id : 0}}).toArray((err, climateArray)=>{
+                    if(err)
+                        console.log("Error: "+err);
+                    
+                    res.send(climateArray);
+                });
+        
+        // nitrous_oxide_stats
+        
+        }else if(no){
+                
+                climate_stats.find({"nitrous_oxide_stats":parseFloat(no)},{projection : {_id : 0}}).toArray((err, climateArray)=>{
+                    if(err)
+                        console.log("Error: "+err);
+                    
+                    res.send(climateArray);
+                });
+        
         // ?offset= &limit=
         }else if(limit){
             
