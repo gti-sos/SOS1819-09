@@ -196,10 +196,8 @@ app.post(BASE_PATH, (req,res)=>{
         {
             if (economyArray==0) //case that you can create
             {
-                economy_stats.insert(newEconomy =>
-                {
-                    res.sendStatus(201); //created
-                });
+                economy_stats.insert(newEconomy);
+                res.sendStatus(201); //created
             }
             else res.sendStatus(409); //conflict case that you can't create
         }        
