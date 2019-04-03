@@ -182,9 +182,10 @@ app.post("/api/v1/populationstats", (req,res)=>{
 // DELETE /populationstats/
 app.delete("/api/v1/populationstats", (req,res)=>{
     
-    popstats.deleteMany();
+    popstats.deleteMany(function(){
+            res.sendStatus(200);
+    });
     
-    res.sendStatus(200);
 });
 
 
@@ -246,8 +247,10 @@ app.put("/api/v1/populationstats/:country/:year", (req,res)=>{
     if(Object.keys(req.body).length === 0 || country===undefined || year===undefined || req.body.totalpopulation===undefined || req.body.urbanpopulation===undefined || req.body.accesstoelectricity===undefined){
     res.sendStatus(400);
     } else if(req.body.country==country){
-        popstats.update({country: country, year: year},req.body);
-        res.sendStatus(200);
+        popstats.update({country: country, year: year},req.body, function(){
+           res.sendStatus(200); 
+        });
+
     }else
         res.sendStatus(400);
 });
@@ -273,13 +276,15 @@ app.delete("/api/v1/populationstats/:country/:year", (req,res)=>{
                 
             }else{
                 
-                popstats.deleteOne({"country":country,"year":parseInt(year,10)});
-                res.sendStatus(200);
-        
+                popstats.deleteOne({"country":country,"year":parseInt(year,10)},function(){
+                    res.sendStatus(200);
+                });
+                
             }
         });
 
 });
+
 
 app.listen(port,()=>{
     console.log("server ready!");
