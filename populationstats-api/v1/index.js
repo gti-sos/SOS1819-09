@@ -87,7 +87,39 @@ app.get("/api/v1/populationstats", (req,res)=>{
             else
                 res.sendStatus(404);
         });
-    
+    } else if(req.query.totalpopulation){
+        var totalpopulation = req.query.totalpopulation;
+        popstats.find({totalpopulation: totalpopulation}, { fields: { _id: 0 }}).toArray((err,popstatsArray)=>{
+            
+            if(err)
+                console.log("Error: "+err);
+            if (popstatsArray != 0)
+                res.send(popstatsArray);
+            else
+                res.sendStatus(404);
+        });
+    } else if(req.query.urbanpopulation){
+        var urbanpopulation = req.query.urbanpopulation;
+        popstats.find({urbanpopulation: urbanpopulation}, { fields: { _id: 0 }}).toArray((err,popstatsArray)=>{
+            
+            if(err)
+                console.log("Error: "+err);
+            if (popstatsArray != 0)
+                res.send(popstatsArray);
+            else
+                res.sendStatus(404);
+        });
+    } else if(req.query.accesstoelectricity){
+        var accesstoelectricity = req.query.accesstoelectricity;
+        popstats.find({accesstoelectricity: accesstoelectricity}, { fields: { _id: 0 }}).toArray((err,popstatsArray)=>{
+            
+            if(err)
+                console.log("Error: "+err);
+            if (popstatsArray != 0)
+                res.send(popstatsArray);
+            else
+                res.sendStatus(404);
+        });
     } else if (req.query.limit){
         var limit = req.query.limit;
         var skip = req.query.offset;
