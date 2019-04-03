@@ -359,12 +359,8 @@ app.put(BASE_PATH,(req,res)=>{
 app.delete(BASE_PATH, (req,res)=>{
     economy_stats.find({}).toArray((err, economyArray)=>{
         if(err) console.log(err);
-        if (economyArray==0) res.sendStatus(404); //not found
-        else
-        {
-            economy_stats.deleteMany({});
-            res.sendStatus(200);
-        }
+        economy_stats.deleteMany({});
+        res.send(economyArray);
     });
 });
     
