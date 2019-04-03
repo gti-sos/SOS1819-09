@@ -51,13 +51,13 @@ module.exports =function(app, climate_stats) {
             
             if (climateArray==0){ // if empty, create the data
                 
-                climate_stats.insert(climate_stats_initial);
-        
-                climate_stats.find({},{projection : {_id : 0}}).toArray((err, climateArray)=>{
-                    if(err)
-                        console.log("Error: "+err);
-                    
-                    res.send(climateArray);
+                climate_stats.insert(climate_stats_initial, function(){
+                    climate_stats.find({},{projection : {_id : 0}}).toArray((err, climateArray)=>{
+                        if(err)
+                            console.log("Error: "+err);
+                        
+                        res.send(climateArray);
+                    });
                 });
                 
             }else{ // if not empty, send an error
@@ -156,8 +156,9 @@ module.exports =function(app, climate_stats) {
                 
                 if (climateArray==0){ // if empty, create the data
                     
-                    climate_stats.insert(newClimate);
-                    res.sendStatus(201);
+                    climate_stats.insert(newClimate, function(){
+                        res.sendStatus(201);
+                    });
                     
                 }else{ // if not empty, send an error
                     
@@ -238,9 +239,10 @@ module.exports =function(app, climate_stats) {
                 
             }else{
                 
-                climate_stats.deleteOne({"country":country,"year":parseInt(year,10)});
-                res.sendStatus(205);
-        
+                climate_stats.deleteOne({"country":country,"year":parseInt(year,10)}, function(){
+                    res.sendStatus(205);
+                });
+                
             }
         });
     });
@@ -284,8 +286,9 @@ module.exports =function(app, climate_stats) {
                         },
                         {
                             $set :  updatedClimate
+                        }, function(){
+                            res.sendStatus(200);
                         });
-                        res.sendStatus(200);
                         
                     }
                 });
@@ -308,9 +311,10 @@ module.exports =function(app, climate_stats) {
     // DELETE /api/v1/climate-stats/
     
     app.delete("/api/v1/climate-stats/", (req,res)=>{
-        climate_stats.deleteMany({});
+        climate_stats.deleteMany({}, function(){
+            res.sendStatus(205);
+        });
     
-        res.sendStatus(205);
     });
 };
 
