@@ -77,9 +77,52 @@ app.get(BASE_PATH, (req,res)=>{
     var offset = req.query.offset;
     var from = req.query.from;
     var to = req.query.to;
+    var gdpgrowthstats = req.query.gdp_growth_stats;
+    var industrygdp = req.query.industry_gdp_stats;
+    var grosssavgdp = req.query.gdp_growth_stats;
     
+    //indicators
+    if(gdpgrowthstats) 
+    { 
+        economy_stats.find({"gdp_growth_stats":gdpgrowthstats},{projection : {_id : 0}}).toArray((err, economyArray)=>{ 
+            if(err) console.log("Error: "+err);
+            if (economyArray.length == 0) res.sendStatus(404);
+            else
+            {
+                if (economyArray.length>1)
+                res.send(economyArray);
+                else res.send(economyArray[0]);
+            }
+        });
+    }
+    else if (industrygdp)
+    {
+        economy_stats.find({"industry_gdp_stats":industrygdp},{projection : {_id : 0}}).toArray((err, economyArray)=>{ 
+            if(err) console.log("Error: "+err);
+            if (economyArray.length == 0) res.sendStatus(404);
+            else
+            {
+                if (economyArray.length>1)
+                res.send(economyArray);
+                else res.send(economyArray[0]);
+            }
+        });
+    }
+    else if (grosssavgdp)
+    {
+        economy_stats.find({"gdp_growth_stats":gdpgrowthstats},{projection : {_id : 0}}).toArray((err, economyArray)=>{ 
+            if(err) console.log("Error: "+err);
+            if (economyArray.length == 0) res.sendStatus(404);
+            else
+            {
+                if (economyArray.length>1)
+                res.send(economyArray);
+                else res.send(economyArray[0]);
+            }
+        });
+    }
     // ?country= &year=
-    if(country || year)
+    else if(country || year)
     {
         //case errors
         if(!year) //if we don't have of the years selected
