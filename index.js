@@ -23,8 +23,10 @@ var climate_stats;
 client.connect(err => {
   climate_stats = client.db("sos1819-09").collection("climate-stats");
   console.log("Connected to climate_stats");
-  
+  // accès à l'api
   climates_stats_api(app,climate_stats);
+  // accès au frontend
+  app.use("/climate-stats-app", express.static(path.join(__dirname,"public/climate-stats")));
   
 });
 
