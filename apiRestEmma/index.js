@@ -1,10 +1,13 @@
 var express = require("express");
 const port = process.env.PORT || 8080;
 var app = express();
-//var queryParser = require('express-query-int');
 var bodyParser = require("body-parser");
+
+// A ajouter :
+var path = require("path");
+
 app.use(bodyParser.json());
-//app.use(queryParser());
+
 
 var MongoClientEmma = require('mongodb').MongoClient;
 const uriEmma = "mongodb+srv://user:user@sos-1gum3.mongodb.net/test?retryWrites=true";
@@ -20,6 +23,10 @@ clientEmma.connect(err => {
 
 
 app.use(bodyParser.json());
+
+// MiniPostman
+app.use("/",express.static(path.join(__dirname,"publicpopstats")));
+
 
 // GET docs
 app.get("/api/v1/populationstats/docs",(req,res)=>{
@@ -242,8 +249,7 @@ app.get("/api/v1/populationstats/:country/:year", (req,res)=>{
 app.put("/api/v1/populationstats/:country/:year", (req,res)=>{
     var country = req.params.country;
     var year = req.params.year;
-    var toUpdate = popstats.find({country: country,
-                    year: year}, { fields: { _id: 0 }});
+    var toUpdate = popstats.find({country: country, year: year});
     if(Object.keys(req.body).length === 0 || country===undefined || year===undefined || req.body.totalpopulation===undefined || req.body.urbanpopulation===undefined || req.body.accesstoelectricity===undefined){
     res.sendStatus(400);
     } else if(req.body.country==country){
