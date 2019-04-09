@@ -59,6 +59,9 @@ clientEmma.connect(err => {
   console.log("connected to popstats");
   
   population_stats_api(app,popstats);
+  
+   //MiniPostman
+    app.use("/api/v1/populationstats-minipostman",express.static(path.join(__dirname,"public/publicpopstats")));
 });
 
 

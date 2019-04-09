@@ -216,19 +216,21 @@ app.get("/api/v1/populationstats/:country/:year", (req,res)=>{
 
 
 
-// PUT /populationstats/:country/:year
 app.put("/api/v1/populationstats/:country/:year", (req,res)=>{
     var country = req.params.country;
-    var year = req.params.year;
-    var toUpdate = popstats.find({country: country,
-                    year: year}, { fields: { _id: 0 }});
-    if(Object.keys(req.body).length === 0 || country===undefined || year===undefined || req.body.totalpopulation===undefined || req.body.urbanpopulation===undefined || req.body.accesstoelectricity===undefined){
-    res.sendStatus(400);
-    } else if(req.body.country==country){
-        popstats.update({country: country, year: year},req.body, function(){
-           res.sendStatus(200); 
-        });
+    var year = parseInt(req.params.year);
 
+    if(Object.keys(req.body).length === 0 || country===undefined || year===undefined || req.body.totalpopulation===undefined || req.body.urbanpopulation===undefined || req.body.accesstoelectricity===undefined){
+    
+        res.sendStatus(400);
+    
+        
+    } else if(req.body.country==country){
+        
+        popstats.updateOne({country: country, year: parseInt(year)},{$set : req.body},function(){
+           res.sendStatus(200);
+
+        });
     }else
         res.sendStatus(400);
 });
