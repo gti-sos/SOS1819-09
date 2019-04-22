@@ -60,8 +60,11 @@ clientEmma.connect(err => {
   
   population_stats_api(app,popstats);
   
-   //MiniPostman
-    app.use("/api/v1/populationstats-minipostman",express.static(path.join(__dirname,"public/publicpopstats")));
+  //MiniPostman
+  app.use("/api/v1/populationstats-minipostman",express.static(path.join(__dirname,"public/publicpopstatspost")));
+    
+  //App
+  app.use("/api/v1/populationstats",express.static(path.join(__dirname,"public/publicpopstatsapp")));
 });
 
 
