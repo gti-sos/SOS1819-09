@@ -12,6 +12,7 @@ app.controller("MainCtrl", ["$scope","$http", function ($scope,$http){
                 function refresh(){
                     $http.get($scope.url).then(function (response){
                         $scope.climates = response.data;
+                        $scope.status = response.status;
                     });
                 }
                 
@@ -24,6 +25,8 @@ app.controller("MainCtrl", ["$scope","$http", function ($scope,$http){
                   }
                 }
                 
+                // GET FROM TO
+                
                 $scope.getFromTo = function(){
                     console.log("buscando");
                     $http({
@@ -33,34 +36,55 @@ app.controller("MainCtrl", ["$scope","$http", function ($scope,$http){
                      }).then(function (response){
                         $scope.climates = response.data;
                         console.log(JSON.stringify(response.data,null,2));
+                        $scope.information = "Buscando realizada";
                     });
                 };
                 
-                $scope.getCountry = function(){
+                // GET /country
+                
+                $scope.getCountry = function(country){
                     console.log("buscando");
                     $http({
-                        url: $scope.url, 
+                        url: $scope.url+"/"+country, 
                         method: "GET",
-                        params: {country : $scope.country}
                      }).then(function (response){
                         $scope.climates = response.data;
                         console.log(JSON.stringify(response.data,null,2));
+                        $scope.information = "Buscando realizada";
+                    }, function (error){
+                        refresh();
+                        $scope.information = 'El pais "' + $scope.country + '" no existe';
                     });
                 };
-
+                
+                // POST
+                
                 $scope.addClimate = function(){
             
                     console.log("Adding climate");
-                    $scope.newClimate.year = parseInt($scope.newClimate.year,10);
-                    $scope.newClimate.methane_stats = parseFloat($scope.newClimate.methane_stats);
-                    $scope.newClimate.co2_stats = parseFloat($scope.newClimate.co2_stats);
-                    $scope.newClimate.nitrous_oxide_stats = parseFloat($scope.newClimate.nitrous_oxide_stats);
+                    if(!(isNaN($scope.newClimate.country) || isNaN($scope.newClimate.year) ||isNaN($scope.newClimate.methane_stats) ||
+                         isNaN($scope.newClimate.co2_stats) ||isNaN($scope.newClimate.nitrous_oxide_stats))){
+                        $scope.newClimate.year = parseInt($scope.newClimate.year,10);
+                        $scope.newClimate.methane_stats = parseFloat($scope.newClimate.methane_stats);
+                        $scope.newClimate.co2_stats = parseFloat($scope.newClimate.co2_stats);
+                        $scope.newClimate.nitrous_oxide_stats = parseFloat($scope.newClimate.nitrous_oxide_stats);
+                    }
                     
                     $http.post($scope.url,$scope.newClimate).then(function (response){
                         console.log("Climate added");
                         refresh();
+                        $scope.information = "Recurso creado";
+                    }, function (error){
+                        refresh();
+                        if(error.status == 409){
+                            $scope.information = "El recurso ya existe";
+                        } else if(error.status == 400){
+                            $scope.information = "Los campos no son bien rellenando";
+                        }
                     });
                 };
+                
+                // DELETE /country/year
                 
                 $scope.deleteClimate = function(country, year){
             
@@ -68,6 +92,7 @@ app.controller("MainCtrl", ["$scope","$http", function ($scope,$http){
                     $http.delete($scope.url+"/"+country+"/"+year).then(function (response){
                         console.log("Climate deleted");
                         sleep(100); //Database update
+                        $scope.information = "Recurso borrado";
                         refresh();
                     });
                 };
@@ -76,11 +101,8 @@ app.controller("MainCtrl", ["$scope","$http", function ($scope,$http){
                 
                 $scope.delete = function(){
                     $http.delete($scope.url).then(function(response){
-                        $scope.status = response.status;
                         sleep(100); //Database update
-                        refresh();
-                    }, function (error){
-                        $scope.status = error.status;
+                        $scope.information = "Recurso borrado";
                     });
                 };
                 
