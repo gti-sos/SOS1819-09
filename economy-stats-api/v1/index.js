@@ -79,7 +79,7 @@ app.get(BASE_PATH, (req,res)=>{
     var to = req.query.to;
     var gdpgrowthstats = req.query.gdp_growth_stats;
     var industrygdp = req.query.industry_gdp_stats;
-    var grosssavgdp = req.query.gdp_growth_stats;
+    var grosssavgdp = req.query.gross_sav_gdp_stats;
     
     //indicators
     if(gdpgrowthstats) 
@@ -110,7 +110,7 @@ app.get(BASE_PATH, (req,res)=>{
     }
     else if (grosssavgdp)
     {
-        economy_stats.find({"gdp_growth_stats":gdpgrowthstats},{projection : {_id : 0}}).toArray((err, economyArray)=>{ 
+        economy_stats.find({"gross_sav_gdp_stats":gdpgrowthstats},{projection : {_id : 0}}).toArray((err, economyArray)=>{ 
             if(err) console.log("Error: "+err);
             if (economyArray.length == 0) res.sendStatus(404);
             else

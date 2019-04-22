@@ -1,0 +1,55 @@
+<html ng-app="MiniPostmanEconomy">
+    <head>
+        <title>Mini Postman Economy-stats</title>
+        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" >
+        <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="/bower_components/angular/angular.min.js"></script>
+        
+        <script src="minipostman-app.js"></script>
+        <script src="main-ctrl.js"></script>
+    
+    </head>
+    
+    <body ng-controller="MainCtrl">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>País</th>
+                    <th>Año</th>
+                    <th>Crecimiento PIB</th>
+                    <th>Crecimiento PIB para industria</th>
+                    <th>PIB ahorro bruto</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="economy in economies">
+                    <td>{{ economy.country }}</td>
+                    <td>{{ economy.year }}</td>
+                    <td>{{ economy.gdp_growth_stats }}</td>
+                    <td>{{ economy.industry_gdp_stats }}</td>
+                    <td>{{ economy.gross_sav_gdp_stats }}</td>
+                    <td><button class="btn btn-danger" ng-click="deleteFieldEconomy(economy.country, economy.year)">Remove</button></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input class="form-control" ng-model="newFieldEconomy.country" value"Nuevo pais"/>
+                    </td>
+                    <td>
+                        <input class="form-control" ng-model="newFieldEconomy.year" value"Nuevo año"/>
+                    </td>
+                    <td>
+                        <input class="form-control" ng-model="newFieldEconomy.gdp_growth_stats" value"Nuevo Crecimiento PIB"/>
+                    </td>
+                    <td>
+                        <input class="form-control" ng-model="newFieldEconomy.industry_gdp_stats" value"Nuevo Crecimiento PIB para industria"/>
+                    </td>
+                    <td>
+                        <input class="form-control" ng-model="newFieldEconomy.gross_sav_gdp_stats" value"Nuevo PIB ahorro bruto"/>
+                    </td>
+                    <td><button class="btn btn-primary" ng-click="addNewFieldEconomy()">Add</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
