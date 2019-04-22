@@ -99,6 +99,7 @@ app.controller("MainCtrl", ["$scope","$http", function ($scope,$http){
                     $http.delete($scope.url).then(function(response){
                         sleep(100); //Database update
                         $scope.information = "Recurso borrado";
+                        refresh();
                     });
                 };
                 
