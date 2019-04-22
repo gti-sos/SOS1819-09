@@ -62,8 +62,8 @@ app.controller("MainCtrl", ["$scope","$http", function ($scope,$http){
                 $scope.addClimate = function(){
             
                     console.log("Adding climate");
-                    if(!(isNaN($scope.newClimate.country) || isNaN($scope.newClimate.year) ||isNaN($scope.newClimate.methane_stats) ||
-                         isNaN($scope.newClimate.co2_stats) ||isNaN($scope.newClimate.nitrous_oxide_stats))){
+                    if(!$scope.newClimate.country == "" && !isNaN($scope.newClimate.year) && !isNaN($scope.newClimate.year) && !isNaN($scope.newClimate.methane_stats) && !isNaN($scope.newClimate.co2_stats) && !isNaN($scope.newClimate.nitrous_oxide_stats)){
+                        $scope.newClimate.country = $scope.newClimate.country;
                         $scope.newClimate.year = parseInt($scope.newClimate.year,10);
                         $scope.newClimate.methane_stats = parseFloat($scope.newClimate.methane_stats);
                         $scope.newClimate.co2_stats = parseFloat($scope.newClimate.co2_stats);
