@@ -27,12 +27,11 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http){
             console.log("ALL Created!");
             $scope.status = response.status;
             if ($scope.status == 200) $scope.information = "Todo inicializado";
-            if ($scope.status == 409) $scope.information = "Hay un conflicto";
             refresh();
         }, 
         function (error){
-            $scope.information = "Error durante la creación de todo";
             $scope.status = error.status;
+            if ($scope.status == 409) $scope.information = "Hay un conflicto";
         });
     };
     
