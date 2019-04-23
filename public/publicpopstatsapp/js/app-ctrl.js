@@ -80,4 +80,37 @@ angular
                  });
         };
         
+        $scope.vercountry = function () {
+            var country = $scope.inputcountry;
+            console.log("ver recurso : <"+ country + ">");
+            $http.get(API+"/"+country)
+                 .then(function(response){
+                     $scope.popstats = response.data;
+                     //refresh();
+                 })
+                 .catch(function(data){
+                        console.log(data.status);
+                        refresh();
+                        $scope.message = data.statusText+" : El recurso "+country+" no existe";
+                    });
+        };
+        
+        $scope.update = function (stat){
+            console.log("updating stats <"+ stat.country +">");
+            $scope.updateStat = stat;
+        };
+        
+        $scope.guardarUpdate = function (updateStat) {
+            updateStat = $scope.updateStat;
+            console.log("PUT : "+API+"/"+updateStat.country+"/"+updateStat.year);
+            $http.put(API+"/"+updateStat.country+"/"+updateStat.year,updateStat)
+                 .then( function(response){
+                     console.log("Put response : "+response.status);
+                     $scope.updateStat = "";
+                     refresh();
+                    $scope.message = response.statusText;
+                    
+                });
+        };
+        
     }]);
