@@ -64,7 +64,7 @@ clientEmma.connect(err => {
   app.use("/api/v1/populationstats-minipostman",express.static(path.join(__dirname,"public/publicpopstatspost")));
     
   //App
-  app.use("/api/ui/v1/populationstats",express.static(path.join(__dirname,"public/publicpopstatsapp")));
+  app.use("/ui/v1/populationstats",express.static(path.join(__dirname,"public/publicpopstatsapp")));
 });
 
 
