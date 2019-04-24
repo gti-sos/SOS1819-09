@@ -78,6 +78,7 @@
                                 <td>{{ climate.nitrous_oxide_stats }}</td>
                                 <td>
                                      <button class="btn btn-danger" ng-click="deleteClimate(climate.country, climate.year)">Borrar</button>
+                                     <!--<button class="btn btn-warning" ng-click="">Modificar</button>-->
                                 </td>
                             </tr>
                             <tr>
@@ -130,6 +131,40 @@
                                     <button class="btn btn-primary" ng-click="addClimate()" disabled id="post">Crear</button>
                                 </td>
                             </tr>
+                            <!--<tr>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <input 
+                                        type="text" 
+                                        placeholder="Nuevo metano"
+                                        class="form-control"
+                                        ng-model = "newClimate.methane_stats"
+                                        id="methaneM"
+                                        oninput="bouton()"/>
+                                </td>
+                                <td>
+                                    <input 
+                                        type="text" 
+                                        placeholder="Nuevo CO2"
+                                        class="form-control"
+                                        ng-model = "newClimate.co2_stats"
+                                        id="co2M"
+                                        oninput="bouton()"/>
+                                </td>
+                                <td>
+                                    <input 
+                                        type="text" 
+                                        placeholder="Nuevo oxido nitroso"
+                                        class="form-control"
+                                        ng-model = "newClimate.nitrous_oxide_stats"
+                                        id="noM"
+                                        oninput="bouton()"/>
+                                </td>
+                                <td>
+                                     <button class="btn btn-warning" ng-click="">Modificar</button>
+                                </td>
+                            </tr>-->
                         </tbody>
                     </table>
                 </div>
