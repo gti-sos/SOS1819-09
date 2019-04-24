@@ -87,7 +87,7 @@ clientGiuseppe.connect(err => {
   economyAPI.checkALL(app, BASE_PATH, economy_stats);
   console.log("Connected to economy-stats");
   app.use("/api/v1/economy-stats-minipostman", express.static(path.join(__dirname,"public/economy-stats-minibef")));
-  app.use("/api/ui/v1/economy-stats", express.static(path.join(__dirname,"public/economy-stats-miniaft")));
+  app.use("/ui/v1/economy-stats", express.static(path.join(__dirname,"public/economy-stats-miniaft")));
 });
 
 //_____________________________Listen port______________________________________
