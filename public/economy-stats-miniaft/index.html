@@ -13,6 +13,7 @@
     <body ng-controller="MainCtrl">
         <div><h2>STATUS CODE: {{status}}</h2></div>
         <div><h3>Información: {{information}}</h3></div>
+        <div id="divpagina"><h5>Página: {{pagina}}</h5></div>
         <div>
             <h3> Busqueada por año
             <input class="form-control" ng-model="newSearchEconomy.from" placeholder="Desde"/>
@@ -30,6 +31,11 @@
             <button class="btn btn-primary" ng-click="initializeTodo()">Inicializa TODO</button>
             <button class="btn btn-danger" ng-click="deleteAllEconomy()">Aborrar TODO</button>
             <button class="btn btn-primary" ng-click="getTotal()">Mira TODO</button>
+            <button class="btn btn-primary" ng-click="getPagination(1)">Mira con Paginación</button>
+        </div>
+        <div>
+            <button id="btnprvpg" class="btn btn-info" ng-click="getPagination(pagina-1)">Pagina anterior</button>
+            <button id="btnsuccpg" class="btn btn-info" ng-click="getPagination(pagina+1)">Pagina siguiente</button>
         </div>
         <table class="table">
             <thead>

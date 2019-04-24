@@ -19,6 +19,42 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http){
     
     $scope.getTotal = function (){ refresh(); $scope.information = "Extraido todos los campos" };
     
+    function initialize() 
+    { 
+        document.getElementById("divpagina").style.visibility = "hidden"; 
+        document.getElementById("btnprvpg").style.visibility = "hidden"; 
+        document.getElementById("btnsuccpg").style.visibility = "hidden"; 
+    }
+
+    initialize();
+
+    $scope.getPagination = function (pag){ 
+        if (pag == 1) 
+        {
+            document.getElementById("divpagina").style.visibility = "visible";
+            document.getElementById("btnprvpg").style.visibility = "hidden"; 
+            document.getElementById("btnsuccpg").style.visibility = "visible";
+        }
+        else document.getElementById("btnprvpg").style.visibility = "visible";
+        $scope.pagina = pag;
+        var URL = $scope.url + "?offset=" + ($scope.pagina-1)*10 + "&limit=" + (($scope.pagina-1)*10 + 10);
+        $http.get(URL).then(function(response){
+            console.log("Data received " + JSON.stringify(response.data, null, 2));
+            document.getElementById("btnsuccpg").style.visibility = "visible";
+            $scope.economies = response.data;
+            $scope.status = response.status;
+        }, 
+        function (error){
+            $scope.status = error.status;
+        });
+        $http.get($scope.url + "?offset=" + ($scope.pagina)*3 + "&limit=" + ($scope.pagina)*3 + 3).then(function(response){}, 
+        function (error){
+            document.getElementById("btnsuccpg").style.visibility = "hidden";
+        });
+        $scope.information = "Extraido los campos de Pagina " + $scope.pagina; 
+    };
+    
+    
     $scope.initializeTodo = function (){
         var newEconomy = $scope.newFieldEconomy;
         console.log("Initializing the economy stats" + JSON.stringify(newEconomy, null, 2)); 
