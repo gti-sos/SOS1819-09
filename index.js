@@ -26,7 +26,7 @@ client.connect(err => {
   // accès à l'api
   climates_stats_api(app,climate_stats);
   // accès au frontend
-  app.use("/api/ui/v1/climate-stats", express.static(path.join(__dirname,"public/climate-stats")));
+  app.use("/ui/v1/climate-stats", express.static(path.join(__dirname,"public/climate-stats")));
   
 });
 
