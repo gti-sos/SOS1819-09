@@ -42,6 +42,48 @@ app.get("/api/v1/populationstats/loadInitialData",(req,res)=>{
     urbanpopulation:"51627",
     accesstoelectricity:"93.36"
 },
+{
+    country:"Blabla",
+    year:1990,
+    totalpopulation:"62",
+    urbanpopulation:"62",
+    accesstoelectricity:"55.44"
+},
+{
+    country:"Pais",
+    year:1993,
+    totalpopulation:"89",
+    urbanpopulation:"31",
+    accesstoelectricity:"88.44"
+},
+{
+    country:"France",
+    year:1990,
+    totalpopulation:"55",
+    urbanpopulation:"40",
+    accesstoelectricity:"70.44"
+},
+{
+    country:"OtroPais",
+    year:1995,
+    totalpopulation:"96000",
+    urbanpopulation:"95000",
+    accesstoelectricity:"88.44"
+},
+{
+    country:"Example",
+    year:2010,
+    totalpopulation:"62149",
+    urbanpopulation:"31273",
+    accesstoelectricity:"88.44"
+},
+{
+    country:"OtroExample",
+    year:1990,
+    totalpopulation:"62149",
+    urbanpopulation:"31273",
+    accesstoelectricity:"88.44"
+}
     ];
     popstats.count(function(err, count) {
     
