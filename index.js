@@ -26,7 +26,7 @@ client.connect(err => {
   // accès à l'api
   climates_stats_api(app,climate_stats);
   // accès au frontend
-  app.use("/api/ui/v1/climate-stats", express.static(path.join(__dirname,"public/climate-stats")));
+  app.use("/ui/v1/climate-stats", express.static(path.join(__dirname,"public/climate-stats")));
   
 });
 
@@ -64,7 +64,7 @@ clientEmma.connect(err => {
   app.use("/api/v1/populationstats-minipostman",express.static(path.join(__dirname,"public/publicpopstatspost")));
     
   //App
-  app.use("/api/ui/v1/populationstats",express.static(path.join(__dirname,"public/publicpopstatsapp")));
+  app.use("/ui/v1/populationstats",express.static(path.join(__dirname,"public/publicpopstatsapp")));
 });
 
 
