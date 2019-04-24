@@ -67,13 +67,13 @@ angular
         };
         
         $scope.ver = function () {
-            var offset=$scope.offset;
-            var limit=$scope.limit;
-            console.log("ver de "+ offset +" a " + limit);
-            console.log("<"+API+"?limit="+limit+"?offset="+offset+">");
-            $http.get(API+"?limit="+limit+"?offset="+offset)
+            var year1=$scope.year1;
+            var year2=$scope.year2;
+            console.log("ver de <"+ year1 +"> a <" + year2+">");
+            console.log("<"+API+"?from="+year1+"&to="+year2+">");
+            $http.get(API+"?from="+year1+"&to="+year2)
                  .then(function(response){
-                     refresh();
+                     
                      $scope.popstats = response.data;
                      $scope.message = response.statusText;
                      //refresh();
