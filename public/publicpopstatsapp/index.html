@@ -5,98 +5,15 @@
         <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
         <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="/bower_components/angular/angular.min.js"></script>
+        <script src="/bower_components/angular-route/angular-route.min.js"></script>
         <script src="js/pop-app.js"></script>
-        <script src="js/app-ctrl.js"></script>
+        <script src="js/list-ctrl.js"></script>
+        <script src="js/edit-ctrl.js"></script>
         
     </head>
     
-    <body ng-controller="app-ctrl">
+    <body ng-view>
         
-        <h1>Estadísticas de población</h1>
-        <div>{{message}}</div>
-        <div>
-            <label for="">Ver</label>
-            <input type="text" name="" ng-model="inputcountry"/>
-            <button class="btn btn-primary" ng-click="vercountry()">Ver</button>
-        </div>
-        <div>
-            <h2> </h2>
-            <label for="">Ver recursos de </label>
-            <input type="text" name="" ng-model="year1"/>
-            <label for=""> hasta </label>
-            <input type="text" name="" ng-model="year2"/>
-            <button class="btn btn-primary" ng-click="ver()">Ver</button>
-        </div>
-        <div>
-            
-            <table class="table">
-                
-                <thead>
-                    <tr>
-                        
-                        <th>País</th>
-                        <th>Año</th>
-                        <th>Población total</th>
-                        <th>Población urbana</th>
-                        <th>Acceso a la electricidad</th>
-                        <th>Acción</th>
-                        
-                    </tr>
-                </thead>
-                
-                <tbody>
-                    <tr ng-repeat="stat in popstats">
-                        
-                       <td>{{stat.country}}</td>
-                       <td>{{stat.year}}</td>
-                       <td>{{stat.totalpopulation}}</td>
-                       <td>{{stat.urbanpopulation}}</td>
-                       <td>{{stat.accesstoelectricity}}</td>
-                       <td><button class="btn btn-danger" ng-click="delete(stat)">Borrar</button>
-                           <button class="btn btn-warning" ng-click="update(stat)">Modificar</button>
-                       </td>
-                    </tr>
-                    
-                    <tr>
-                       <td>
-                           <input type="text" ng-model="newPopStat.country" value="nuevo país" />
-                       </td>
-                       <td>
-                           <input type="text" value="nueva año" ng-model="newPopStat.year"/>
-                       </td>
-                       <td>
-                           <input type="text" value="población total" ng-model="newPopStat.totalpopulation"/>
-                       </td>
-                       <td>
-                           <input type="text" value="población urbana" ng-model="newPopStat.urbanpopulation"/>
-                       </td>
-                       <td>
-                           <input type="text" value="acceso a la electricidad" ng-model="newPopStat.accesstoelectricity"/>
-                       </td>
-                       <td><button class="btn btn-primary" ng-click="add()">Añadir</button></td>
-                    </tr>
-                    <td>
-                           {{updateStat.country}}
-                       </td>
-                       <td>
-                           {{updateStat.year}}
-                       </td>
-                       <td>
-                           <input type="text" value=stat.totalpopulation ng-model="updateStat.totalpopulation"/>
-                       </td>
-                       <td>
-                           <input type="text" value=stat.urbanpopulation ng-model="updateStat.urbanpopulation"/>
-                       </td>
-                       <td>
-                           <input type="text" value=stat.accesstoelectricity ng-model="updateStat.accesstoelectricity"/>
-                       </td>
-                       <td><button class="btn btn-primary" ng-click="guardarUpdate(updateStat)">Guardar</button></td>
-                    </tr>
-                </tbody>
-                
-            </table>
-            
-        </div>
-        <div><button class="btn btn-danger" ng-click="deleteall()">Borrar todos los recursos</button></div>
+        
     </body>
 </html>

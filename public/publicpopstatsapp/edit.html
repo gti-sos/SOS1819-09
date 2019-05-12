@@ -1,0 +1,38 @@
+<h1>Edición de población</h1>
+
+<table class="table">
+                
+                <thead>
+                    <tr>
+                        
+                        <th>País</th>
+                        <th>Año</th>
+                        <th>Población total</th>
+                        <th>Población urbana</th>
+                        <th>Acceso a la electricidad</th>
+                        <th>Acción</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td>
+                           {{updateStat.country}}
+                       </td>
+                       <td>
+                           {{updateStat.year}}
+                       </td>
+                       <td>
+                           <input type="text" value=stat.totalpopulation ng-model="updateStat.totalpopulation"/>
+                       </td>
+                       <td>
+                           <input type="text" value=stat.urbanpopulation ng-model="updateStat.urbanpopulation"/>
+                       </td>
+                       <td>
+                           <input type="text" value=stat.accesstoelectricity ng-model="updateStat.accesstoelectricity"/>
+                       </td>
+                       <td><button class="btn btn-primary" ng-click="guardarUpdate(updateStat)">Guardar</button></td>
+                    </tr>
+                </tbody>
+                
+</table>
