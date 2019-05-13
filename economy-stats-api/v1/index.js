@@ -357,6 +357,10 @@ app.put(BASE_PATH + "/:country/:year", (req,res)=>{
     var country = req.params.country;
     var year = req.params.year;
     var updatedEconomy = req.body; //what we update
+    updatedEconomy.year = parseInt(updatedEconomy.year,10);
+    updatedEconomy.gdp_growth_stats = parseFloat(updatedEconomy.gdp_growth_stats);
+    updatedEconomy.industry_gdp_stats = parseFloat(updatedEconomy.industry_gdp_stats);
+    updatedEconomy.gross_sav_gdp_stats = parseFloat(updatedEconomy.gross_sav_gdp_stats);
 
     economy_stats.find({"country":country,"year":parseInt(year,10)}).toArray((err, economyArray)=>{
         if(err) console.log(err);
@@ -368,7 +372,7 @@ app.put(BASE_PATH + "/:country/:year", (req,res)=>{
                 if (economyArray==0) res.sendStatus(400); //bad request if the array is empty
                 else
                 {
-                    if (Object.keys(updatedEconomy).length != 5 || updatedEconomy.country==null || updatedEconomy.year==null || updatedEconomy.gdp_growth_stats==null || updatedEconomy.industry_gdp_stats==null || updatedEconomy.gross_sav_gdp_stats == null)
+                    if (Object.keys(updatedEconomy).length != 5 || !updatedEconomy.country || !updatedEconomy.year || !updatedEconomy.gdp_growth_stats || !updatedEconomy.industry_gdp_stats || !updatedEconomy.gross_sav_gdp_stats)
                         res.sendStatus(400);
                     else
                     {
