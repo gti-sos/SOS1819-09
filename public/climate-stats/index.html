@@ -1,175 +1,135 @@
-
-        <div class = "container">
-            <div class = "row">
-                <div div class = "col-sm">
-                    <button class="btn btn-danger" ng-click="delete()">BORRAR TODO</button>
-                </div>
-            </div>
-            
-            <div class = "row">
-                <div class = "col-sm">
-                    <input 
-                        type="text" 
-                        placeholder="De"
-                        class="form-control"
-                        ng-model = "from"/>
-                </div>
-                <div class = "col-sm">
-                    <input 
-                        type="text" 
-                        placeholder="a"
-                        class="form-control"
-                        ng-model = "to"/>
-                </div>
-                <div class = "col-sm">
-                    <button class="btn btn-primary" ng-click="getFromTo()">Buscar</button>
-                </div>
-            </div>
-            
-            <div class = "row">
-                <div class = "col-sm">
-                    <input 
-                        type="text" 
-                        placeholder="Pais"
-                        class="form-control"
-                        ng-model = "country"/>
-                </div>
-                <div class = "col-sm">
-                    <button class="btn btn-primary" ng-click="getCountry(country)">Buscar</button>
-                </div>
-            </div>
-            
-            <div class = "row">
-                <div class = "col-sm">
-                    <p>Informacion : {{information}}</p>
-                </div>
-            </div>
-            
-            <div class = "row">
-                <div div class = "col-sm">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Pais</th>
-                                <th>Ano</th>
-                                <th>Metano</th>
-                                <th>CO2</th>
-                                <th>Oxido nitroso</th>
-                                <th>Accion</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="climate in climates">
-                                <td>{{ climate.country }}</td>
-                                <td>{{ climate.year }}</td>
-                                <td>{{ climate.methane_stats }}</td>
-                                <td>{{ climate.co2_stats }}</td>
-                                <td>{{ climate.nitrous_oxide_stats }}</td>
-                                <td>
-                                     <button class="btn btn-danger" ng-click="deleteClimate(climate.country, climate.year)">Borrar</button>
-                                     <!--<button class="btn btn-warning" ng-click="">Modificar</button>-->
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input 
-                                        type="text" 
-                                        placeholder="Nuevo pais" 
-                                        class="form-control"
-                                        ng-model = "newClimate.country"
-                                        id="country"
-                                        oninput="bouton()"/>
-                                </td>
-                                <td>
-                                    <input 
-                                        type="text" 
-                                        placeholder="Nuevo ano"
-                                        class="form-control"
-                                        ng-model = "newClimate.year"
-                                        id="year"
-                                        oninput="bouton()"/>
-                                </td>
-                                <td>
-                                    <input 
-                                        type="text" 
-                                        placeholder="Nuevo metano"
-                                        class="form-control"
-                                        ng-model = "newClimate.methane_stats"
-                                        id="methane"
-                                        oninput="bouton()"/>
-                                </td>
-                                <td>
-                                    <input 
-                                        type="text" 
-                                        placeholder="Nuevo CO2"
-                                        class="form-control"
-                                        ng-model = "newClimate.co2_stats"
-                                        id="co2"
-                                        oninput="bouton()"/>
-                                </td>
-                                <td>
-                                    <input 
-                                        type="text" 
-                                        placeholder="Nuevo oxido nitroso"
-                                        class="form-control"
-                                        ng-model = "newClimate.nitrous_oxide_stats"
-                                        id="no"
-                                        oninput="bouton()"/>
-                                </td>
-                                <td>
-                                    <button class="btn btn-primary" ng-click="addClimate()" disabled id="post">Crear</button>
-                                </td>
-                            </tr>
-                            <!--<tr>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <input 
-                                        type="text" 
-                                        placeholder="Nuevo metano"
-                                        class="form-control"
-                                        ng-model = "newClimate.methane_stats"
-                                        id="methaneM"
-                                        oninput="bouton()"/>
-                                </td>
-                                <td>
-                                    <input 
-                                        type="text" 
-                                        placeholder="Nuevo CO2"
-                                        class="form-control"
-                                        ng-model = "newClimate.co2_stats"
-                                        id="co2M"
-                                        oninput="bouton()"/>
-                                </td>
-                                <td>
-                                    <input 
-                                        type="text" 
-                                        placeholder="Nuevo oxido nitroso"
-                                        class="form-control"
-                                        ng-model = "newClimate.nitrous_oxide_stats"
-                                        id="noM"
-                                        oninput="bouton()"/>
-                                </td>
-                                <td>
-                                     <button class="btn btn-warning" ng-click="">Modificar</button>
-                                </td>
-                            </tr>-->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+<div class = "container">
+    <div class = "row">
+        <div div class = "col-sm">
+            <button class="btn btn-danger" ng-click="delete()">BORRAR TODO</button>
         </div>
-         
-        <script type="text/javascript">
+    </div>
             
-            function bouton(){
-                if(!document.getElementById("country").value == "" && !document.getElementById("year").value == "" && !document.getElementById("methane").value == "" && !document.getElementById("co2").value == "" && !document.getElementById("no").value == ""){
-                    document.getElementById("post").disabled = false;
-                }else{
-                    document.getElementById("post").disabled = true;
-                }
-            }
-        </script>
+    <div class = "row">
+        <div class = "col-sm">
+            <input 
+                type="text" 
+                placeholder="De"
+                class="form-control"
+                ng-model = "from"/>
+        </div>
+        <div class = "col-sm">
+            <input 
+                type="text" 
+                placeholder="a"
+                class="form-control"
+                ng-model = "to"/>
+        </div>
+        <div class = "col-sm">
+            <button class="btn btn-primary" ng-click="getFromTo()">Buscar</button>
+        </div>
+    </div>
+            
+    <div class = "row">
+        <div class = "col-sm">
+            <input 
+                type="text" 
+                placeholder="Pais"
+                class="form-control"
+                ng-model = "country"/>
+        </div>
+        <div class = "col-sm">
+            <button class="btn btn-primary" ng-click="getCountry(country)">Buscar</button>
+        </div>
+    </div>
+            
+    <div class = "row">
+        <div class = "col-sm">
+            <p>Informacion : {{information}}</p>
+        </div>
+    </div>
+            
+    <div class = "row">
+        <div div class = "col-sm">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Pais</th>
+                        <th>Ano</th>
+                        <th>Metano</th>
+                        <th>CO2</th>
+                        <th>Oxido nitroso</th>
+                        <th>Accion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="climate in climates">
+                        <td>
+                            <a href="#!/climate-stats/edit/{{ climate.country }}/{{ climate.year }}">
+                                {{ climate.country }}
+                            </a>
+                        </td>
+                        <td>{{ climate.year }}</td>
+                        <td>{{ climate.methane_stats }}</td>
+                        <td>{{ climate.co2_stats }}</td>
+                        <td>{{ climate.nitrous_oxide_stats }}</td>
+                        <td>
+                             <button class="btn btn-danger" ng-click="deleteClimate(climate.country, climate.year)">Borrar</button>
+                             <!--<button class="btn btn-warning" ng-click="">Modificar</button>-->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input 
+                                type="text" 
+                                placeholder="Nuevo pais" 
+                                class="form-control"
+                                ng-model = "newClimate.country"
+                                id="country"
+                                oninput="bouton()"/>
+                        </td>
+                        <td>
+                            <input 
+                                type="text" 
+                                placeholder="Nuevo ano"
+                                class="form-control"
+                                ng-model = "newClimate.year"
+                                id="year"
+                                oninput="bouton()"/>
+                        </td>
+                        <td>
+                            <input 
+                                type="text" 
+                                placeholder="Nuevo metano"
+                                class="form-control"
+                                ng-model = "newClimate.methane_stats"
+                                id="methane"
+                                oninput="bouton()"/>
+                        </td>
+                        <td>
+                            <input 
+                                type="text" 
+                                placeholder="Nuevo CO2"
+                                class="form-control"
+                                ng-model = "newClimate.co2_stats"
+                                id="co2"
+                                oninput="bouton()"/>
+                        </td>
+                        <td>
+                            <input 
+                                type="text" 
+                                placeholder="Nuevo oxido nitroso"
+                                class="form-control"
+                                ng-model = "newClimate.nitrous_oxide_stats"
+                                id="no"
+                                oninput="bouton()"/>
+                        </td>
+                        <td>
+                            <button class="btn btn-primary" ng-click="addClimate()" disabled id="post">Crear</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+          
+          
             
       <!--  <div class = "container-fluid ml-2">
             <div class = row>
@@ -211,4 +171,3 @@
             </div>
         </div>
         -->
-    </body>

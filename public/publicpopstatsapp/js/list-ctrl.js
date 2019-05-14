@@ -11,7 +11,9 @@ angular
         var API = "/api/v1/populationstats";
         
         function refresh(){
-            $http.get(API).then(function(response){
+            
+            $scope.pagina=1;
+            $http.get(API+ "?offset=" + 0 + "&limit=" + 10).then(function(response){
             
                 $scope.popstats = response.data;
             });
@@ -107,6 +109,22 @@ angular
                     $scope.message = response.statusText;
                     
                 });
+        };
+        
+        $scope.pagination = function(pag){
+            if (pag != 1){
+                $scope.pagina=pag;
+                $http.get(API+ "?offset=" + ($scope.pagina-1)*10 + "&limit=" + (($scope.pagina-1)*10 + 10)).then(function(response){
+            
+                $scope.popstats = response.data;
+            });
+            } else {
+                $scope.pagina=pag;
+                $http.get(API+ "?offset=" + 0 + "&limit=" + 10).then(function(response){
+            
+                $scope.popstats = response.data;
+            });
+            }
         };
         
     }]);

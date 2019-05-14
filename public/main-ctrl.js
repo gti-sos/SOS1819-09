@@ -8,11 +8,15 @@
                    templateUrl: "menu.html"
                 })
                 .when("/climate-stats",{
-                   controller : "climate-stats/js/ClimateCtrl",
+                   controller : "ClimateCtrl",
                    templateUrl: "climate-stats/index.html"
                 }).when("/economy-stats",{
                    controller : "economy-stats/economy-ctrl.js",
                    templateUrl: "economy-stats/index.html"
+                })
+                .when("/climate-stats/edit/:country/:year",{
+                   controller : "ClimateEditCtrl",
+                   templateUrl: "climate-stats/edit.html"
                 })
                 ;
         });
