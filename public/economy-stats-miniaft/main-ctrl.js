@@ -9,8 +9,11 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http){
     {
         console.log("Requesting API");
         $http.get($scope.url).then(function(response){
+            $scope.economies = [];
             console.log("Data received " + JSON.stringify(response.data, null, 2));
-            $scope.economies = response.data;
+            if (response.data.length>1)
+                $scope.economies = response.data;
+            else $scope.economies[0] = response.data;
         }, 
         function (error){});
     }
@@ -71,9 +74,12 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http){
         var URL = $scope.url + "?from=" + newSearch.from + "&to=" + newSearch.to ;
         
         $http.get(URL).then(function(response){
+            $scope.economies = [];
             console.log("Found countries from " + newSearch.from + " to " + newSearch.to);
             console.log("Data received " + JSON.stringify(response.data, null, 2));
-            $scope.economies = response.data;
+            if (response.data.length>1)
+                $scope.economies = response.data;
+            else $scope.economies[0] = response.data;
             if (response.status == 200) $scope.information = "Encontrado los campos con año desde " + newSearch.from + " hasta " + newSearch.to;
         }, 
         function (error){
@@ -89,8 +95,12 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http){
         var URL = $scope.url + "/" + newSearch.country;
         
         $http.get(URL).then(function(response){
+            $scope.economies = [];
             console.log("Data received " + JSON.stringify(response.data, null, 2));
-            $scope.economies = response.data;
+            if (response.data.length>1)
+                $scope.economies = response.data;
+            else $scope.economies[0] = response.data;
+            
             if (response.status == 200) $scope.information = "Encontrado los campos de la Nación " + newSearch.country;
         }, 
         function (error){

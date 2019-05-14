@@ -7,7 +7,7 @@ var path = "";
 path = BASE_PATH + "/docs/";
 
 app.get(path, (req,res)=>{
-    res.redirect('https://documenter.getpostman.com/view/6893446/S1EH21Qt');
+    res.redirect('https://documenter.getpostman.com/view/6893446/S1LzwRii');
 });
 
 
