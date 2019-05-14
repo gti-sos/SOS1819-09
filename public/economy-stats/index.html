@@ -41,7 +41,7 @@
             <td>{{ economy.gdp_growth_stats }}</td>
             <td>{{ economy.industry_gdp_stats }}</td>
             <td>{{ economy.gross_sav_gdp_stats }}</td>
-            <td><button class="btn btn-danger" ng-click="deleteFieldEconomy(economy.country, economy.year)">Borrar</button></td>
+            <td><button class="btn btn-danger" value="delete" ng-click="deleteFieldEconomy(economy.country, economy.year)">Borrar</button></td>
         </tr>
         <tr>
             <td>
@@ -60,7 +60,7 @@
                 <input class="form-control" ng-model="newFieldEconomy.gross_sav_gdp_stats" placeholder="Nuevo PIB ahorro bruto"/>
             </td>
             <td>
-                <button class="btn btn-primary" ng-click="addNewFieldEconomy()">Añadir</button>
+                <button class="btn btn-primary" value="add" ng-click="addNewFieldEconomy()">Añadir</button>
             </td>
         </tr>
     </tbody>
