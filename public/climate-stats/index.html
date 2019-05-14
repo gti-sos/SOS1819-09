@@ -59,7 +59,11 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="climate in climates">
-                        <td>{{ climate.country }}</td>
+                        <td>
+                            <a href="#!/climate-stats/edit/{{ climate.country }}/{{ climate.year }}">
+                                {{ climate.country }}
+                            </a>
+                        </td>
                         <td>{{ climate.year }}</td>
                         <td>{{ climate.methane_stats }}</td>
                         <td>{{ climate.co2_stats }}</td>
@@ -119,45 +123,13 @@
                             <button class="btn btn-primary" ng-click="addClimate()" disabled id="post">Crear</button>
                         </td>
                     </tr>
-                    <!--<tr>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <input 
-                                type="text" 
-                                placeholder="Nuevo metano"
-                                class="form-control"
-                                ng-model = "newClimate.methane_stats"
-                                id="methaneM"
-                                oninput="bouton()"/>
-                        </td>
-                        <td>
-                            <input 
-                                type="text" 
-                                placeholder="Nuevo CO2"
-                                class="form-control"
-                                ng-model = "newClimate.co2_stats"
-                                        id="co2M"
-                                        oninput="bouton()"/>
-                                </td>
-                                <td>
-                                    <input 
-                                        type="text" 
-                                        placeholder="Nuevo oxido nitroso"
-                                        class="form-control"
-                                        ng-model = "newClimate.nitrous_oxide_stats"
-                                        id="noM"
-                                        oninput="bouton()"/>
-                                </td>
-                                <td>
-                                     <button class="btn btn-warning" ng-click="">Modificar</button>
-                                </td>
-                            </tr>-->
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+          
+          
             
       <!--  <div class = "container-fluid ml-2">
             <div class = row>

@@ -1,0 +1,48 @@
+<div class = "container">
+    <div class = "row">
+        <div div class = "col-sm">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Pais</th>
+                        <th>Ano</th>
+                        <th>Metano</th>
+                        <th>CO2</th>
+                        <th>Oxido nitroso</th>
+                        <th>Accion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ climate.country }}</td>
+                        <td>{{ climate.year }}</td>
+                        <td>
+                            <input 
+                                class="form-control" 
+                                ng-model="climate.methane_stats"
+                            />
+                        </td>
+                        <td>
+                            <input 
+                                class="form-control" 
+                                ng-model="climate.co2_stats"
+                            />
+                        </td>
+                        <td>
+                            <input 
+                                class="form-control" 
+                                ng-model="climate.nitrous_oxide_stats"
+                            />
+                        </td>
+                        <td>
+                            <button 
+                                class="btn btn-primary"
+                                ng-click="updateClimate(climate.country, climate.year)";
+                            >Modificar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>        
+    </div>            
+</div>

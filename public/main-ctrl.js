@@ -11,7 +11,7 @@
                    controller : "ClimateCtrl",
                    templateUrl: "climate-stats/index.html"
                 })
-                .when("/climate-stats/edit/:name",{
+                .when("/climate-stats/edit/:country/:year",{
                    controller : "ClimateEditCtrl",
                    templateUrl: "climate-stats/edit.html"
                 })
