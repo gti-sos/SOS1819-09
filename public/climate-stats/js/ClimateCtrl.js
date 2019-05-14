@@ -15,12 +15,16 @@ angular
                     document.getElementById("pre").disabled = (page == 1);
                     $scope.page = page;
                     
-                    $http.get(API + "?offset=" + ($scope.page-1)*10 + "&limit=" + (($scope.page-1)*10 + 10))
-                    .then(function (response){
-                         console.log("Data Received: "
-                                    + JSON.stringify(response.data,null,2));
-                        $scope.climates = response.data;
-                    });
+                    $http({
+                        url : API,
+                        method : "GET",
+                        params : {offset: ($scope.page-1)*10, limit: (($scope.page-1)*10 + 10)}
+                    })
+                        .then(function (response){
+                            console.log("Data Received: "
+                                        + JSON.stringify(response.data,null,2));
+                            $scope.climates = response.data;
+                        });
                 }
                 
                 function sleep(milliseconds) {
@@ -53,6 +57,21 @@ angular
                     });
                 };
                 
+                // LOAD DATA
+                
+                $scope.loadData = function(){
+                    $http.get(API+"/loadInitialData")
+                        .then(function(response){
+                            console.log("Data Received: "
+                                        + JSON.stringify(response.data,null,2));
+                            $scope.climates = response.data;
+                            $scope.information = 'Datos inicialados';
+                            refresh(1);
+                        }, function (error){
+                            $scope.information = 'Error : Ya hay datos';
+                        });
+                };
+                
                 // GET /country
                 
                 $scope.getCountry = function(country){
@@ -65,8 +84,8 @@ angular
                         console.log(JSON.stringify(response.data,null,2));
                         $scope.information = "Buscando realizada";
                     }, function (error){
-                        refresh();
-                        $scope.information = 'El pais "' + $scope.country + '" no existe';
+                        refresh(1);
+                        $scope.information = 'Error : El pais "' + $scope.country + '" no existe';
                     });
                 };
                 
@@ -83,12 +102,12 @@ angular
                     
                     $http.post(API,$scope.newClimate).then(function (response){
                         console.log("Climate added");
-                        refresh();
+                        refresh(1);
                         $scope.information = "Recurso creado";
                     }, function (error){
-                        refresh();
+                        refresh(1);
                         if(error.status == 409){
-                            $scope.information = "El recurso ya existe";
+                            $scope.information = "Error : El recurso ya existe";
                         }
                     });
                 };
@@ -102,7 +121,7 @@ angular
                         console.log("Climate deleted");
                         sleep(100); //Database update
                         $scope.information = "Recurso borrado";
-                        refresh();
+                        refresh(1);
                     });
                 };
                 
@@ -112,7 +131,7 @@ angular
                     $http.delete(API).then(function(response){
                         sleep(100); //Database update
                         $scope.information = "Recurso borrado";
-                        refresh();
+                        refresh(1);
                     });
                 };
                 
