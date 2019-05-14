@@ -1,0 +1,1188 @@
+{
+	"info": {
+		"_postman_id": "7e3763b0-f59e-48ff-a01d-24442a36b9dc",
+		"name": "SOS1819-09-apiDoc",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Delete all /populationstats",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "457f2ca9-7c03-4e1f-9b94-86b46087e66d",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-09.herokuapp.com/api/v1/populationstats",
+					"protocol": "https",
+					"host": [
+						"sos1819-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"populationstats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://sos1819-09.herokuapp.com/api/v1/populationstats/loadInitialData",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c55920e6-da6f-4fc3-b185-c5adff1d4bf3",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-09.herokuapp.com/api/v1/populationstats/loadInitialData",
+					"protocol": "https",
+					"host": [
+						"sos1819-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"populationstats",
+						"loadInitialData"
+					]
+				},
+				"description": "Load the initial data"
+			},
+			"response": []
+		},
+		{
+			"name": "Get load intitial data a second time",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c55920e6-da6f-4fc3-b185-c5adff1d4bf3",
+						"exec": [
+							"pm.test(\"Status code is 409\", function () {",
+							"    pm.response.to.have.status(409);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-09.herokuapp.com/api/v1/populationstats/loadInitialData",
+					"protocol": "https",
+					"host": [
+						"sos1819-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"populationstats",
+						"loadInitialData"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://sos1819-09.herokuapp.com/api/v1/populationstats/",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5b04c35c-a6c2-4911-a66c-27eb6734112c",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Returns some data\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length > 0).to.be.true;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-09.herokuapp.com/api/v1/populationstats/",
+					"protocol": "https",
+					"host": [
+						"sos1819-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"populationstats",
+						""
+					]
+				},
+				"description": "Get all recursos"
+			},
+			"response": []
+		},
+		{
+			"name": "https://sos1819-09.herokuapp.com/api/v1/populationstats/Aruba",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3cf06a14-75c9-46bd-afd1-11722ca2199d",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Returns data\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length > 0).to.be.true;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-09.herokuapp.com/api/v1/populationstats/Aruba",
+					"protocol": "https",
+					"host": [
+						"sos1819-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"populationstats",
+						"Aruba"
+					]
+				},
+				"description": "Get recursos de un pais"
+			},
+			"response": []
+		},
+		{
+			"name": "Get /populationstats/Blabla",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3cf06a14-75c9-46bd-afd1-11722ca2199d",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-09.herokuapp.com/api/v1/populationstats/Blabla",
+					"protocol": "https",
+					"host": [
+						"sos1819-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"populationstats",
+						"Blabla"
+					]
+				},
+				"description": "Get a country not in the data base"
+			},
+			"response": []
+		},
+		{
+			"name": "https://sos1819-09.herokuapp.com/api/v1/populationstats/Aruba/1990",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "efdd4490-9d95-4577-91c0-e7ea9be449d8",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Returns one data\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    (jsonData instanceof Object);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-09.herokuapp.com/api/v1/populationstats/Aruba/1990",
+					"protocol": "https",
+					"host": [
+						"sos1819-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"populationstats",
+						"Aruba",
+						"1990"
+					]
+				},
+				"description": "Get recurso concreto"
+			},
+			"response": []
+		},
+		{
+			"name": "Get /populationstats/Blabla/1995",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "74ecb70d-9056-4f14-9812-77da0676454d",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-09.herokuapp.com/api/v1/populationstats/Blabla/1995",
+					"protocol": "https",
+					"host": [
+						"sos1819-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"populationstats",
+						"Blabla",
+						"1995"
+					]
+				},
+				"description": "Get an inexisting recurso"
+			},
+			"response": []
+		},
+		{
+			"name": "Get a year /populationstats?year=1990",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "36162001-67f0-4a79-9247-ce3de364b126",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Returns an array\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    (jsonData instanceof Array);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-09.herokuapp.com/api/v1/populationstats?year=1990",
+					"protocol": "https",
+					"host": [
+						"sos1819-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"populationstats"
+					],
+					"query": [
+						{
+							"key": "year",
+							"value": "1990"
+						}
+					]
+				},
+				"description": "Get recursos de un ano concreto"
+			},
+			"response": []
+		},
+		{
+			"name": "Get /populationstats?year=15520",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "36162001-67f0-4a79-9247-ce3de364b126",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-09.herokuapp.com/api/v1/populationstats?year=1550",
+					"protocol": "https",
+					"host": [
+						"sos1819-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"populationstats"
+					],
+					"query": [
+						{
+							"key": "year",
+							"value": "1550"
+						}
+					]
+				},
+				"description": "Get an inexisting year"
+			},
+			"response": []
+		},
+		{
+			"name": "Get con campo /populationstats?totalpopulation=52448",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e29ef110-ba2c-4218-8c4a-8bff51989730",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-09.herokuapp.com/api/v1/populationstats?totalpopulation=52448",
+					"protocol": "https",
+					"host": [
+						"sos1819-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"populationstats"
+					],
+					"query": [
+						{
+							"key": "totalpopulation",
+							"value": "52448"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get con campo /populationstats?urbanpopulation=51627",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e29ef110-ba2c-4218-8c4a-8bff51989730",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-09.herokuapp.com/api/v1/populationstats?urbanpopulation=51627",
+					"protocol": "https",
+					"host": [
+						"sos1819-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"populationstats"
+					],
+					"query": [
+						{
+							"key": "urbanpopulation",
+							"value": "51627"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://sos1819-09.herokuapp.com/api/v1/populationstats",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "943a3581-f7cf-4ec8-ab5c-b8a4efd70d59",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"country\": \"Andora\",\n    \"year\": 2010,\n    \"totalpopulation\": \"53448\",\n    \"urbanpopulation\": \"51927\",\n    \"accesstoelectricity\": \"93.36\"\n}"
+				},
+				"url": {
+					"raw": "https://sos1819-09.herokuapp.com/api/v1/populationstats",
+					"protocol": "https",
+					"host": [
+						"sos1819-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"populationstats"
+					]
+				},
+				"description": "Post un nuevo recurso"
+			},
+			"response": []
+		},
+		{
+			"name": "POST /populationstats",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e1e3d982-ba3c-4de1-92f8-c61d91bfe336",
+						"exec": [
+							"pm.test(\"Status code is 409\", function () {",
+							"    pm.response.to.have.status(409);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"country\": \"Andora\",\n    \"year\": 1990,\n    \"totalpopulation\": \"52448\",\n    \"urbanpopulation\": \"51627\",\n    \"accesstoelectricity\": \"93.36\"\n}"
+				},
+				"url": {
+					"raw": "https://sos1819-09.herokuapp.com/api/v1/populationstats",
+					"protocol": "https",
+					"host": [
+						"sos1819-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"populationstats"
+					]
+				},
+				"description": "Post the same recurso"
+			},
+			"response": []
+		},
+		{
+			"name": "https://sos1819-09.herokuapp.com/api/v1/populationstats/Andora/2010",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ce1e7969-8d8d-43c3-9e13-a29c68cd99d0",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-09.herokuapp.com/api/v1/populationstats/Andora/1990",
+					"protocol": "https",
+					"host": [
+						"sos1819-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"populationstats",
+						"Andora",
+						"1990"
+					]
+				},
+				"description": "Delete one recurso"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete /populationstats/Blabla/1550",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ce1e7969-8d8d-43c3-9e13-a29c68cd99d0",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-09.herokuapp.com/api/v1/populationstats/Blabla/1550",
+					"protocol": "https",
+					"host": [
+						"sos1819-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"populationstats",
+						"Blabla",
+						"1550"
+					]
+				},
+				"description": "Delete an inexisting recurso"
+			},
+			"response": []
+		},
+		{
+			"name": "https://sos1819-09.herokuapp.com/api/v1/populationstats/Andora/1990",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "97738eba-51d2-4f67-801f-e210a390b6e2",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"country\": \"Anuba\",\n    \"year\": 1990,\n    \"totalpopulation\": \"5222448\",\n    \"urbanpopulation\": \"5111627\",\n    \"accesstoelectricity\": \"93.36\"\n}"
+				},
+				"url": {
+					"raw": "https://sos1819-09.herokuapp.com/api/v1/populationstats/Anuba/1990",
+					"protocol": "https",
+					"host": [
+						"sos1819-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"populationstats",
+						"Anuba",
+						"1990"
+					]
+				},
+				"description": "Put un recurso"
+			},
+			"response": []
+		},
+		{
+			"name": "Put /populationstats/Blabla/1550",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "97738eba-51d2-4f67-801f-e210a390b6e2",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"country\": \"Anuba\",\n    \"year\": 1990,\n    \"totalpopulation\": \"5222448\",\n    \"urbanpopulation\": \"5111627\",\n    \"accesstoelectricity\": \"93.36\"\n}"
+				},
+				"url": {
+					"raw": "https://sos1819-09.herokuapp.com/api/v1/populationstats/Blabla/1550",
+					"protocol": "https",
+					"host": [
+						"sos1819-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"populationstats",
+						"Blabla",
+						"1550"
+					]
+				},
+				"description": "Put an inexisting recurso"
+			},
+			"response": []
+		},
+		{
+			"name": "https://sos1819-09.herokuapp.com/api/v1/populationstats/Aruba/1990",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8f0c1cf8-d062-41e5-a79d-fa925d8e3369",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \n    \"year\":1990,\n    \"totalpopulation\":\"42200\",\n    \"urbanpopulation\":\"41500\",\n    \"accesstoelectricity\":\"99.5\"\n}"
+				},
+				"url": {
+					"raw": "https://sos1819-09.herokuapp.com/api/v1/populationstats/Aruba/1990",
+					"protocol": "https",
+					"host": [
+						"sos1819-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"populationstats",
+						"Aruba",
+						"1990"
+					]
+				},
+				"description": "Put con campos no correctos (Bad request)"
+			},
+			"response": []
+		},
+		{
+			"name": "Put /api/v1/populationstats/",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dd108470-ac3c-422b-a13d-6f499fe1967d",
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-09.herokuapp.com/api/v1/populationstats/",
+					"protocol": "https",
+					"host": [
+						"sos1819-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"populationstats",
+						""
+					]
+				},
+				"description": "Put all recursos (not allowed)"
+			},
+			"response": []
+		},
+		{
+			"name": "https://sos1819-09.herokuapp.com/api/v1/populationstats?from=1990&to=2000",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9bafb198-5af4-41e5-a002-f816a4230add",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-09.herokuapp.com/api/v1/populationstats?from=1990&to=2000",
+					"protocol": "https",
+					"host": [
+						"sos1819-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"populationstats"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "1990"
+						},
+						{
+							"key": "to",
+							"value": "2000"
+						}
+					]
+				},
+				"description": "Get recursos de un periodo"
+			},
+			"response": []
+		},
+		{
+			"name": "Get con paginacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cbb62367-3527-4661-9b48-bf26854975d7",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Returns data\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length > 0).to.be.true;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-09.herokuapp.com/api/v1/populationstats?limit=2&offset=1",
+					"protocol": "https",
+					"host": [
+						"sos1819-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"populationstats"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "2"
+						},
+						{
+							"key": "offset",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://sos1819-09.herokuapp.com/api/v1/populationstats/Aruba/1990",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dd673611-ce7d-4c8c-8de1-c8db2cb17058",
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    country:\"Aruba\",\n    year:1990,\n    totalpopulation:\"42200\",\n    urbanpopulation:\"41500\",\n    accesstoelectricity:\"99.5\"\n}"
+				},
+				"url": {
+					"raw": "https://sos1819-09.herokuapp.com/api/v1/populationstats/Aruba/1990",
+					"protocol": "https",
+					"host": [
+						"sos1819-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"populationstats",
+						"Aruba",
+						"1990"
+					]
+				},
+				"description": "Post a un recurso concreto (Method not allowed)"
+			},
+			"response": []
+		},
+		{
+			"name": "https://sos1819-09.herokuapp.com/api/v1/populationstats",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "457f2ca9-7c03-4e1f-9b94-86b46087e66d",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-09.herokuapp.com/api/v1/populationstats",
+					"protocol": "https",
+					"host": [
+						"sos1819-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"populationstats"
+					]
+				},
+				"description": "Delete all recursos"
+			},
+			"response": []
+		},
+		{
+			"name": "Empty /populationstats/",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5b04c35c-a6c2-4911-a66c-27eb6734112c",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Doesn't return data\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length === 0).to.be.true;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-09.herokuapp.com/api/v1/populationstats/",
+					"protocol": "https",
+					"host": [
+						"sos1819-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"populationstats",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "final load initial data for next tests",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-09.herokuapp.com/api/v1/populationstats/loadInitialData",
+					"protocol": "https",
+					"host": [
+						"sos1819-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"populationstats",
+						"loadInitialData"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
