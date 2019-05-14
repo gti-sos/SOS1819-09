@@ -7,15 +7,19 @@ angular
                 var API = "/api/v1/climate-stats";
                 
                 
-                refresh();
+                refresh(1);
                 
-                function refresh(){
+                function refresh(page){
                     console.log("Requesting contacts to <"+API+">...");
-                    $http.get(API).then(function (response){
+                    
+                    document.getElementById("pre").disabled = (page == 1);
+                    $scope.page = page;
+                    
+                    $http.get(API + "?offset=" + ($scope.page-1)*10 + "&limit=" + (($scope.page-1)*10 + 10))
+                    .then(function (response){
                          console.log("Data Received: "
                                     + JSON.stringify(response.data,null,2));
                         $scope.climates = response.data;
-                        $scope.status = response.status;
                     });
                 }
                 
@@ -27,6 +31,12 @@ angular
                     }
                   }
                 }
+                
+                //Pagination
+                
+                $scope.pagination = function(page){
+                    refresh(page);
+                };
                 
                 // GET FROM TO
                 
