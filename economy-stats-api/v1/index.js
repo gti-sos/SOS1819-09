@@ -19,34 +19,34 @@ app.get(path,(req,res)=>{
     
     var economy_stats_initial = [{
         country : "Netherlands",
-        year : "1970",
-        gdp_growth_stats : "34.14211806",
-        industry_gdp_stats : "3.457969859",
-        gross_sav_gdp_stats : "31.1994775"
+        year : 1970,
+        gdp_growth_stats : 34.14211806,
+        industry_gdp_stats : 3.457969859,
+        gross_sav_gdp_stats : 31.1994775
     },{
         country : "South Africa",
-        year : "1970",
-        gdp_growth_stats : "5.248674135",
-        industry_gdp_stats : "36.14320462",
-        gross_sav_gdp_stats : "25.72970582"
+        year : 1970,
+        gdp_growth_stats : 5.248674135,
+        industry_gdp_stats : 36.14320462,
+        gross_sav_gdp_stats : 25.72970582
     },{
         country : "Netherlands",
-        year : "2012",
-        gdp_growth_stats : "-1.057037404",
-        industry_gdp_stats : "20.03862584",
-        gross_sav_gdp_stats : "29.44247574"
+        year : 2012,
+        gdp_growth_stats : -1.057037404,
+        industry_gdp_stats : 20.03862584,
+        gross_sav_gdp_stats : 29.44247574
     },{
         country : "Venezuela",
-        year : "1970",
-        gdp_growth_stats : "7.711914381",
-        industry_gdp_stats : "41.62614128",
-        gross_sav_gdp_stats : "24.40365209"
+        year : 1970,
+        gdp_growth_stats : 7.711914381,
+        industry_gdp_stats : 41.62614128,
+        gross_sav_gdp_stats : 24.40365209
     },{
         country : "Armenia",
-        year : "2012",
-        gdp_growth_stats : "7.200000003",
-        industry_gdp_stats : "27.82709461",
-        gross_sav_gdp_stats : "12.81248819"
+        year : 2012,
+        gdp_growth_stats : 7.200000003,
+        industry_gdp_stats : 27.82709461,
+        gross_sav_gdp_stats : 12.81248819
     }];
     
      economy_stats.find({},{projection : {_id : 0}}).toArray((err, economyArray)=>{
@@ -77,14 +77,14 @@ app.get(BASE_PATH, (req,res)=>{
     var offset = req.query.offset;
     var from = req.query.from;
     var to = req.query.to;
-    var gdpgrowthstats = req.query.gdp_growth_stats;
+    var gdpgrowth = req.query.gdp_growth_stats;
     var industrygdp = req.query.industry_gdp_stats;
     var grosssavgdp = req.query.gross_sav_gdp_stats;
     
     //indicators
-    if(gdpgrowthstats) 
+    if(gdpgrowth) 
     { 
-        economy_stats.find({"gdp_growth_stats":gdpgrowthstats},{projection : {_id : 0}}).toArray((err, economyArray)=>{ 
+        economy_stats.find({"gdp_growth_stats":parseFloat(gdpgrowth)},{projection : {_id : 0}}).toArray((err, economyArray)=>{ 
             if(err) console.log("Error: "+err);
             if (economyArray.length == 0) res.sendStatus(404);
             else
@@ -97,7 +97,7 @@ app.get(BASE_PATH, (req,res)=>{
     }
     else if (industrygdp)
     {
-        economy_stats.find({"industry_gdp_stats":industrygdp},{projection : {_id : 0}}).toArray((err, economyArray)=>{ 
+        economy_stats.find({"industry_gdp_stats": parseFloat(industrygdp)},{projection : {_id : 0}}).toArray((err, economyArray)=>{ 
             if(err) console.log("Error: "+err);
             if (economyArray.length == 0) res.sendStatus(404);
             else
@@ -110,7 +110,7 @@ app.get(BASE_PATH, (req,res)=>{
     }
     else if (grosssavgdp)
     {
-        economy_stats.find({"gross_sav_gdp_stats":gdpgrowthstats},{projection : {_id : 0}}).toArray((err, economyArray)=>{ 
+        economy_stats.find({"gross_sav_gdp_stats":parseFloat(grosssavgdp)},{projection : {_id : 0}}).toArray((err, economyArray)=>{ 
             if(err) console.log("Error: "+err);
             if (economyArray.length == 0) res.sendStatus(404);
             else
@@ -140,7 +140,7 @@ app.get(BASE_PATH, (req,res)=>{
         }
         else if(!country) //if we don't have of the years selected
         { 
-            economy_stats.find({"year":year},{projection : {_id : 0}}).toArray((err, economyArray)=>{ 
+            economy_stats.find({"year":parseInt(year, 10)},{projection : {_id : 0}}).toArray((err, economyArray)=>{ 
                 if(err) console.log("Error: "+err);
                 if (economyArray.length == 0) res.sendStatus(404);
                 else
@@ -153,7 +153,7 @@ app.get(BASE_PATH, (req,res)=>{
         }
         else //case with country & year
         {
-            economy_stats.find({"country":country, "year":year},{projection : {_id : 0}}).toArray((err, economyArray)=>{ //find all countries passed by query with that year
+            economy_stats.find({"country":country, "year":parseInt(year, 10)},{projection : {_id : 0}}).toArray((err, economyArray)=>{ //find all countries passed by query with that year
                 if(err) console.log("Error: "+err);
                 if (economyArray.length == 0) res.sendStatus(404);
                 else res.send(economyArray[0]);
@@ -178,7 +178,7 @@ app.get(BASE_PATH, (req,res)=>{
     {
         if (from && to)
         {
-            economy_stats.find({ "year" : { $gte : from, $lte : to }},{projection : {_id : 0}}).toArray((err, economyArray)=>{
+            economy_stats.find({ "year" : { $gte : parseInt(from,10), $lte : parseInt(to,10) }},{projection : {_id : 0}}).toArray((err, economyArray)=>{
                     if(err) console.log("Error: "+err);
                     if (economyArray.length == 0) res.sendStatus(404);
                     else
@@ -191,7 +191,7 @@ app.get(BASE_PATH, (req,res)=>{
         }
         else if (from)
         {
-            economy_stats.find({ "year" : { $gte : from }},{projection : {_id : 0}}).toArray((err, economyArray)=>{
+            economy_stats.find({ "year" : { $gte : parseInt(from,10) }},{projection : {_id : 0}}).toArray((err, economyArray)=>{
                     if(err) console.log("Error: "+err);
                     if (economyArray.length == 0) res.sendStatus(404);
                     else
@@ -204,7 +204,7 @@ app.get(BASE_PATH, (req,res)=>{
         }
         else
         {
-            economy_stats.find({ "year" : { $lte : to }},{projection : {_id : 0}}).toArray((err, economyArray)=>{
+            economy_stats.find({ "year" : { $lte : parseInt(to,10) }},{projection : {_id : 0}}).toArray((err, economyArray)=>{
                     if(err) console.log("Error: "+err);
                     if (economyArray.length == 0) res.sendStatus(404);
                     else
@@ -230,20 +230,25 @@ app.get(BASE_PATH, (req,res)=>{
 
 app.post(BASE_PATH, (req,res)=>{
     var newEconomy = req.body;
+    newEconomy.year = parseInt(newEconomy.year,10);
+    newEconomy.gdp_growth_stats = parseFloat(newEconomy.gdp_growth_stats);
+    newEconomy.industry_gdp_stats = parseFloat(newEconomy.industry_gdp_stats);
+    newEconomy.gross_sav_gdp_stats = parseFloat(newEconomy.gross_sav_gdp_stats);
     
-     economy_stats.find({"country":newEconomy.country, "year":newEconomy.year}).toArray((err, economyArray)=>{
+     economy_stats.find({"country":newEconomy.country, "year":parseInt(newEconomy.year, 10)}).toArray((err, economyArray)=>{
         if(err) console.log(err);
-        if (Object.keys(newEconomy).length != 5 || newEconomy.country==undefined || newEconomy.year==undefined || newEconomy.gdp_growth_stats==undefined || newEconomy.industry_gdp_stats==undefined || newEconomy.gross_sav_gdp_stats == undefined)
-            res.sendStatus(400);
-        else
+        if (economyArray==0) //case that you can create
         {
-            if (economyArray==0) //case that you can create
+            if (Object.keys(newEconomy).length != 5 || !newEconomy.country || !newEconomy.year || !newEconomy.gdp_growth_stats || !newEconomy.industry_gdp_stats || !newEconomy.gross_sav_gdp_stats)
+                res.sendStatus(400);
+            else
             {
                 economy_stats.insert(newEconomy);
                 res.sendStatus(201); //created
             }
-            else res.sendStatus(409); //conflict case that you can't create
-        }        
+                
+        }
+        else res.sendStatus(409); //conflict case that you can't create
     });
     
 });
@@ -260,7 +265,7 @@ app.get(BASE_PATH + "/:country", (req,res)=>{
     {
         if (from && to)
         {
-            economy_stats.find({"country" : country, "year" : { $gte : from, $lte : to }},{projection : {_id : 0}}).toArray((err, economyArray)=>{
+            economy_stats.find({"country" : country, "year" : { $gte : parseInt(from,10), $lte : parseInt(to,10) }},{projection : {_id : 0}}).toArray((err, economyArray)=>{
                     if(err) console.log("Error: "+err);
                     if (economyArray==0) res.sendStatus(404);
                     else
@@ -273,7 +278,7 @@ app.get(BASE_PATH + "/:country", (req,res)=>{
         }
         else if (from)
         {
-            economy_stats.find({"country" : country, "year" : { $gte : from }},{projection : {_id : 0}}).toArray((err, economyArray)=>{
+            economy_stats.find({"country" : country, "year" : { $gte : parseInt(from,10) }},{projection : {_id : 0}}).toArray((err, economyArray)=>{
                     if(err) console.log("Error: "+err);
                     if (economyArray==0) res.sendStatus(404);
                     else
@@ -286,7 +291,7 @@ app.get(BASE_PATH + "/:country", (req,res)=>{
         }
         else
         {
-            economy_stats.find({"country" : country, "year" : { $lte : to }},{projection : {_id : 0}}).toArray((err, economyArray)=>{
+            economy_stats.find({"country" : country, "year" : { $lte : parseInt(to,10) }},{projection : {_id : 0}}).toArray((err, economyArray)=>{
                     if(err) console.log("Error: "+err);
                     if (economyArray==0) res.sendStatus(404);
                     else
@@ -321,7 +326,7 @@ app.get(BASE_PATH + "/:country/:year", (req,res)=>{
     var country = req.params.country;
     var year = req.params.year;
 
-    economy_stats.find({"country":country,"year":year},{projection : {_id : 0}}).toArray((err, economyArray)=>{
+    economy_stats.find({"country":country,"year":parseInt(year,10)},{projection : {_id : 0}}).toArray((err, economyArray)=>{
         if(err) console.log(err);
         if (economyArray==0) res.sendStatus(404); //not found
         else res.send(economyArray[0]);
@@ -334,12 +339,12 @@ app.delete(BASE_PATH + "/:country/:year",(req,res)=>{
     var country = req.params.country;
     var year = req.params.year;
     
-    economy_stats.find({"country":country,"year":year}).toArray((err, economyArray)=>{
+    economy_stats.find({"country":country,"year":parseInt(year,10)}).toArray((err, economyArray)=>{
         if(err) console.log(err);
         if (economyArray==0) res.sendStatus(404); //not found
         else
         {
-            economy_stats.deleteOne({"country":country,"year":year});
+            economy_stats.deleteOne({"country":country,"year":parseInt(year,10)});
             res.sendStatus(200); //delete ok
         }
     });
@@ -352,18 +357,22 @@ app.put(BASE_PATH + "/:country/:year", (req,res)=>{
     var country = req.params.country;
     var year = req.params.year;
     var updatedEconomy = req.body; //what we update
+    updatedEconomy.year = parseInt(updatedEconomy.year,10);
+    updatedEconomy.gdp_growth_stats = parseFloat(updatedEconomy.gdp_growth_stats);
+    updatedEconomy.industry_gdp_stats = parseFloat(updatedEconomy.industry_gdp_stats);
+    updatedEconomy.gross_sav_gdp_stats = parseFloat(updatedEconomy.gross_sav_gdp_stats);
 
-    economy_stats.find({"country":country,"year":year}).toArray((err, economyArray)=>{
+    economy_stats.find({"country":country,"year":parseInt(year,10)}).toArray((err, economyArray)=>{
         if(err) console.log(err);
         if (economyArray==0) res.sendStatus(404); //bad request
         else
         {
-            economy_stats.find({"country":updatedEconomy.country,"year":updatedEconomy.year}).toArray((err, economyArray)=>{ //looking if there is already
+            economy_stats.find({"country":updatedEconomy.country,"year":parseInt(updatedEconomy.year,10)}).toArray((err, economyArray)=>{ //looking if there is already
                 if(err) console.log(err);
                 if (economyArray==0) res.sendStatus(400); //bad request if the array is empty
                 else
                 {
-                    if (Object.keys(updatedEconomy).length != 5 || updatedEconomy.country==undefined || updatedEconomy.year==undefined || updatedEconomy.gdp_growth_stats==undefined || updatedEconomy.industry_gdp_stats==undefined || updatedEconomy.gross_sav_gdp_stats == undefined)
+                    if (Object.keys(updatedEconomy).length != 5 || !updatedEconomy.country || !updatedEconomy.year || !updatedEconomy.gdp_growth_stats || !updatedEconomy.industry_gdp_stats || !updatedEconomy.gross_sav_gdp_stats)
                         res.sendStatus(400);
                     else
                     {
@@ -371,7 +380,7 @@ app.put(BASE_PATH + "/:country/:year", (req,res)=>{
                         ( 
                             {
                                 "country":country,
-                                "year":year
+                                "year":parseInt(year, 10)
                             },
                             {
                                 $set :  updatedEconomy
