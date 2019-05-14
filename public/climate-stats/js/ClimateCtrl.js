@@ -1,16 +1,16 @@
 /* global angular */
 
-var app = angular.module("MiniPostmanApp");
-
-app.controller("MainCtrl", ["$scope","$http", function ($scope,$http){
-                console.log("Modular MainCtrl initialized");
-                $scope.url = "/api/v1/climate-stats";
+angular
+    .module("ProjectApp")
+    .controller("ClimateCtrl", ["$scope","$http", function ($scope,$http){
+                console.log("Modular ClimateCtrl initialized");
+                var API = "/api/v1/climate-stats";
                 
                 
                 refresh();
                 
                 function refresh(){
-                    $http.get($scope.url).then(function (response){
+                    $http.get(API).then(function (response){
                         $scope.climates = response.data;
                         $scope.status = response.status;
                     });
@@ -30,7 +30,7 @@ app.controller("MainCtrl", ["$scope","$http", function ($scope,$http){
                 $scope.getFromTo = function(){
                     console.log("buscando");
                     $http({
-                        url: $scope.url, 
+                        url: API, 
                         method: "GET",
                         params: {from: $scope.from, to: $scope.to}
                      }).then(function (response){
@@ -45,7 +45,7 @@ app.controller("MainCtrl", ["$scope","$http", function ($scope,$http){
                 $scope.getCountry = function(country){
                     console.log("buscando");
                     $http({
-                        url: $scope.url+"/"+country, 
+                        url: API+"/"+country, 
                         method: "GET",
                      }).then(function (response){
                         $scope.climates = response.data;
@@ -68,7 +68,7 @@ app.controller("MainCtrl", ["$scope","$http", function ($scope,$http){
                     $scope.newClimate.co2_stats = parseFloat($scope.newClimate.co2_stats);
                     $scope.newClimate.nitrous_oxide_stats = parseFloat($scope.newClimate.nitrous_oxide_stats);
                     
-                    $http.post($scope.url,$scope.newClimate).then(function (response){
+                    $http.post(API,$scope.newClimate).then(function (response){
                         console.log("Climate added");
                         refresh();
                         $scope.information = "Recurso creado";
@@ -85,7 +85,7 @@ app.controller("MainCtrl", ["$scope","$http", function ($scope,$http){
                 $scope.deleteClimate = function(country, year){
             
                     console.log("Deleting climate");
-                    $http.delete($scope.url+"/"+country+"/"+year).then(function (response){
+                    $http.delete(API+"/"+country+"/"+year).then(function (response){
                         console.log("Climate deleted");
                         sleep(100); //Database update
                         $scope.information = "Recurso borrado";
@@ -96,7 +96,7 @@ app.controller("MainCtrl", ["$scope","$http", function ($scope,$http){
                 // DELETE
                 
                 $scope.delete = function(){
-                    $http.delete($scope.url).then(function(response){
+                    $http.delete(API).then(function(response){
                         sleep(100); //Database update
                         $scope.information = "Recurso borrado";
                         refresh();
@@ -107,7 +107,7 @@ app.controller("MainCtrl", ["$scope","$http", function ($scope,$http){
                 // GET
                 
                 $scope.send = function(){
-                    $http.get($scope.url).then(function (response){
+                    $http.get(API).then(function (response){
                         $scope.status = response.status;
                         $scope.data = JSON.stringify(response.data,null,2);
                     }, function (error){
@@ -119,7 +119,7 @@ app.controller("MainCtrl", ["$scope","$http", function ($scope,$http){
                 // POST
                 
                 $scope.post = function(){
-                    $http.post($scope.url,$scope.body).then(function (response){
+                    $http.post(API,$scope.body).then(function (response){
                         $scope.status = response.status;
                         $scope.data = "";
                     }, function (error){
@@ -131,7 +131,7 @@ app.controller("MainCtrl", ["$scope","$http", function ($scope,$http){
                 // PUT
                 
                 $scope.put = function(){
-                    $http.put($scope.url,$scope.body).then(function (response){
+                    $http.put(API,$scope.body).then(function (response){
                         $scope.status = response.status;
                         $scope.data = "";
                     }, function (error){
