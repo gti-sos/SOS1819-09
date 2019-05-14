@@ -34,11 +34,11 @@
                     <tr ng-repeat="stat in popstats">
                         
                        <td><a href="/ui/v1/populationstats/#!/edit/{{stat.country}}/{{stat.year}}">{{stat.country}}</a></td>
-                       <td>{{stat.year}}</td>
-                       <td>{{stat.totalpopulation}}</td>
+                       <td ng-model="stat.year">{{stat.year}}</td>
+                       <td ng-model="stat.country">{{stat.totalpopulation}}</td>
                        <td>{{stat.urbanpopulation}}</td>
                        <td>{{stat.accesstoelectricity}}</td>
-                       <td><button class="btn btn-danger" ng-click="delete(stat)">Borrar</button>
+                       <td><button class="btn btn-danger" ng-click="delete(stat)" value="delete">Borrar</button>
                        </td>
                     </tr>
                     
@@ -65,4 +65,8 @@
             </table>
             
         </div>
-        <div><button class="btn btn-danger" ng-click="deleteall()">Borrar todos los recursos</button></div>
+        
+        <div><button class="btn btn-danger" ng-click="deleteall()">Borrar todos los recursos</button>
+        <button ng-click="pagination(2)" class="btn btn-secondary">Página siguiente</button>
+        <button ng-click="pagination(1)" class="btn btn-secondary">Página anterior</button></div>
+        <div id="numpagina"><h5 class=pull-right>Página: {{pagina}}</h5></div>
