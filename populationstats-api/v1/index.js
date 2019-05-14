@@ -43,7 +43,7 @@ app.get("/api/v1/populationstats/loadInitialData",(req,res)=>{
     accesstoelectricity:"93.36"
 },
 {
-    country:"Blabla",
+    country:"Babla",
     year:1990,
     totalpopulation:"62",
     urbanpopulation:"62",

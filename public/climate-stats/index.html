@@ -3,6 +3,9 @@
         <div div class = "col-sm">
             <button class="btn btn-danger" ng-click="delete()">BORRAR TODO</button>
         </div>
+        <div div class = "col-sm">
+            <button class="btn btn-success" ng-click="loadData()">DATOS INICIALES</button>
+        </div>
     </div>
             
     <div class = "row">
@@ -125,6 +128,18 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+    
+    <div class = "row">
+        <div class = "col-sm">
+            <button class="btn btn-light" ng-click="pagination(page-1)" id="pre"><<</button>
+        </div>
+        <div class = "col-sm">
+            <p>{{page}}</p>
+        </div>
+        <div class = "col-sm">
+            <button class="btn btn-light" ng-click="pagination(page+1)" id="next">>></button>
         </div>
     </div>
 </div>
