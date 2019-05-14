@@ -1,0 +1,67 @@
+<div><h3>Información: {{information}}</h3></div>
+<div id="divpagina"><h5>Página: {{pagina}}</h5></div>
+<div>
+    <h3> Busqueada por año
+    <input class="form-control" ng-model="newSearchEconomy.from" placeholder="Desde"/>
+    <input class="form-control" ng-model="newSearchEconomy.to" placeholder="Hasta"/>
+    <button class="btn btn-primary" ng-click="findFromYears()">Buscar</button>
+    </h3>
+</div>
+<div>
+    <h3> Busqueada por País
+    <input class="form-control" ng-model="newSearchEconomy.country" placeholder="País"/>
+    <button class="btn btn-primary" ng-click="findForCountry()">Buscar</button>
+    </h3>
+</div>
+<div>
+    <button class="btn btn-primary" ng-click="initializeTodo()">Inicializa TODO</button>
+    <button class="btn btn-danger" ng-click="deleteAllEconomy()">Borrar TODO</button>
+    <button class="btn btn-primary" ng-click="getTotal()">Mira TODO</button>
+    <button class="btn btn-primary" ng-click="getPagination(1)">Mira con Paginación</button>
+</div>
+<div>
+    <button id="btnprvpg" class="btn btn-info" ng-click="getPagination(pagina-1)">Pagina anterior</button>
+    <button id="btnsuccpg" class="btn btn-info" ng-click="getPagination(pagina+1)">Pagina siguiente</button>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>País</th>
+            <th>Año</th>
+            <th>Crecimiento PIB</th>
+            <th>Crecimiento PIB para industria</th>
+            <th>PIB ahorro bruto</th>
+            <th>Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="economy in economies">
+            <td><a href="#!/edit/{{economy.country}}/{{economy.year}}">{{ economy.country }}</a></td>
+            <td>{{ economy.year }}</td>
+            <td>{{ economy.gdp_growth_stats }}</td>
+            <td>{{ economy.industry_gdp_stats }}</td>
+            <td>{{ economy.gross_sav_gdp_stats }}</td>
+            <td><button class="btn btn-danger" ng-click="deleteFieldEconomy(economy.country, economy.year)">Borrar</button></td>
+        </tr>
+        <tr>
+            <td>
+                <input class="form-control" ng-model="newFieldEconomy.country" placeholder="Nuevo pais"/>
+            </td>
+            <td>
+                <input class="form-control" ng-model="newFieldEconomy.year" placeholder="Nuevo año"/>
+            </td>
+            <td>
+                <input class="form-control" ng-model="newFieldEconomy.gdp_growth_stats" placeholder="Nuevo Crecimiento PIB"/>
+            </td>
+            <td>
+                <input class="form-control" ng-model="newFieldEconomy.industry_gdp_stats" placeholder="Nuevo Crecimiento PIB para industria"/>
+            </td>
+            <td>
+                <input class="form-control" ng-model="newFieldEconomy.gross_sav_gdp_stats" placeholder="Nuevo PIB ahorro bruto"/>
+            </td>
+            <td>
+                <button class="btn btn-primary" ng-click="addNewFieldEconomy()">Añadir</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

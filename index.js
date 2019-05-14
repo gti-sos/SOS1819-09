@@ -86,7 +86,6 @@ clientGiuseppe.connect(err => {
   economy_stats = clientGiuseppe.db("sos1819-09").collection("economy-stats"); //sos1819-09 name database and sos name of the cluster
   economyAPI.checkALL(app, BASE_PATH, economy_stats);
   console.log("Connected to economy-stats");
-  app.use("/api/v1/economy-stats-minipostman", express.static(path.join(__dirname,"public/economy-stats-minibef")));
   app.use("/ui/v1/economy-stats", express.static(path.join(__dirname,"public/economy-stats-miniaft")));
 });
 

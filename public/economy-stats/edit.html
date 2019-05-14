@@ -1,0 +1,29 @@
+<h1>Modifica Economy-Stat</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>País</th>
+            <th>Año</th>
+            <th>Crecimiento PIB</th>
+            <th>Crecimiento PIB para industria</th>
+            <th>PIB ahorro bruto</th>
+            <th>Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="economy in economies">
+            <td>{{ economy.country }}</td>
+            <td>{{ economy.year }}</td>
+            <td>
+                <input class="form-control" ng-model="economy.gdp_growth_stats" placeholder="Nuevo Crecimiento PIB"/>
+            </td>
+            <td>
+                <input class="form-control" ng-model="economy.industry_gdp_stats" placeholder="Nuevo Crecimiento PIB para industria"/>
+            </td>
+            <td>
+                <input class="form-control" ng-model="economy.gross_sav_gdp_stats" placeholder="Nuevo PIB ahorro bruto"/>
+            </td>
+            <td><button class="btn btn-primary" ng-click="modifyEconomy()">Modificar</button></td>
+        </tr>
+    </tbody>
+</table>
