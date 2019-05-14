@@ -2,7 +2,7 @@
 
 angular
 
-    .module("PopApp")
+    .module("ProjectApp")
     
     .controller("edit-ctrl",
                     ["$scope", 
