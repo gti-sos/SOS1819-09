@@ -2,7 +2,7 @@
 
 angular
 
-    .module("PopApp")
+    .module("ProjectApp")
     
     .controller("list-ctrl",["$scope", "$http", function($scope,$http){
         
