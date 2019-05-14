@@ -9,11 +9,8 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http){
     {
         console.log("Requesting API");
         $http.get($scope.url).then(function(response){
-            $scope.economies = [];
             console.log("Data received " + JSON.stringify(response.data, null, 2));
-            if (response.data.length>1)
-                $scope.economies = response.data;
-            else $scope.economies[0] = response.data;
+            $scope.economies = response.data;
         }, 
         function (error){});
     }
