@@ -11,7 +11,7 @@
                    controller : "ClimateCtrl",
                    templateUrl: "climate-stats/index.html"
                 }).when("/economy-stats",{
-                   controller : "economy-stats/economy-ctrl.js",
+                   controller : "EconomyCtrl",
                    templateUrl: "economy-stats/index.html"
                 })
                 .when("/climate-stats/edit/:country/:year",{
