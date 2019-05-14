@@ -1,10 +1,10 @@
 <div class = "container">
     <div class = "row">
         <div div class = "col-sm">
-            <button class="btn btn-danger" ng-click="delete()">BORRAR TODO</button>
+            <button class="btn btn-danger" ng-click="delete()" value="delete">BORRAR TODO</button>
         </div>
         <div div class = "col-sm">
-            <button class="btn btn-success" ng-click="loadData()">DATOS INICIALES</button>
+            <button class="btn btn-success" ng-click="loadData()" value="load">DATOS INICIALES</button>
         </div>
     </div>
             
@@ -123,7 +123,7 @@
                                 oninput="bouton()"/>
                         </td>
                         <td>
-                            <button class="btn btn-primary" ng-click="addClimate()" disabled id="post">Crear</button>
+                            <button class="btn btn-primary" ng-click="addClimate()" disabled id="post" value="post">Crear</button>
                         </td>
                     </tr>
                 </tbody>
@@ -139,7 +139,7 @@
             <p>{{page}}</p>
         </div>
         <div class = "col-sm">
-            <button class="btn btn-light" ng-click="pagination(page+1)" id="next">>></button>
+            <button class="btn btn-light" ng-click="pagination(page+1)" id="next" value="next">>></button>
         </div>
     </div>
 </div>

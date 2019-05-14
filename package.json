@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "pretest": "testspopstat/runPhantom.sh",
-    "test": "newman run https://www.getpostman.com/collections/2fbac6b9bb803c7bcfc9; newman run https://www.getpostman.com/collections/8916e519fba8119593a7 && protractor testspopstat/tests.js; newman run https://www.getpostman.com/collections/b54e02b25ae9f1dc01ed",
+    "test": "newman run https://www.getpostman.com/collections/2fbac6b9bb803c7bcfc9 && protractor testsclimate/tests.js; newman run https://www.getpostman.com/collections/8916e519fba8119593a7 && protractor testspopstat/tests.js; newman run https://www.getpostman.com/collections/b54e02b25ae9f1dc01ed",
     "posttest":"killall phantomjs",
     "test-climate-stats": "newman run https://www.getpostman.com/collections/2fbac6b9bb803c7bcfc9",
     "test-populationstats": "newman run testspopstat/backend/api-v1-tests.json && protractor testspopstat/tests.js",
