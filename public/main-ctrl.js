@@ -11,6 +11,10 @@
                    controller : "ClimateCtrl",
                    templateUrl: "climate-stats/index.html"
                 })
+                .when("/climate-stats/edit/:name",{
+                   controller : "ClimateEditCtrl",
+                   templateUrl: "climate-stats/edit.html"
+                })
                 ;
         });
 
