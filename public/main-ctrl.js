@@ -15,6 +15,14 @@
                    controller : "ClimateEditCtrl",
                    templateUrl: "climate-stats/edit.html"
                 })
+                .when("/populationstats",{
+                    controller : "list-ctrl",
+                    templateUrl : "publicpopstatsapp/list.html"
+                })
+                .when("/populationstats/edit/:country/:year",{
+                    controller :"edit-ctrl",
+                    templateUrl : "publicpopstatsapp/edit.html"
+                })
                 ;
         });
 
