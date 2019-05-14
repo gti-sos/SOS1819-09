@@ -10,7 +10,10 @@ angular
                 refresh();
                 
                 function refresh(){
+                    console.log("Requesting contacts to <"+API+">...");
                     $http.get(API).then(function (response){
+                         console.log("Data Received: "
+                                    + JSON.stringify(response.data,null,2));
                         $scope.climates = response.data;
                         $scope.status = response.status;
                     });

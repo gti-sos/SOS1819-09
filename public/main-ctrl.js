@@ -8,7 +8,7 @@
                    templateUrl: "menu.html"
                 })
                 .when("/climate-stats",{
-                   controller : "climate-stats/js/ClimateCtrl",
+                   controller : "ClimateCtrl",
                    templateUrl: "climate-stats/index.html"
                 })
                 ;
