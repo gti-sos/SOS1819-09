@@ -1,0 +1,1695 @@
+{
+	"info": {
+		"_postman_id": "3b7f8f79-245e-4589-a351-f6358b24a514",
+		"name": "SOS1819-09-economy-stats-self",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CARGAR LOS DATOS INICIALES",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9bd37424-4052-4634-819f-31dda9b89a77",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-09-gp-sos1819gp.c9users.io/api/v1/economy-stats/loadInitialData",
+					"protocol": "https",
+					"host": [
+						"sos1819-09-gp-sos1819gp",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"economy-stats",
+						"loadInitialData"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CARGAR LOS DATOS INICIALES otra vez 409",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f08db7d7-45c1-4bab-9e4c-a229f942e788",
+						"exec": [
+							"pm.test(\"Status code is 409\", function () {",
+							"    pm.response.to.have.status(409);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-09-gp-sos1819gp.c9users.io/api/v1/economy-stats/loadInitialData",
+					"protocol": "https",
+					"host": [
+						"sos1819-09-gp-sos1819gp",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"economy-stats",
+						"loadInitialData"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET de TODO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c9508d1a-6033-4a40-827e-72906abe392a",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"API return some data\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length > 0).to.be.true;",
+							"});",
+							"",
+							"var bodyJson = pm.response.json();",
+							"tests[\"Response is an array\"] = (bodyJson instanceof Array);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-09-gp-sos1819gp.c9users.io/api/v1/economy-stats/",
+					"protocol": "https",
+					"host": [
+						"sos1819-09-gp-sos1819gp",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"economy-stats",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET country",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "661c5985-d92f-4392-94c0-a5efbdaed970",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"API return some data\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length > 0).to.be.true;",
+							"});",
+							"",
+							"var bodyJson = pm.response.json();",
+							"tests[\"Response is an array\"] = (bodyJson instanceof Array);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-09-gp-sos1819gp.c9users.io/api/v1/economy-stats?country=Netherlands",
+					"protocol": "https",
+					"host": [
+						"sos1819-09-gp-sos1819gp",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"economy-stats"
+					],
+					"query": [
+						{
+							"key": "country",
+							"value": "Netherlands"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET year",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c8c97e09-2fd2-4dee-90b8-a2cd8425119b",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"API return some data\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length > 0).to.be.true;",
+							"});",
+							"",
+							"var bodyJson = pm.response.json();",
+							"tests[\"Response is an array\"] = (bodyJson instanceof Array);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-09-gp-sos1819gp.c9users.io/api/v1/economy-stats?year=2012",
+					"protocol": "https",
+					"host": [
+						"sos1819-09-gp-sos1819gp",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"economy-stats"
+					],
+					"query": [
+						{
+							"key": "year",
+							"value": "2012"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET country&year",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4a61c567-0f33-48f3-aff3-b09d79c5f7c3",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"Correct country\"] = data.country === \"Netherlands\";",
+							"tests[\"Correct year\"] = data.year === 2012;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-09-gp-sos1819gp.c9users.io/api/v1/economy-stats?country=Netherlands&year=2012",
+					"protocol": "https",
+					"host": [
+						"sos1819-09-gp-sos1819gp",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"economy-stats"
+					],
+					"query": [
+						{
+							"key": "country",
+							"value": "Netherlands"
+						},
+						{
+							"key": "year",
+							"value": "2012"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET indicator 404",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4a61c567-0f33-48f3-aff3-b09d79c5f7c3",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-09-gp-sos1819gp.c9users.io/api/v1/economy-stats?gdp_growth_stats=2000",
+					"protocol": "https",
+					"host": [
+						"sos1819-09-gp-sos1819gp",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"economy-stats"
+					],
+					"query": [
+						{
+							"key": "gdp_growth_stats",
+							"value": "2000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET indicator 200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4a61c567-0f33-48f3-aff3-b09d79c5f7c3",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-09-gp-sos1819gp.c9users.io/api/v1/economy-stats?gdp_growth_stats=34.14211806",
+					"protocol": "https",
+					"host": [
+						"sos1819-09-gp-sos1819gp",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"economy-stats"
+					],
+					"query": [
+						{
+							"key": "gdp_growth_stats",
+							"value": "34.14211806"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET especifico de un elemento que no existe 404",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fe219cbc-0e6e-4196-9a83-1a20538791c5",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-09-gp-sos1819gp.c9users.io/api/v1/economy-stats?country=Japan&year=2012",
+					"protocol": "https",
+					"host": [
+						"sos1819-09-gp-sos1819gp",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"economy-stats"
+					],
+					"query": [
+						{
+							"key": "country",
+							"value": "Japan"
+						},
+						{
+							"key": "year",
+							"value": "2012"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET paginacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5d75a5bf-9d06-4a68-9f21-955c6f427b53",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"API return some data\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length > 0).to.be.true;",
+							"});",
+							"",
+							"var bodyJson = pm.response.json();",
+							"tests[\"Response is an array\"] = (bodyJson instanceof Array);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-09-gp-sos1819gp.c9users.io/api/v1/economy-stats?offset=0&limit=9",
+					"protocol": "https",
+					"host": [
+						"sos1819-09-gp-sos1819gp",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"economy-stats"
+					],
+					"query": [
+						{
+							"key": "offset",
+							"value": "0"
+						},
+						{
+							"key": "limit",
+							"value": "9"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1° GET WITH FROM&TO 1970 to 2010",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9c6cb229-95b4-42ec-8423-ffe1568afa90",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"API return some data\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length > 0).to.be.true;",
+							"});",
+							"",
+							"var bodyJson = pm.response.json();",
+							"tests[\"Response is an array\"] = (bodyJson instanceof Array);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-09-gp-sos1819gp.c9users.io/api/v1/economy-stats?from=1970&to=2010",
+					"protocol": "https",
+					"host": [
+						"sos1819-09-gp-sos1819gp",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"economy-stats"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "1970"
+						},
+						{
+							"key": "to",
+							"value": "2010"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2° GET WITH FROM&TO 1980 to 2018",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "33a01ae4-5043-4d19-b64c-8e4756ebc3f5",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"API return some data\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length > 0).to.be.true;",
+							"});",
+							"",
+							"var bodyJson = pm.response.json();",
+							"tests[\"Response is an array\"] = (bodyJson instanceof Array);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-09-gp-sos1819gp.c9users.io/api/v1/economy-stats?from=1980&to=2018",
+					"protocol": "https",
+					"host": [
+						"sos1819-09-gp-sos1819gp",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"economy-stats"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "1980"
+						},
+						{
+							"key": "to",
+							"value": "2018"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST new country Italy 2012",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "12bb2b8d-1c3c-47bb-8140-80e1b90cad75",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"country\": \"Italy\",\n        \"year\": 2012,\n        \"gdp_growth_stats\": 37.200000003,\n        \"industry_gdp_stats\": 27.82709461,\n        \"gross_sav_gdp_stats\": 12.81248819\n}"
+				},
+				"url": {
+					"raw": "https://sos1819-09-gp-sos1819gp.c9users.io/api/v1/economy-stats/",
+					"protocol": "https",
+					"host": [
+						"sos1819-09-gp-sos1819gp",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"economy-stats",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET dato creado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8a534f0c-5f61-4216-ba31-e05bb9dfbe09",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-09-gp-sos1819gp.c9users.io/api/v1/economy-stats?country=Italy&year=2012",
+					"protocol": "https",
+					"host": [
+						"sos1819-09-gp-sos1819gp",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"economy-stats"
+					],
+					"query": [
+						{
+							"key": "country",
+							"value": "Italy"
+						},
+						{
+							"key": "year",
+							"value": "2012"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mismo POST Italy 2012 CONFLICT 409",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f48cda68-11b2-4cfd-8990-278973cf9ce0",
+						"exec": [
+							"pm.test(\"Status code is 409\", function () {",
+							"    pm.response.to.have.status(409);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"country\": \"Italy\",\n        \"year\": 2012,\n        \"gdp_growth_stats\": 30.200000003,\n        \"industry_gdp_stats\": 21.82709461,\n        \"gross_sav_gdp_stats\": 10.81248819\n}"
+				},
+				"url": {
+					"raw": "https://sos1819-09-gp-sos1819gp.c9users.io/api/v1/economy-stats/",
+					"protocol": "https",
+					"host": [
+						"sos1819-09-gp-sos1819gp",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"economy-stats",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1° POST BAD REQUEST 400",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5bad5bf4-596f-4ac5-9f17-e63934823fc7",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"country\": \"France\",\n        \"year\": 2012,\n        \"gdp_growth_stats\": 37.200000003,\n        \"industry_gdp_stats\": 27.82709461,\n        \"gross_sav_gdp_stats\": 12.81248819,\n        \"prueba\": 23.22333\n}"
+				},
+				"url": {
+					"raw": "https://sos1819-09-gp-sos1819gp.c9users.io/api/v1/economy-stats/",
+					"protocol": "https",
+					"host": [
+						"sos1819-09-gp-sos1819gp",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"economy-stats",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2° POST BAD REQUEST 400",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1aa39415-939a-4d90-a5cf-ff65ab1b2062",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"country\": \"France\",\n        \"year\": 2012,\n        \"gdp_growth_stats\": 37.200000003,\n        \"industry_gdp_stats\": 27.82709461\n}"
+				},
+				"url": {
+					"raw": "https://sos1819-09-gp-sos1819gp.c9users.io/api/v1/economy-stats/",
+					"protocol": "https",
+					"host": [
+						"sos1819-09-gp-sos1819gp",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"economy-stats",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /api/v1/economy-stats/Netherlands",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "89d6d835-bc10-4f73-ad96-8a169043279f",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"API return some data\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length > 0).to.be.true;",
+							"});",
+							"",
+							"var bodyJson = pm.response.json();",
+							"tests[\"Response is an array\"] = (bodyJson instanceof Array);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"country\": \"Italy\",\n        \"year\": \"2012\",\n        \"gdp_growth_stats\": \"37.200000003\",\n        \"industry_gdp_stats\": \"27.82709461\",\n        \"gross_sav_gdp_stats\": \"12.81248819\"\n}"
+				},
+				"url": {
+					"raw": "https://sos1819-09-gp-sos1819gp.c9users.io/api/v1/economy-stats/Netherlands",
+					"protocol": "https",
+					"host": [
+						"sos1819-09-gp-sos1819gp",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"economy-stats",
+						"Netherlands"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /api/v1/economy-stats/Japan 404",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f04f7ae1-dfe4-4625-8cf5-e0374244b35a",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"country\": \"Italy\",\n        \"year\": \"2012\",\n        \"gdp_growth_stats\": \"37.200000003\",\n        \"industry_gdp_stats\": \"27.82709461\",\n        \"gross_sav_gdp_stats\": \"12.81248819\"\n}"
+				},
+				"url": {
+					"raw": "https://sos1819-09-gp-sos1819gp.c9users.io/api/v1/economy-stats/Japan",
+					"protocol": "https",
+					"host": [
+						"sos1819-09-gp-sos1819gp",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"economy-stats",
+						"Japan"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1° GET FROM&TO /api/v1/economy-stats/Netherlands?from=1980&to=2018",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "76b208c9-f464-4813-884e-b2bc4c0a6813",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-09-gp-sos1819gp.c9users.io/api/v1/economy-stats/Netherlands?from=1970&to=2010",
+					"protocol": "https",
+					"host": [
+						"sos1819-09-gp-sos1819gp",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"economy-stats",
+						"Netherlands"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "1970"
+						},
+						{
+							"key": "to",
+							"value": "2010"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2° GET FROM&TO /api/v1/economy-stats/Netherlands?from=1970&to=2018",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d926f112-de97-445c-b2d5-0e7bc4e1a4b3",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"country\": \"Italy\",\n        \"year\": \"2012\",\n        \"gdp_growth_stats\": \"37.200000003\",\n        \"industry_gdp_stats\": \"27.82709461\",\n        \"gross_sav_gdp_stats\": \"12.81248819\"\n}"
+				},
+				"url": {
+					"raw": "https://sos1819-09-gp-sos1819gp.c9users.io/api/v1/economy-stats/Netherlands?from=1980&to=2018",
+					"protocol": "https",
+					"host": [
+						"sos1819-09-gp-sos1819gp",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"economy-stats",
+						"Netherlands"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "1980"
+						},
+						{
+							"key": "to",
+							"value": "2018"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /api/v1/economy-stats/Netherlands/1970",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4b903a46-901e-4d52-aa4f-2f8e40fff216",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"Correct country\"] = data.country === \"Netherlands\";",
+							"tests[\"Correct year\"] = data.year === 1970;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"country\": \"Italy\",\n        \"year\": \"2012\",\n        \"gdp_growth_stats\": \"37.200000003\",\n        \"industry_gdp_stats\": \"27.82709461\",\n        \"gross_sav_gdp_stats\": \"12.81248819\"\n}"
+				},
+				"url": {
+					"raw": "https://sos1819-09-gp-sos1819gp.c9users.io/api/v1/economy-stats/Netherlands/1970",
+					"protocol": "https",
+					"host": [
+						"sos1819-09-gp-sos1819gp",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"economy-stats",
+						"Netherlands",
+						"1970"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT /api/v1/economy-stats/Netherlands/",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d52544e8-1db6-45b1-ae03-67100981e95e",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"country\": \"Netherlands\",\n        \"year\": 1970,\n        \"gdp_growth_stats\": 94.14211806,\n        \"industry_gdp_stats\": 3.457969859,\n        \"gross_sav_gdp_stats\": 31.1994775\n}"
+				},
+				"url": {
+					"raw": "https://sos1819-09-gp-sos1819gp.c9users.io/api/v1/economy-stats/Netherlands/1970",
+					"protocol": "https",
+					"host": [
+						"sos1819-09-gp-sos1819gp",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"economy-stats",
+						"Netherlands",
+						"1970"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET dato cambiado con PUT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1dd99de4-ec5d-4d62-a5ba-02a65e7fada1",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-09-gp-sos1819gp.c9users.io/api/v1/economy-stats/Netherlands/1970",
+					"protocol": "https",
+					"host": [
+						"sos1819-09-gp-sos1819gp",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"economy-stats",
+						"Netherlands",
+						"1970"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1° PUT NO ELEGIBLE /api/v1/economy-stats/Netherlands/1970 400",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "aa5a3c8a-54dc-4d30-b032-fd0232fb2e7e",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"country\": \"Netherlands\",\n        \"year\": 1970,\n        \"gdp_growth_stats\": 94.14211806,\n        \"industry_gdp_stats\": 3.457969859,\n        \"gross_sav_gdp_stats\": 31.1994775,\n        \"prueba\" : 32.23233\n}"
+				},
+				"url": {
+					"raw": "https://sos1819-09-gp-sos1819gp.c9users.io/api/v1/economy-stats/Netherlands/1970",
+					"protocol": "https",
+					"host": [
+						"sos1819-09-gp-sos1819gp",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"economy-stats",
+						"Netherlands",
+						"1970"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2° PUT NO ELEGIBLE /api/v1/economy-stats/Netherlands/1970 400",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "faabbcff-32f6-4962-b7d3-30832e9ff227",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"country\": \"Netherlands\",\n        \"year\": 1970,\n        \"gdp_growth_stats\":94.14211806,\n        \"industry_gdp_stats\": 3.457969859\n}"
+				},
+				"url": {
+					"raw": "https://sos1819-09-gp-sos1819gp.c9users.io/api/v1/economy-stats/Netherlands/1970",
+					"protocol": "https",
+					"host": [
+						"sos1819-09-gp-sos1819gp",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"economy-stats",
+						"Netherlands",
+						"1970"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT /api/v1/economy-stats/Japan/1970 404",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "47648054-de72-48f6-852d-bfa5d8061a2d",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"country\": \"Japan\",\n        \"year\": 1970,\n        \"gdp_growth_stats\": 20.14211806,\n        \"industry_gdp_stats\": 5.457969859,\n        \"gross_sav_gdp_stats\": 12.1994775\n}"
+				},
+				"url": {
+					"raw": "https://sos1819-09-gp-sos1819gp.c9users.io/api/v1/economy-stats/Japan/1970",
+					"protocol": "https",
+					"host": [
+						"sos1819-09-gp-sos1819gp",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"economy-stats",
+						"Japan",
+						"1970"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DEL /api/v1/economy-stats/Netherlands/1970",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5edb041f-823e-47ed-a457-ef8c9d6e5585",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"country\": \"Netherlands\",\n        \"year\": \"1970\",\n        \"gdp_growth_stats\": \"94.14211806\",\n        \"industry_gdp_stats\": \"3.457969859\",\n        \"gross_sav_gdp_stats\": \"31.1994775\"\n}"
+				},
+				"url": {
+					"raw": "https://sos1819-09-gp-sos1819gp.c9users.io/api/v1/economy-stats/Netherlands/1970",
+					"protocol": "https",
+					"host": [
+						"sos1819-09-gp-sos1819gp",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"economy-stats",
+						"Netherlands",
+						"1970"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DEL /api/v1/economy-stats/Netherlands/1970 404",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fd324a0a-8810-4bc7-b9f9-5d211df46b15",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"country\": \"Netherlands\",\n        \"year\": \"1970\",\n        \"gdp_growth_stats\": \"94.14211806\",\n        \"industry_gdp_stats\": \"3.457969859\",\n        \"gross_sav_gdp_stats\": \"31.1994775\"\n}"
+				},
+				"url": {
+					"raw": "https://sos1819-09-gp-sos1819gp.c9users.io/api/v1/economy-stats/Netherlands/1970",
+					"protocol": "https",
+					"host": [
+						"sos1819-09-gp-sos1819gp",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"economy-stats",
+						"Netherlands",
+						"1970"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET dato eliminado 404",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d1ca6294-3a49-4aa0-a541-b8cdc95b0ca7",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-09-gp-sos1819gp.c9users.io/api/v1/economy-stats/Netherlands/1970",
+					"protocol": "https",
+					"host": [
+						"sos1819-09-gp-sos1819gp",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"economy-stats",
+						"Netherlands",
+						"1970"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST ERROR 405",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0f2fef38-60ab-40ca-8f45-88813b4d4c53",
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"country\": \"Netherlands\",\n        \"year\": 1970,\n        \"gdp_growth_stats\": 94.14211806,\n        \"industry_gdp_stats\": 3.457969859,\n        \"gross_sav_gdp_stats\": 31.1994775\n}"
+				},
+				"url": {
+					"raw": "https://sos1819-09-gp-sos1819gp.c9users.io/api/v1/economy-stats/Netherlands/2012",
+					"protocol": "https",
+					"host": [
+						"sos1819-09-gp-sos1819gp",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"economy-stats",
+						"Netherlands",
+						"2012"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT ERROR 405",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "11f8c121-959f-4f68-ac6d-e54d56386a20",
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"country\": \"Netherlands\",\n        \"year\": 1970,\n        \"gdp_growth_stats\": 94.14211806,\n        \"industry_gdp_stats\": 3.457969859,\n        \"gross_sav_gdp_stats\": 31.1994775\n}"
+				},
+				"url": {
+					"raw": "https://sos1819-09-gp-sos1819gp.c9users.io/api/v1/economy-stats/",
+					"protocol": "https",
+					"host": [
+						"sos1819-09-gp-sos1819gp",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"economy-stats",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE TODO final 200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7d89d651-86ad-4b40-8bf3-9a56ae6c94d2",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos1819-09-gp-sos1819gp.c9users.io/api/v1/economy-stats/",
+					"protocol": "https",
+					"host": [
+						"sos1819-09-gp-sos1819gp",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"economy-stats",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
