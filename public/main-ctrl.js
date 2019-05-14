@@ -10,10 +10,12 @@
                 .when("/climate-stats",{
                    controller : "ClimateCtrl",
                    templateUrl: "climate-stats/index.html"
-                }).when("/economy-stats",{
+                })
+                .when("/economy-stats",{
                    controller : "ListCtrlEconomy",
                    templateUrl: "economy-stats/index.html"
-                }).when("/edit/:country/:year", {   
+                })
+                .when("/edit/:country/:year", {   
                    controller: "EditCtrlEconomy",
                    templateUrl: "economy-stats/edit.html"
                 })
