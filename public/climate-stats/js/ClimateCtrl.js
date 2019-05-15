@@ -94,22 +94,18 @@ angular
                 $scope.addClimate = function(){
             
                     console.log("Adding climate");
-                    $scope.newClimate.country = $scope.newClimate.country;
-                    $scope.newClimate.year = parseInt($scope.newClimate.year,10);
-                    $scope.newClimate.methane_stats = parseFloat($scope.newClimate.methane_stats);
-                    $scope.newClimate.co2_stats = parseFloat($scope.newClimate.co2_stats);
-                    $scope.newClimate.nitrous_oxide_stats = parseFloat($scope.newClimate.nitrous_oxide_stats);
+                    var data = $scope.data;
                     
-                    $http.post(API,$scope.newClimate).then(function (response){
+                    console.log($scope.data);
+                    $http.post(API,$scope.data).then(function (response){
                         console.log("Climate added");
                         refresh(1);
                         $scope.information = "Recurso creado";
-                    }, function (error){
+                    }).catch(function (error){
                         refresh(1);
                         if(error.status == 409){
                             $scope.information = "Error : El recurso ya existe";
-                        }
-                        if(error.status == 400){
+                        }else if(error.status == 400){
                             $scope.information = "Error : Datos no validos";
                         }
                     });

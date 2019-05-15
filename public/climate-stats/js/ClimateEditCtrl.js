@@ -34,6 +34,8 @@
                                     + response.status + " "
                                     + response.data);
                         $location.path("/climate-stats");
+                    }).catch(function (error){
+                        $scope.information = "Datos no validos";
                     }); 
             }
             
