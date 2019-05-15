@@ -134,43 +134,4 @@ angular
                         refresh(1);
                     });
                 };
-                
-                /*
-                // GET
-                
-                $scope.send = function(){
-                    $http.get(API).then(function (response){
-                        $scope.status = response.status;
-                        $scope.data = JSON.stringify(response.data,null,2);
-                    }, function (error){
-                        $scope.status = error.status;
-                        $scope.data = "";
-                    });
-                };
-                
-                // POST
-                
-                $scope.post = function(){
-                    $http.post(API,$scope.body).then(function (response){
-                        $scope.status = response.status;
-                        $scope.data = "";
-                    }, function (error){
-                        $scope.status = error.status;
-                        $scope.data = "";
-                    });
-                };
-                
-                // PUT
-                
-                $scope.put = function(){
-                    $http.put(API,$scope.body).then(function (response){
-                        $scope.status = response.status;
-                        $scope.data = "";
-                    }, function (error){
-                        $scope.status = error.status;
-                        $scope.data = "";
-                    });
-                };
-                
-                */
 }]);
