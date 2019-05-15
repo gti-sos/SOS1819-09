@@ -109,6 +109,9 @@ angular
                         if(error.status == 409){
                             $scope.information = "Error : El recurso ya existe";
                         }
+                        if(error.status == 400){
+                            $scope.information = "Error : Datos no validos";
+                        }
                     });
                 };
                 
