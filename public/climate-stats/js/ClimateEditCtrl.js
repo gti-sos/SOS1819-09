@@ -9,7 +9,7 @@
                         "$location",
         function ($scope,$http,$routeParams,$location){
             console.log("Edit Controller initialized.");
-            var API = "/api/v1/climate-stats";
+            var API = "/api/v2/climate-stats";
 
             var country = $routeParams.country;
             var year = $routeParams.year;
