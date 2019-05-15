@@ -4,7 +4,7 @@ angular
     .module("ProjectApp")
     .controller("ClimateCtrl", ["$scope","$http", function ($scope,$http){
                 console.log("Modular ClimateCtrl initialized");
-                var API = "/api/v1/climate-stats";
+                var API = "/api/v2/climate-stats";
                 
                 
                 refresh(1);
