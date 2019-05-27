@@ -28,7 +28,7 @@ module.exports =function(app, climate_stats) {
             year : 1990,
             methane_stats : 32809,
             co2_stats : 5.624190007,
-            nitrous_oxide_stats : 26186661
+            nitrous_oxide_stats : 26186.661
         },{
             country : "United States",
             year : 1990,
@@ -80,9 +80,9 @@ module.exports =function(app, climate_stats) {
         },{
             country : "United States",
             year : 2012,
-            methane_stats : 499809345,
+            methane_stats : 499809.345,
             co2_stats : 16.3042868,
-            nitrous_oxide_stats : 288877995
+            nitrous_oxide_stats : 288877.995
         }];
         
         

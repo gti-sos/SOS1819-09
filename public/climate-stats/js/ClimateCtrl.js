@@ -17,8 +17,7 @@ angular
                     
                     $http({
                         url : API,
-                        method : "GET",
-                        params : {offset: ($scope.page-1)*10, limit: (($scope.page-1)*10 + 10)}
+                        method : "GET"
                     })
                         .then(function (response){
                             console.log("Data Received: "
