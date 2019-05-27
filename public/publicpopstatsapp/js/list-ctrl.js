@@ -12,8 +12,8 @@ angular
         
         function refresh(){
             
-            $scope.pagina=1;
-            $http.get(API+ "?offset=" + 0 + "&limit=" + 10).then(function(response){
+            
+            $http.get(API).then(function(response){
             
                 $scope.popstats = response.data;
             });
@@ -111,20 +111,31 @@ angular
                 });
         };
         
-        $scope.pagination = function(pag){
-            if (pag != 1){
-                $scope.pagina=pag;
-                $http.get(API+ "?offset=" + ($scope.pagina-1)*10 + "&limit=" + (($scope.pagina-1)*10 + 10)).then(function(response){
+        $scope.initialize = function(){
             
-                $scope.popstats = response.data;
-            });
-            } else {
-                $scope.pagina=pag;
-                $http.get(API+ "?offset=" + 0 + "&limit=" + 10).then(function(response){
-            
-                $scope.popstats = response.data;
-            });
-            }
+            $http.get(API)
+                .then(function(response) {
+                    console.log("size response :"+response.data.length);
+                    if(response.data.length > 0){
+                        $http.delete(API)
+                            .then(function(response){
+                                $http.get(API+'/'+'loadInitialData')
+                                    .then(function(response) {
+                                        console.log("Data well loaded after deleting"+response.status);
+                                        $scope.message = response.statusText;
+                                        refresh();
+                                    });
+                        });
+                        
+                    } else {
+                        $http.get(API+'/'+'loadInitialData')
+                            .then(function(response) {
+                                console.log("Data well loaded without deleting"+response.status);
+                                $scope.message = response.statusText;
+                                refresh();
+                            });
+                    }
+                });
         };
         
     }]);

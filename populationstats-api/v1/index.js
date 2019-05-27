@@ -43,46 +43,130 @@ app.get("/api/v1/populationstats/loadInitialData",(req,res)=>{
     accesstoelectricity:"93.36"
 },
 {
-    country:"Babla",
+    country:"France",
     year:1990,
-    totalpopulation:"62",
-    urbanpopulation:"62",
-    accesstoelectricity:"55.44"
-},
-{
-    country:"Pais",
-    year:1993,
-    totalpopulation:"89",
-    urbanpopulation:"31",
-    accesstoelectricity:"88.44"
+    totalpopulation:"58512808",
+    urbanpopulation:"43332245",
+    accesstoelectricity:"100"
 },
 {
     country:"France",
-    year:1990,
-    totalpopulation:"55",
-    urbanpopulation:"40",
-    accesstoelectricity:"70.44"
-},
-{
-    country:"OtroPais",
-    year:1995,
-    totalpopulation:"96000",
-    urbanpopulation:"95000",
-    accesstoelectricity:"88.44"
-},
-{
-    country:"Example",
     year:2010,
-    totalpopulation:"62149",
-    urbanpopulation:"31273",
-    accesstoelectricity:"88.44"
+    totalpopulation:"65027507",
+    urbanpopulation:"50961407",
+    accesstoelectricity:"100"
 },
 {
-    country:"OtroExample",
+    country:"Germany",
     year:1990,
-    totalpopulation:"62149",
-    urbanpopulation:"31273",
-    accesstoelectricity:"88.44"
+    totalpopulation:"79433029",
+    urbanpopulation:"58079842",
+    accesstoelectricity:"100"
+},
+{
+    country:"Germany",
+    year:2010,
+    totalpopulation:"81776930",
+    urbanpopulation:"62940432",
+    accesstoelectricity:"100"
+},
+{
+    country:"Spain",
+    year:1990,
+    totalpopulation:"38867322",
+    urbanpopulation:"29286916",
+    accesstoelectricity:"100"
+},
+{
+    country:"Spain",
+    year:2010,
+    totalpopulation:"46576897",
+    urbanpopulation:"36535850",
+    accesstoelectricity:"100"
+},
+{
+    country:"India",
+    year:1990,
+    totalpopulation:"870133480",
+    urbanpopulation:"222293000",
+    accesstoelectricity:"43.29"
+},
+{
+    country:"India",
+    year:2010,
+    totalpopulation:"1230980691",
+    urbanpopulation:"380742328",
+    accesstoelectricity:"76.3"
+},
+{
+    country:"USA",
+    year:1990,
+    totalpopulation:"249623000",
+    urbanpopulation:"187966119",
+    accesstoelectricity:"100"
+},
+{
+    country:"USA",
+    year:2010,
+    totalpopulation:"309338421",
+    urbanpopulation:"247276259",
+    accesstoelectricity:"100"
+},
+{
+    country:"Portugal",
+    year:1990,
+    totalpopulation:"9983218",
+    urbanpopulation:"4783459",
+    accesstoelectricity:"100"
+},
+{
+    country:"Portugal",
+    year:2010,
+    totalpopulation:"10573100",
+    urbanpopulation:"6403809",
+    accesstoelectricity:"100"
+},
+{
+    country:"United-Kingdom",
+    year:1990,
+    totalpopulation:"57247586",
+    urbanpopulation:"44733264",
+    accesstoelectricity:"100"
+},
+{
+    country:"United-Kingdom",
+    year:2010,
+    totalpopulation:"62766365",
+    urbanpopulation:"51030310",
+    accesstoelectricity:"100"
+},
+{
+    country:"Pakistan",
+    year:1990,
+    totalpopulation:"107678614",
+    urbanpopulation:"32923813",
+    accesstoelectricity:"59.94"
+},
+{
+    country:"Pakistan",
+    year:2010,
+    totalpopulation:"170560182",
+    urbanpopulation:"59690947",
+    accesstoelectricity:"89.81"
+},
+{
+    country:"Singapore",
+    year:1990,
+    totalpopulation:"3047132",
+    urbanpopulation:"3047132",
+    accesstoelectricity:"100"
+},
+{
+    country:"Singapore",
+    year:2010,
+    totalpopulation:"5076732",
+    urbanpopulation:"5076732",
+    accesstoelectricity:"100"
 }
     ];
     popstats.count(function(err, count) {
