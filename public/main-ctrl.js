@@ -7,6 +7,14 @@
                 .when("/",{
                    templateUrl: "menu.html"
                 })
+                .when("/integrations",{
+                    controller :"integrations-ctrl",
+                    templateUrl : "integrations.html"
+                })
+                .when("/analytics",{
+                    controller :"analytics-ctrl",
+                    templateUrl : "analytics.html"
+                })
                 .when("/climate-stats",{
                    controller : "ClimateCtrl",
                    templateUrl: "climate-stats/index.html"
