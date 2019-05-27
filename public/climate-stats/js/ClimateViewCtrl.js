@@ -20,39 +20,32 @@
             .then(function (response){
                 //console.log("Data Received: "
                 //            + JSON.stringify(response.data,null,2));
-                $scope.climates = response.data;
-                data = $scope.climates;
+                data = response.data;
+                
+                // ----------------- HighCharts
                 
                 var mdata = data.map(function(item){
-                    var newItem = item.methane_stats;
-                    return newItem;
+                    return item.methane_stats;
                 });
                 
                 var cdata = data.map(function(item){
-                    var newItem = item.co2_stats;
-                    return newItem;
+                    return item.co2_stats;
                 });
                 
                 var ndata = data.map(function(item){
-                    var newItem = item.nitrous_oxide_stats;
-                    return newItem;
+                    return item.nitrous_oxide_stats;
                 });
                 
                 var categoriesData = data.map(function(item){
-                    var newItem = "" + item.country + " " + item.year;
-                    return newItem;
+                    return (item.country + " " + item.year);
                 });
-                
-                console.log(categoriesData)
-                
-                // ----------------- HighCharts
                 
                 Highcharts.chart('container', {
                         chart: {
                             type: 'column'
                         },
                         title: {
-                            text: 'Stacked column chart'
+                            text: 'Emisión de gases de efecto invernadero'
                         },
                         xAxis: {
                             categories: categoriesData
@@ -60,7 +53,7 @@
                         yAxis: {
                             min: 0,
                             title: {
-                                text: 'Total fruit consumption'
+                                text: 'Total c02 en kt'
                             },
                             stackLabels: {
                                 enabled: true,
@@ -106,9 +99,38 @@
                         }]
                     });
                     
-                });
-        
-        
-        
+                // ----------------- GeoCharts
             
+                var googleData = [];
+                
+                googleData[0] = ['Country', 'Popularity'];
+                googleData[1] = [' ', 0];
+                var j = 2;
+                for (var i = 0; i < data.length; i++) {
+                        if(data[i].year == 2012)
+                            googleData[j++] = [data[i].country, data[i].co2_stats];
+                }
+                
+                google.charts.load('current', {
+                    'packages':['geochart'],
+                    // Note: you will need to get a mapsApiKey for your project.
+                    // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+                    'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+                });
+                google.charts.setOnLoadCallback(drawRegionsMap);
+                    
+                function drawRegionsMap() {
+                    var data = google.visualization.arrayToDataTable(googleData);
+                    
+                    var options = {
+                        colorAxis: {colors: ['#00853f', 'orange', '#e31b23']},
+
+                        };
+                    
+                    var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+                    
+                    chart.draw(data, options);
+                }
+                        
+            });
         }]);    
