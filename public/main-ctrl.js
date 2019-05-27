@@ -19,6 +19,14 @@
                    controller : "ClimateCtrl",
                    templateUrl: "climate-stats/index.html"
                 })
+                .when("/climate-stats/edit/:country/:year",{
+                   controller : "ClimateEditCtrl",
+                   templateUrl: "climate-stats/edit.html"
+                })
+                .when("/climate-stats/view",{
+                   controller : "ClimateViewCtrl",
+                   templateUrl: "climate-stats/view.html"
+                })
                 .when("/economy-stats",{
                    controller : "ListCtrlEconomy",
                    templateUrl: "economy-stats/index.html"
@@ -27,10 +35,7 @@
                    controller: "EditCtrlEconomy",
                    templateUrl: "economy-stats/edit.html"
                 })
-                .when("/climate-stats/edit/:country/:year",{
-                   controller : "ClimateEditCtrl",
-                   templateUrl: "climate-stats/edit.html"
-                })
+                
                 .when("/populationstats",{
                     controller : "list-ctrl",
                     templateUrl : "publicpopstatsapp/list.html"

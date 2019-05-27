@@ -1,14 +1,17 @@
 <div class = "container">
-    <div class = "row">
+    <div class = "row my-2">
         <div div class = "col-sm">
             <button class="btn btn-danger" ng-click="delete()" value="delete">BORRAR TODO</button>
         </div>
         <div div class = "col-sm">
             <button class="btn btn-success" ng-click="loadData()" value="load">DATOS INICIALES</button>
         </div>
+        <div div class = "col-sm">
+            <a class="btn btn-info" href="#!/climate-stats/view" role="button">VER LOS DATOS</a>
+        </div>
     </div>
             
-    <div class = "row">
+    <div class = "row my-2">
         <div class = "col-sm">
             <input 
                 type="text" 
@@ -28,7 +31,7 @@
         </div>
     </div>
             
-    <div class = "row">
+    <div class = "row my-2">
         <div class = "col-sm">
             <input 
                 type="text" 
@@ -41,7 +44,7 @@
         </div>
     </div>
             
-    <div class = "row">
+    <div class = "row my-2">
         <div class = "col-sm">
             <p>Informacion : {{information}}</p>
         </div>
@@ -131,7 +134,7 @@
         </div>
     </div>
     
-    <div class = "row">
+    <div class = "row my-2">
         <div class = "col-sm">
             <button class="btn btn-light" ng-click="pagination(page-1)" id="pre"><<</button>
         </div>
