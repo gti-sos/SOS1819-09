@@ -44,6 +44,10 @@
                     controller :"edit-ctrl",
                     templateUrl : "publicpopstatsapp/edit.html"
                 })
+                .when("/populationstats/view",{
+                    controller : "pop-view",
+                    templateUrl : "publicpopstatsapp/view.html"
+                })
                 ;
         });
 
