@@ -8,12 +8,11 @@
                    templateUrl: "menu.html"
                 })
                 .when("/integrations",{
-                    controller :"integrations-ctrl",
                     templateUrl : "integrations/index.html"
                 })
                 .when("/integrations/GWG03",{
-                    controller :"integrations-G03-ctrl",
-                    templateUrl : "integrations/G03.html"
+                    controller :"GWG03-ctrl",
+                    templateUrl : "integrations/GWG03.html"
                 })
                 .when("/analytics",{
                     controller :"analytics-ctrl",
