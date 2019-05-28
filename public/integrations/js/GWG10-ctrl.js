@@ -4,7 +4,7 @@ angular
     .module("ProjectApp")
     .controller("GWG10-ctrl", ["$scope","$http", function ($scope,$http){
                 console.log("GWG03 Controller initialized.");
-            var API = "/proxyG03Companies";
+            var API = "/proxyG10Biofuels";
             var myAPI = "/api/v2/climate-stats";
             var data;
             var myData;
@@ -26,105 +26,50 @@ angular
                         myData = response.data;
                         
                         
-                        // ----------------- HighCharts
+                        // ----------------- MyGoogleCharts
+                        
+                        var googleData = [];
+                        
+                        googleData[0] = ['Country', 'CO2 Emission (kt)'];
+                        var j = 1;
+                        for (var i = 0; i < myData.length; i++) {
+                                if(myData[i].year == 2012)
+                                    googleData[j++] = [myData[i].country, myData[i].co2_stats];
+                        }
+                        
+                        var hisGoogleData = [];
+                        
+                        hisGoogleData[0] = ['Country and Year', 'Ethanol', 'Gas Natural', 'Biodiesel'];
+                        var k = 1;
+                        for (var i = 0; i < data.length; i++) {
+                            hisGoogleData[k++] = [data[i].country + " " + data[i].year, data[i].ethanolFuel, data[i].dryNaturalGas, data[i].biodiesel];
+                        }
                 
-                        var comdata = data.map(function(item){
-                            return item.numberOfCompanies;
-                        });
-                        
-                        var co2data = myData.map(function(item){
-                            return item.co2_stats;
-                        });
-                        
-                        var ndata = myData.map(function(item){
-                            return item.nitrous_oxide_stats;
-                        });
-                        
-                        var mdata = myData.map(function(item){
-                            return item.methane_stats;
-                        });
-                        
-                        var categoriesData = data.map(function(item){
-                            return (item.country + " " + item.year);
-                        });
-                        
-                        var categoriesMyData = myData.map(function(item){
-                            return (item.country + " " + item.year);
-                        });
-                        
-                        var categories = categoriesData.concat(categoriesMyData);
-                        
-                        console.log(categoriesData);
-                        console.log(categoriesMyData);
-                        console.log(categories);
-
-                        Highcharts.chart('container', {
-                            chart: {
-                                type: 'bar'
-                            },
-                            title: {
-                                text: 'Integración de la API GO3-companies'
-                            },
-                            subtitle: {
-                                text: '¿El número de empresas en un país está correlacionado con su contaminación?'
-                            },
-                            xAxis: {
-                                categories: categories,
-                                title: {
-                                    text: null
-                                }
-                            },
-                            yAxis: {
-                                min: 0,
-                                title: {
-                                    text: 'Total c02 en kt / número de empresas',
-                                    align: 'high'
-                                },
-                                labels: {
-                                    overflow: 'justify'
-                                }
-                            },
-                            tooltip: {
-                                valueSuffix: ' kt / uds'
-                            },
-                            plotOptions: {
-                                bar: {
-                                    dataLabels: {
-                                        enabled: true
-                                    }
-                                }
-                            },
-                            legend: {
-                                layout: 'vertical',
-                                align: 'right',
-                                verticalAlign: 'top',
-                                x: -40,
-                                y: 80,
-                                floating: true,
-                                borderWidth: 1,
-                                backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-                                shadow: true
-                            },
-                            credits: {
-                                enabled: false
-                            },
-                            series: [{
-                                name: 'Companies',
-                                data: comdata
-                            }, {
-                                name: 'Co2',
-                                data: co2data
-                            }, {
-                                name: 'Metano',
-                                data: mdata
-                            }, {
-                                name: 'Oxido nitroso',
-                                data: ndata
-                            }]
-                        });
-                        // End of HighChart
-                        
-                        
+                        google.charts.load("current", {packages:["corechart"]});
+                        google.charts.load('current', {'packages':['bar']});
+                        google.charts.setOnLoadCallback(drawChart);
+                        function drawChart() {
+                            var data = google.visualization.arrayToDataTable(googleData);
+                            var data2 = google.visualization.arrayToDataTable(hisGoogleData);
+                    
+                            var options = {
+                              title: 'Emisión de CO2 durante el año 2012',
+                              pieHole: 0.4,
+                            };
+                            
+                            var options2 = {
+                              chart: {
+                                title: 'Producción de biocombustible',
+                              }
+                            };
+                    
+                            var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+                            chart.draw(data, options);
+                            
+                            var chart2 = new google.charts.Bar(document.getElementById('columnchart_material'));
+                            chart2.draw(data2, google.charts.Bar.convertOptions(options2));
+                        }
+                        // End of GoogleChart
                     });
             });
 }]);
