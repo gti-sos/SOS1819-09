@@ -20,6 +20,13 @@ app.use('/proxyG03Companies', function(req, res) {
   req.pipe(request(G03CompaniesAPI)).pipe(res);
 });
 
+var G10BiofuelsAPI = 'https://sos1819-10.herokuapp.com/api/v1/biofuels-production';
+
+app.use('/proxyG10Biofuels', function(req, res) {
+  console.log('piped: '+G10BiofuelsAPI);
+  req.pipe(request(G10BiofuelsAPI)).pipe(res);
+});
+
 // MongoDb
 var climates_stats_api = require("./climate-stats-api");
 
