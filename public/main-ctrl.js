@@ -34,10 +34,6 @@
                    controller : "ClimateViewCtrl",
                    templateUrl: "climate-stats/view.html"
                 })
-                .when("/climate-stats/view/zc",{
-                   controller : "ClimateViewZCCtrl",
-                   templateUrl: "climate-stats/viewZC.html"
-                })
                 .when("/economy-stats",{
                    controller : "ListCtrlEconomy",
                    templateUrl: "economy-stats/index.html"
