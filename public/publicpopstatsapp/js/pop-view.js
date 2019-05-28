@@ -14,14 +14,13 @@ angular
         console.log("pop view ctrl initialized");
         
         var API = "/api/v1/populationstats";
+        var myData;
         
         // getting data
         $http.get(API)
             .then(function(response){
                 
-                $scope.data=response.data;
-                
-                var myData = $scope.data;
+                myData=response.data;
                 
                 var myCategories = myData.map(function(item){
                     itemCountry = item.country;
@@ -110,36 +109,46 @@ angular
                         data: dataAccessElec
                     }]
                 });
-            });
-            
-            //GeoChart----------------------------------------------------------------------------------
-            
-            google.charts.load('current', {
-                'packages':['geochart'],
+                
+                
+                //GeoChart----------------------------------------------------------------------------------
+               console.log("test : "+myData.length);
+               
+                var geoArray=[];
+                
+                geoArray[0]=['Country', 'AccessToElectricity'];
+                geoArray[1]=['',0];
+                var i=2;
+                    for (j=1;j<myData.length;j++){
+                        if(myData[j].year==2010){
+                            console.log(myData[j].country)
+                            geoArray[i++]= [myData[j].country, myData[j].accesstoelectricity];
+                        }
+                    }
+                
+                google.charts.load('current', {
+                    'packages':['geochart'],
+                    'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+                });
+                
+                google.charts.setOnLoadCallback(drawRegionsMap);
+                
+                console.log("geochart : "+geoArray);
+    
+                function drawRegionsMap() {
+                    var data = google.visualization.arrayToDataTable(geoArray);
+    
+                    var options = {};
         
+                    var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+        
+                    chart.draw(data, options);
+                }  
+                
+                
+                
             });
             
-            google.charts.setOnLoadCallback(drawRegionsMap);
-            
-            geoArray=[];
-            geoArray[0]=['Country', 'Total Population'];
-            for (j=1;j<4;j++){
-               geoArray[j]= [myData[j+2].country,myData[j+2].totalpopulation]
-            }
-            
-            console.log(geoArray);
-
-            function drawRegionsMap() {
-                 var data = google.visualization.arrayToDataTable(
-                      geoArray
-            );
-
-            var options = {};
-
-            var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
-
-            chart.draw(data, options);
-        }
         
         
     }]);
