@@ -26,45 +26,29 @@ angular
                         myData = response.data;
                         
                         
-                        // ----------------- MyGoogleCharts
+                        // ----------------- GoogleCharts
                         
                         var googleData = [];
                         
-                        googleData[0] = ['Country', 'CO2 Emission (kt)'];
-                        var j = 1;
-                        for (var i = 0; i < myData.length; i++) {
-                                if(myData[i].year == 2012)
-                                    googleData[j++] = [myData[i].country, myData[i].co2_stats];
-                        }
-                        
-                        var hisGoogleData = [];
-                        
-                        hisGoogleData[0] = ['Country and Year', 'Ethanol', 'Gas Natural', 'Biodiesel'];
+                        googleData[0] = ['Country and Year', 'Ethanol', 'Gas Natural', 'Biodiesel'];
                         var k = 1;
                         for (var i = 0; i < data.length; i++) {
-                            hisGoogleData[k++] = [data[i].country + " " + data[i].year, data[i].ethanolFuel, data[i].dryNaturalGas, data[i].biodiesel];
+                            googleData[k++] = [data[i].country + " " + data[i].year, data[i].ethanolFuel, data[i].dryNaturalGas, data[i].biodiesel];
+                        }
+                        for (var i = 0; i < myData.length; i++) {
+                            googleData[k++] = [myData[i].country + " " + myData[i].year, myData[i].co2_stats, myData[i].methane_stats, myData[i].nitrous_oxide_stats];
                         }
                 
-                        google.charts.load("current", {packages:["corechart"]});
                         google.charts.load('current', {'packages':['bar']});
                         google.charts.setOnLoadCallback(drawChart);
                         function drawChart() {
-                            var data = google.visualization.arrayToDataTable(googleData);
-                            var data2 = google.visualization.arrayToDataTable(hisGoogleData);
+                            var data2 = google.visualization.arrayToDataTable(googleData);
                     
-                            var options = {
-                              title: 'Emisión de CO2 durante el año 2012',
-                              pieHole: 0.4,
-                            };
-                            
                             var options2 = {
                               chart: {
-                                title: 'Producción de biocombustible',
+                                title: 'Producción de biocombustible y emisión de CO2 o equivalente',
                               }
                             };
-                    
-                            var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-                            chart.draw(data, options);
                             
                             var chart2 = new google.charts.Bar(document.getElementById('columnchart_material'));
                             chart2.draw(data2, google.charts.Bar.convertOptions(options2));
