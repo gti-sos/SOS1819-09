@@ -9,7 +9,11 @@
                 })
                 .when("/integrations",{
                     controller :"integrations-ctrl",
-                    templateUrl : "integrations.html"
+                    templateUrl : "integrations/index.html"
+                })
+                .when("/integrations/GWG03",{
+                    controller :"integrations-G03-ctrl",
+                    templateUrl : "integrations/G03.html"
                 })
                 .when("/analytics",{
                     controller :"analytics-ctrl",
@@ -35,7 +39,6 @@
                    controller: "EditCtrlEconomy",
                    templateUrl: "economy-stats/edit.html"
                 })
-                
                 .when("/populationstats",{
                     controller : "list-ctrl",
                     templateUrl : "publicpopstatsapp/list.html"
