@@ -54,6 +54,14 @@
                     controller : "pop-view",
                     templateUrl : "publicpopstatsapp/view.html"
                 })
+                .when("/populationstats/uvChart",{
+                    controller : "chart-ctrl",
+                    templateUrl : "publicpopstatsapp/chart.html"
+                })
+                .when("/populationstats/next",{
+                    controller : "integration-ctrl",
+                    templateUrl : "publicpopstatsapp/integration.html"
+                })
                 ;
         });
 
