@@ -8,8 +8,15 @@
                    templateUrl: "menu.html"
                 })
                 .when("/integrations",{
-                    controller :"integrations-ctrl",
-                    templateUrl : "integrations.html"
+                    templateUrl : "integrations/index.html"
+                })
+                .when("/integrations/GWG03",{
+                    controller :"GWG03-ctrl",
+                    templateUrl : "integrations/GWG03.html"
+                })
+                .when("/integrations/GWG10",{
+                    controller :"GWG10-ctrl",
+                    templateUrl : "integrations/GWG10.html"
                 })
                 .when("/analytics",{
                     controller :"analytics-ctrl",
@@ -35,7 +42,6 @@
                    controller: "EditCtrlEconomy",
                    templateUrl: "economy-stats/edit.html"
                 })
-                
                 .when("/populationstats",{
                     controller : "list-ctrl",
                     templateUrl : "publicpopstatsapp/list.html"

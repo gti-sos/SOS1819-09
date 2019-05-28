@@ -1,6 +1,7 @@
 var express = require("express");
 var path = require("path");
 var bodyParser = require("body-parser");
+var request = require("request");
 
 var app = express();
 var port = process.env.PORT || 8080;
@@ -10,6 +11,21 @@ app.use(bodyParser.json());
 
 
 // ___________________________________ climate_stats ___________________________
+
+//Access to G03-Companies
+var G03CompaniesAPI = 'https://sos1819-03.herokuapp.com/api/v1/companies';
+
+app.use('/proxyG03Companies', function(req, res) {
+  console.log('piped: '+G03CompaniesAPI);
+  req.pipe(request(G03CompaniesAPI)).pipe(res);
+});
+
+var G10BiofuelsAPI = 'https://sos1819-10.herokuapp.com/api/v1/biofuels-production';
+
+app.use('/proxyG10Biofuels', function(req, res) {
+  console.log('piped: '+G10BiofuelsAPI);
+  req.pipe(request(G10BiofuelsAPI)).pipe(res);
+});
 
 // MongoDb
 var climates_stats_api = require("./climate-stats-api");

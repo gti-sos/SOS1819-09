@@ -7,7 +7,7 @@
     "start": "node index.js",
     "pretest": "testspopstat/runPhantom.sh",
     "test": "newman run https://www.getpostman.com/collections/2fbac6b9bb803c7bcfc9 && protractor testsclimate/tests.js; newman run https://www.getpostman.com/collections/8916e519fba8119593a7 && protractor testspopstat/tests.js; newman run testseconomy/backend/SOS1819-09-economy-stats-Heroku-postman_collection.json && protractor testseconomy/tests.js",
-    "posttest":"killall phantomjs",
+    "posttest": "killall phantomjs",
     "test-climate-stats": "newman run https://www.getpostman.com/collections/2fbac6b9bb803c7bcfc9",
     "test-populationstats": "newman run testspopstat/backend/api-v1-tests.json && protractor testspopstat/tests.js",
     "test-economy-stats": "newman run testseconomy/backend/SOS1819-09-economy-stats-Heroku-postman_collection.json && protractor testseconomy/tests.js"
@@ -23,7 +23,8 @@
     "express": "^4.16.4",
     "express-query-int": "^3.0.0",
     "mongodb": "^3.2.2",
-    "newman": "^4.4.1"
+    "newman": "^4.4.1",
+    "request": "^2.88.0"
   },
   "bugs": {
     "url": "https://github.com/gti-sos/SOS1819-09/issues"
