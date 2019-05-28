@@ -1,4 +1,4 @@
-/* global angular */
+/* global angular zingchart Highcharts google*/
     angular
         .module("ProjectApp")
         .controller("ClimateViewCtrl",
@@ -52,7 +52,7 @@
                         yAxis: {
                             min: 0,
                             title: {
-                                text: 'Total c02 en kt'
+                                text: 'Total CO2 en kt'
                             },
                             stackLabels: {
                                 enabled: true,
@@ -87,7 +87,7 @@
                             }
                         },
                         series: [{
-                            name: 'C02 (kt)',
+                            name: 'CO2 (kt)',
                             data: cdata
                         }, {
                             name: 'Metano (kt de co2 equivalente)',
@@ -131,12 +131,11 @@
                     chart.draw(data, options);
                 }
                 
-                // ZingChart
-                
+                // ----------------- ZingChart
                 var myConfig = {
                   "type": "bar",
                   "title": {
-                    "text": "Change me please!"
+                    "text": "Emisión de gases de efecto invernadero"
                   },
                   "plot": {
                     "value-box": {
@@ -158,20 +157,20 @@
                     "drag-handler": "icon"
                   },
                   "scale-x": {
-                    "values": [
-                      "Mon",
-                      "Wed",
-                      "Fri"
-                    ]
+                    "labels": categoriesData
                   },
                   "series": [
                     {
-                      "values": [3,6,9],
-                      "text": "apples"
+                      "values": cdata,
+                      "text": "CO2 (kt)"
                     },
                     {
-                      "values": [1,4,3],
-                      "text": "oranges"
+                      "values": mdata,
+                      "text": "Metano (kt de co2 equivalente)"
+                    },
+                    {
+                      "values": ndata,
+                      "text": "Oxido nitroso (kt de co2 equivalente)"
                     }
                   ]
                 };
