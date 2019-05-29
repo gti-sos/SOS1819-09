@@ -2,6 +2,7 @@ var express = require("express");
 var path = require("path");
 var bodyParser = require("body-parser");
 var request = require("request");
+var cors = require("cors");
 
 
 var app = express();
@@ -9,6 +10,7 @@ var port = process.env.PORT || 8080;
 
 app.use('/',express.static( path.join(__dirname,"public")));
 app.use(bodyParser.json());
+app.use(cors());
 
 
 // ___________________________________ climate_stats ___________________________
