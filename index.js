@@ -45,14 +45,6 @@ app.use('/proxyG06Transfer', function(req, res) {
   req.pipe(request(G06TransferAPI)).pipe(res);
 });
 
-//Access to G03-Computer-attacks
-var G03ComputerAPI = 'https://sos1819-03.herokuapp.com/api/v1/computers-attacks-stats';
-
-app.use('/proxyG03Computer', function(req, res) {
-  console.log('piped: '+G03ComputerAPI);
-  req.pipe(request(G03ComputerAPI)).pipe(res);
-});
-
 //Access to G02-scorers-stats
 var G02ScorersAPI = 'https://sos1819-02.herokuapp.com/api/v1/scorers-stats';
 

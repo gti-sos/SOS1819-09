@@ -27,10 +27,6 @@
                     controller :"GWG06T-ctrl",
                     templateUrl : "integrations/GWG06T.html"
                 })
-                .when("/integrations/GWG03C",{
-                    controller :"GWG03C-ctrl",
-                    templateUrl : "integrations/GWG03C.html"
-                })
                 .when("/integrations/GWG02",{
                     controller :"GWG02-ctrl",
                     templateUrl : "integrations/GWG02.html"
