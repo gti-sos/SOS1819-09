@@ -125,7 +125,14 @@ clientEmma.connect(err => {
   app.use("/api/v1/populationstats",express.static(path.join(__dirname,"public/publicpopstatsapp")));
 });
 
+  //Integration con API emigration
+  var paths='/proxyEmigration';
+  var apiEmigration = 'https://sos1819-08.herokuapp.com/api/v1/emigrations-by-countries/';
 
+  app.use(paths, function(req, res) {
+    console.log('piped: '+apiEmigration);
+    req.pipe(request(apiEmigration)).pipe(res);
+  });
 
 // ___________________________economy_stats_____________________________________
 

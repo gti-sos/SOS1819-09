@@ -27,62 +27,74 @@ angular
                     return (itemYear);
                 });
                
-               var myName1990 = myData.map(function(item){
+               var myName1990 = myData.filter(function(item){
                   if(item.year==1990){
-                       itemName=item.country;
+                       return(item.country);
                   }
-                    return(itemName);
                });
                
-               var myName2010 = myData.map(function(item){
+               var myName2010 = myData.filter(function(item){
                   if(item.year==2010){
-                       itemName=item.country;
+                       return(item.country);
                   }
-                    return(itemName);
                });
                
-               var myValue1990 = myData.map(function(item){
+               var myValue1990 = myData.filter(function(item){
                   if(item.year==1990){
-                       itemValue=parseInt(item.urbanpopulation);
-                       console.log(item.year);
+                       return(parseInt(item.urbanpopulation));
                   }
-                    return(itemValue);
                });
                
-               var myValue2010 = myData.map(function(item){
+               var myValue2010 = myData.filter(function(item){
                   if(item.year==2010){
-                       itemValue=parseInt(item.urbanpopulation);
+                       return(parseInt(item.urbanpopulation));
                   }
-                    return(itemValue);
                });
                 
                 console.log(myName1990.length);
-                console.log(myName2010);
+                console.log(myValue2010);
                 
+                var arr1990 = [];
+                var jsonArr = [];
+                
+                for (var i=0;i<myName1990.length;i++){
+                    //arr1990[i]= name : myName1990[i].country, value : parseInt(myValue1990[i].totalpopulation);
+                    jsonArr[i] = {name: myName1990[i].country, value: parseInt(myValue1990[i].totalpopulation)};
+                }
+                arr1990 = JSON.stringify(jsonArr);
+                console.log('jsonArr : '+JSON.stringify(jsonArr));
+                
+                var arr2010=[];
+                var json2010 = [];
+                
+                for (var i=0;i<myName2010.length;i++){
+                    //arr2010[i]=' name : '+myName2010[i].country+','+' value : '+parseInt(myValue2010[i].totalpopulation);
+                    json2010[i] = {name: myName2010[i].country, value: parseInt(myValue2010[i].totalpopulation)}
+                }
+                arr2010=JSON.stringify(json2010);
             
+                console.log('json2010 : '+JSON.stringify(json2010));
+                
+                console.log(json2010);
+                
                 var graphdef = {
-	categories : ['1990', '2010'],
-	dataset : {
-		'1990' : [
-			{ name : myName1990[0], value : myValue1990[0] },
-			{ name : myName1990[1], value : myValue1990[1] },
-			{ name : myName1990[2], value : myValue1990[2] },
-			{ name : myName1990[3], value : myValue1990[3] },
-			{ name : myName1990[4], value : myValue1990[4] }
-		],
-		
-		'2010' : [
-			{ name : myName2010[0], value : myValue2010[0] },
-			{ name : myName2010[1], value : myValue2010[1] },
-			{ name : myName2010[2], value : myValue2010[2] },
-			{ name : myName2010[3], value : myValue2010[3] },
-			{ name : myName2010[4], value : myValue2010[4] }		
-		]
-	}
-}
-               
-               
-                var chart = uv.chart('Pie', graphdef);
+                	categories : ['1990', '2010'],
+                	dataset : {
+                		'1990' : jsonArr,
+                		'2010' : json2010
+                		
+                	}
+                }
+
+                var chart = uv.chart('Bar', graphdef,{
+                                                    	meta : {
+                                                    		caption : 'Total population',
+                                                    		subcaption : 'in 1990 and 2010',
+                                                    		hlabel : 'Total population',
+                                                    		vlabel : 'Countries',
+	
+                }});
+                
             });
         
         
