@@ -1,7 +1,7 @@
 <div class = "container">
     <div class = "row">
         <div class = "col-sm">
-            <h1>Uso de G06-transfer-stats</h1>
+            <h1>Uso de G03-computer-attack-stats</h1>
         </div>
     </div>
     
@@ -17,27 +17,24 @@
                 <thead>
                     <tr>
                         <th>Pais</th>
-                        <th>Temporada</th>
-                        <th>Equipo</th>
-                        <th>Dinero Gastado</th>
-                        <th>Dinero ingresado</th>
-                        <th>Número de jugadores fichados</th>
-                        <th>Numero de jugadores vendidos</th>
+                        <th>Ano</th>
+                        <th>Tipo de ataque</th>
+                        <th>Impacto en millones</th>
+                        <th>Equipos afectados</th>
+                        <th>Porcentaje general</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="data in datas">
                         <td>{{ data.country }}</td>
-                        <td>{{ data.season }}</td>
-                        <td>{{ data.team }}</td>
-                        <td>{{ data.moneyspent }}</td>
-                        <td>{{ data.moneyentered }}</td>
-                        <td>{{ data.numberofsignings }}</td>
-                        <td>{{ data.numberoffarewells }}</td>
+                        <td>{{ data.year }}</td>
+                        <td>{{ data.attacktype }}</td>
+                        <td>{{ data.economicimpactmillions }}</td>
+                        <td>{{ data.affectedequipments }}</td>
+                        <td>{{ data.overallpercentage }}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
-
 </div>

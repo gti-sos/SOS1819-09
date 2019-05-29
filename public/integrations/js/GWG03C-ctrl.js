@@ -2,9 +2,9 @@
 
 angular
     .module("ProjectApp")
-    .controller("GWG06T-ctrl", ["$scope","$http", function ($scope,$http){
-                console.log("GWG06T Controller initialized.");
-            var API = "/proxyG06Transfer";
+    .controller("GWG03C-ctrl", ["$scope","$http", function ($scope,$http){
+                console.log("GWG03C Controller initialized.");
+            var API = "/proxyG03Computer";
 
         $http({
             url : API,
@@ -14,7 +14,5 @@ angular
                 //console.log("Data Received: "
                 //            + JSON.stringify(response.data,null,2));
                 $scope.datas = response.data;
-                
-                
             });
 }]);
