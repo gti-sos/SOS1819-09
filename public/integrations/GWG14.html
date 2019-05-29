@@ -1,7 +1,7 @@
 <div class = "container">
     <div class = "row">
         <div class = "col-sm">
-            <h1>Uso de G02-scorer-stats</h1>
+            <h1>Uso de G14-deceaseds</h1>
         </div>
     </div>
     
@@ -16,22 +16,20 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Nombre</th>
-                        <th>Pais</th>
+                        <th>Provincia</th>
                         <th>Año</th>
-                        <th>Goles</th>
-                        <th>Partidos</th>
-                        <th>Promedio</th>
+                        <th>Vidas</th>
+                        <th>Multa</th>
+                        <th>Número de muertos</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="data in datas">
-                        <td>{{ data.country }}</td>
+                        <td>{{ data.province }}</td>
                         <td>{{ data.year }}</td>
-                        <td>{{ data.name }}</td>
-                        <td>{{ data.scorergoal }}</td>
-                        <td>{{ data.scorermatch }}</td>
-                        <td>{{ data.scoreraverage }}</td>
+                        <td>{{ data.life }}</td>
+                        <td>{{ data.penalty }}</td>
+                        <td>{{ data.number }}</td>
                     </tr>
                 </tbody>
             </table>

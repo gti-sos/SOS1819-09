@@ -61,6 +61,14 @@ app.use('/proxyG02Scorers', function(req, res) {
   req.pipe(request(G02ScorersAPI)).pipe(res);
 });
 
+//Access to G14-deceaseds
+var G14DeceasedsAPI = 'https://sos1819-14.herokuapp.com/api/v1/deceaseds/';
+
+app.use('/proxyG14Deceaseds', function(req, res) {
+  console.log('piped: '+G14DeceasedsAPI);
+  req.pipe(request(G14DeceasedsAPI)).pipe(res);
+});
+
 // MongoDb
 var climates_stats_api = require("./climate-stats-api");
 

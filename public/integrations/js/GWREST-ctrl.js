@@ -23,21 +23,36 @@ angular
                     method : "GET",
                 })
                     .then(function (response){
-                        myData = response.data;
                         
+                        myData = response.data;
                         
                         // ----------------- GoogleCharts
                         
                         var googleData = [];
-                
                         googleData[0] = ['Country', 'Population'];
                         googleData[1] = [' ', 0];
                         var j = 2;
                         for (var i = 0; i < data.length; i++) {
-                                if(data[i].year == 2012)
-                                    googleData[j++] = [data[i].name, data[i].population];
+                                googleData[j++] = [data[i].name, data[i].population];
                         }
                         
+                        var my2012Data = [];
+                        j = 0
+                        for (var i = 0; i < myData.length; i++) {
+                            if(myData[i].year == 2012)
+                                my2012Data[j++] = [myData[i].country, myData[i].methane_stats];
+                        }
+                        var areaData = [];
+                        areaData[0] = ['Country', 'Methane Emission (kt of CO2 equivalent', 'Population (million)'];
+                        j = 1;
+                        for (var i = 0; i < my2012Data.length; i++) {
+                            for (var k = 0; k < data.length; k++) {
+                                if(my2012Data[i][0] == data[k].name){
+                                    areaData[j++] = [my2012Data[i][0], my2012Data[i][1], data[k].population/1000];
+                                }
+                            }
+                        }
+
                         google.charts.load('current', {
                             'packages':['geochart'],
                             // Note: you will need to get a mapsApiKey for your project.
@@ -58,7 +73,23 @@ angular
                             
                             chart.draw(data, options);
                         }
-                        // End of GoogleChart
-                    });
+                        
+                        google.charts.load('current', {'packages':['corechart']});
+                          google.charts.setOnLoadCallback(drawChart);
+                    
+                          function drawChart() {
+                            var data = google.visualization.arrayToDataTable(areaData);
+                    
+                            var options = {
+                              title: 'Población y emission de Methane durante el ano 2012',
+                              hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
+                              vAxis: {minValue: 0}
+                            };
+                    
+                            var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+                            chart.draw(data, options);
+                          }
+                            // End of GoogleChart
+                        });
             });
 }]);
