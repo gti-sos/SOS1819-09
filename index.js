@@ -69,6 +69,22 @@ app.use('/proxyG14Deceaseds', function(req, res) {
   req.pipe(request(G14DeceasedsAPI)).pipe(res);
 });
 
+//Access to G04-beer-consumed-stats
+var G04BeerAPI = 'https://sos1819-04.herokuapp.com/api/v1/beer-consumed-stats/';
+
+app.use('/proxyG04Beer', function(req, res) {
+  console.log('piped: '+G04BeerAPI);
+  req.pipe(request(G04BeerAPI)).pipe(res);
+});
+
+//Access to G08-tourists-by-countries
+var G08TouristAPI = 'https://sos1819-08.herokuapp.com/api/v1/tourists-by-countries';
+
+app.use('/proxyG08Tourist', function(req, res) {
+  console.log('piped: '+G08TouristAPI);
+  req.pipe(request(G08TouristAPI)).pipe(res);
+});
+
 // MongoDb
 var climates_stats_api = require("./climate-stats-api");
 
