@@ -2,15 +2,24 @@ var express = require("express");
 var path = require("path");
 var bodyParser = require("body-parser");
 var request = require("request");
+var cors = require("cors");
+var unirest = require('unirest');
+
 
 var app = express();
 var port = process.env.PORT || 8080;
 
 app.use('/',express.static( path.join(__dirname,"public")));
 app.use(bodyParser.json());
+app.use(cors());
 
 
 // ___________________________________ climate_stats ___________________________
+
+// REST Countries
+var REST_Countries_API = require("./RESTCountries");
+var GWREST;
+REST_Countries_API(app,GWREST);
 
 //Access to G03-Companies
 var G03CompaniesAPI = 'https://sos1819-03.herokuapp.com/api/v1/companies';
@@ -20,11 +29,36 @@ app.use('/proxyG03Companies', function(req, res) {
   req.pipe(request(G03CompaniesAPI)).pipe(res);
 });
 
+//Access to G10-biofuelsproduction
 var G10BiofuelsAPI = 'https://sos1819-10.herokuapp.com/api/v1/biofuels-production';
 
 app.use('/proxyG10Biofuels', function(req, res) {
   console.log('piped: '+G10BiofuelsAPI);
   req.pipe(request(G10BiofuelsAPI)).pipe(res);
+});
+
+//Access to G06-transfer-stats
+var G06TransferAPI = 'https://sos1819-06.herokuapp.com/api/v1/transfer-stats/';
+
+app.use('/proxyG06Transfer', function(req, res) {
+  console.log('piped: '+G06TransferAPI);
+  req.pipe(request(G06TransferAPI)).pipe(res);
+});
+
+//Access to G03-Computer-attacks
+var G03ComputerAPI = 'https://sos1819-03.herokuapp.com/api/v1/computers-attacks-stats';
+
+app.use('/proxyG03Computer', function(req, res) {
+  console.log('piped: '+G03ComputerAPI);
+  req.pipe(request(G03ComputerAPI)).pipe(res);
+});
+
+//Access to G02-scorers-stats
+var G02ScorersAPI = 'https://sos1819-02.herokuapp.com/api/v1/scorers-stats';
+
+app.use('/proxyG02Scorers', function(req, res) {
+  console.log('piped: '+G02ScorersAPI);
+  req.pipe(request(G02ScorersAPI)).pipe(res);
 });
 
 // MongoDb
