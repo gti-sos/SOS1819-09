@@ -3,6 +3,7 @@ var path = require("path");
 var bodyParser = require("body-parser");
 var request = require("request");
 var cors = require("cors");
+var unirest = require('unirest');
 
 
 var app = express();
@@ -15,6 +16,12 @@ app.use(cors());
 
 // ___________________________________ climate_stats ___________________________
 
+// REST Countries
+
+var REST_Countries_API = require("./RESTCountries");
+var GWREST;
+REST_Countries_API(app,GWREST);
+
 //Access to G03-Companies
 var G03CompaniesAPI = 'https://sos1819-03.herokuapp.com/api/v1/companies';
 
@@ -23,6 +30,7 @@ app.use('/proxyG03Companies', function(req, res) {
   req.pipe(request(G03CompaniesAPI)).pipe(res);
 });
 
+//Access to G10-biofuelsproduction
 var G10BiofuelsAPI = 'https://sos1819-10.herokuapp.com/api/v1/biofuels-production';
 
 app.use('/proxyG10Biofuels', function(req, res) {
