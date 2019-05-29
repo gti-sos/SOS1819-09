@@ -1,7 +1,7 @@
 <div class = "container">
     <div class = "row">
         <div class = "col-sm">
-            <h1>Uso de G06-transfer-stats</h1>
+            <h1>Uso de G0-scorer-stats</h1>
         </div>
     </div>
     
@@ -16,24 +16,22 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th>Nombre</th>
                         <th>Pais</th>
-                        <th>Temporada</th>
-                        <th>Equipo</th>
-                        <th>Dinero Gastado</th>
-                        <th>Dinero ingresado</th>
-                        <th>Número de jugadores fichados</th>
-                        <th>Numero de jugadores vendidos</th>
+                        <th>Año</th>
+                        <th>Goles</th>
+                        <th>Partidos</th>
+                        <th>Promedio</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="data in datas">
                         <td>{{ data.country }}</td>
-                        <td>{{ data.season }}</td>
-                        <td>{{ data.team }}</td>
-                        <td>{{ data.moneyspent }}</td>
-                        <td>{{ data.moneyentered }}</td>
-                        <td>{{ data.numberofsignings }}</td>
-                        <td>{{ data.numberoffarewells }}</td>
+                        <td>{{ data.year }}</td>
+                        <td>{{ data.name }}</td>
+                        <td>{{ data.scorergoal }}</td>
+                        <td>{{ data.scorermatch }}</td>
+                        <td>{{ data.scoreraverage }}</td>
                     </tr>
                 </tbody>
             </table>
