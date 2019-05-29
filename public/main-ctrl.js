@@ -23,6 +23,10 @@
                     controller :"GWREST-ctrl",
                     templateUrl : "integrations/GWREST.html"
                 })
+                .when("/integrations/GWG06T",{
+                    controller :"GWG06T-ctrl",
+                    templateUrl : "integrations/GWG06T.html"
+                })
                 // ----------------- Analytics
                 .when("/analytics",{
                     controller :"analytics-ctrl",

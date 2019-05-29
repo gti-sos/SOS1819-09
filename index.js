@@ -30,6 +30,14 @@ app.use('/proxyG03Companies', function(req, res) {
   req.pipe(request(G03CompaniesAPI)).pipe(res);
 });
 
+//Access to G06-transfer-stats
+var G06TransferAPI = 'https://sos1819-06.herokuapp.com/api/v1/transfer-stats/';
+
+app.use('/proxyG06Transfer', function(req, res) {
+  console.log('piped: '+G06TransferAPI);
+  req.pipe(request(G06TransferAPI)).pipe(res);
+});
+
 //Access to G10-biofuelsproduction
 var G10BiofuelsAPI = 'https://sos1819-10.herokuapp.com/api/v1/biofuels-production';
 
