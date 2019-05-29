@@ -7,6 +7,7 @@
                 .when("/",{
                    templateUrl: "menu.html"
                 })
+                // ----------------- Integrations
                 .when("/integrations",{
                     templateUrl : "integrations/index.html"
                 })
@@ -18,10 +19,16 @@
                     controller :"GWG10-ctrl",
                     templateUrl : "integrations/GWG10.html"
                 })
+                .when("/integrations/GWREST",{
+                    controller :"GWREST-ctrl",
+                    templateUrl : "integrations/GWREST.html"
+                })
+                // ----------------- Analytics
                 .when("/analytics",{
                     controller :"analytics-ctrl",
                     templateUrl : "analytics.html"
                 })
+                // ----------------- Climate Stats
                 .when("/climate-stats",{
                    controller : "ClimateCtrl",
                    templateUrl: "climate-stats/index.html"
@@ -34,6 +41,7 @@
                    controller : "ClimateViewCtrl",
                    templateUrl: "climate-stats/view.html"
                 })
+                // ----------------- Economy Stats
                 .when("/economy-stats",{
                    controller : "ListCtrlEconomy",
                    templateUrl: "economy-stats/index.html"
@@ -42,6 +50,7 @@
                    controller: "EditCtrlEconomy",
                    templateUrl: "economy-stats/edit.html"
                 })
+                // ----------------- Population Stats
                 .when("/populationstats",{
                     controller : "list-ctrl",
                     templateUrl : "publicpopstatsapp/list.html"
