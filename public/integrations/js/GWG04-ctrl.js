@@ -34,7 +34,7 @@ angular
                         });
                         
                         var ndata = data.map(function(item){
-                            return item.ratings;
+                            return item.rating;
                         });
                         
                         var categData = data.map(function(item){
@@ -77,7 +77,7 @@ angular
                             },
                             {
                               "values": ndata,
-                              "text": "Número de jugadores fichados"
+                              "text": "Beer rating"
                             }
                           ]
                         };

@@ -21,6 +21,11 @@ var REST_Countries_API = require("./RESTCountries");
 var GWREST;
 REST_Countries_API(app,GWREST);
 
+// REST Countries V1
+var REST_Countriesv1_API = require("./RESTCountriesV1");
+var GWREST;
+REST_Countriesv1_API(app,GWREST);
+
 //Access to G03-Companies
 var G03CompaniesAPI = 'https://sos1819-03.herokuapp.com/api/v1/companies';
 

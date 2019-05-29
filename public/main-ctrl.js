@@ -11,6 +11,14 @@
                 .when("/integrations",{
                     templateUrl : "integrations/index.html"
                 })
+                .when("/integrations/GWREST",{
+                    controller :"GWREST-ctrl",
+                    templateUrl : "integrations/GWREST.html"
+                })
+                .when("/integrations/GWRESTV1",{
+                    controller :"GWRESTV1-ctrl",
+                    templateUrl : "integrations/GWRESTV1.html"
+                })
                 .when("/integrations/GWG03",{
                     controller :"GWG03-ctrl",
                     templateUrl : "integrations/GWG03.html"
@@ -18,10 +26,6 @@
                 .when("/integrations/GWG10",{
                     controller :"GWG10-ctrl",
                     templateUrl : "integrations/GWG10.html"
-                })
-                .when("/integrations/GWREST",{
-                    controller :"GWREST-ctrl",
-                    templateUrl : "integrations/GWREST.html"
                 })
                 .when("/integrations/GWG06T",{
                     controller :"GWG06T-ctrl",
