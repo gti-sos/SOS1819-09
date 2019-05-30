@@ -54,7 +54,7 @@
                 // ----------------- Analytics
                 .when("/analytics",{
                     controller :"analytics-ctrl",
-                    templateUrl : "analytics.html"
+                    templateUrl : "analytics/index.html"
                 })
                 // ----------------- Climate Stats
                 .when("/climate-stats",{
