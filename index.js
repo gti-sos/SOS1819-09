@@ -157,11 +157,16 @@ clientEmma.connect(err => {
   });
   
   //Integration API externa
-  var apisports='https://sportsop-soccer-sports-open-data-v1.p.rapidapi.com/v1/stadiums';
-
-  app.use('/proxySport', function(req, res) {
-    console.log('piped: '+apisports);
-    req.pipe(request(apisports)).pipe(res);
+  var REST_Stadium_API = require("./RESTStadium");
+  var EBstad;
+  REST_Stadium_API(app,EBstad);
+  
+  //API country information
+  var proxyInfoCountry='/infoCountry';
+  var apiInfoCountry='https://fuel-price-france.p.rapidapi.com/stations/all';
+  app.use(proxyInfoCountry, function(req, res) {
+    console.log('piped: '+apiInfoCountry);
+    req.pipe(request(apiInfoCountry)).pipe(res);
   });
 
 // ___________________________economy_stats_____________________________________

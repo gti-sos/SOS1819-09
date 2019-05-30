@@ -23,8 +23,8 @@ angular
                 myData=response.data;
                 
                 var myCategories = myData.map(function(item){
-                    itemCountry = item.country;
-                    itemYear = item.year;
+                    var itemCountry = item.country;
+                    var itemYear = item.year;
                     return (itemCountry+" "+itemYear);
                 });
                 
