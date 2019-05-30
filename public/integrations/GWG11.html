@@ -1,0 +1,43 @@
+<div class = "container">
+    <div class = "row">
+        <div class = "col-sm">
+            <h1>Uso de G02-scorer-stats</h1>
+        </div>
+    </div>
+    
+    <div class = "row">
+        <div class = "col-sm">
+           <a class="btn btn-info" href="#!/integrations" role="button">REGRESO</a>
+        </div>
+    </div>
+    
+    <div class = "row">
+        <div class = "col-sm">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>País</th>
+                        <th>Año</th>
+                        <th>Gasto Educación</th>
+                        <th>G. Educación (% Pub)</th>
+                        <th>G. Educación (% Pib)</th>
+                        <th>G. Educación Per Capita</th>
+                        <th>Var</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="data in datas">
+                        <td>{{ data.country }}</td>
+                        <td>{{ data.year }}</td>
+                        <td>{{ data.educationExpense }}</td>
+                        <td>{{ data.educationExpensePub }}</td>
+                        <td>{{ data.educationExpensePib }}</td>
+                        <td>{{ data.healthExpenditurePerCapita }}</td>
+                        <td>{{ data.var_ }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

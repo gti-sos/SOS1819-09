@@ -47,6 +47,10 @@
                     controller :"GWG08-ctrl",
                     templateUrl : "integrations/GWG08.html"
                 })
+                .when("/integrations/GWG11",{
+                    controller :"GWG11-ctrl",
+                    templateUrl : "integrations/GWG11.html"
+                })
                 // ----------------- Analytics
                 .when("/analytics",{
                     controller :"analytics-ctrl",

@@ -23,8 +23,8 @@ REST_Countries_API(app,GWREST);
 
 // REST Countries V1
 var REST_Countriesv1_API = require("./RESTCountriesV1");
-var GWREST;
-REST_Countriesv1_API(app,GWREST);
+var GWRESTV1;
+REST_Countriesv1_API(app,GWRESTV1);
 
 //Access to G03-Companies
 var G03CompaniesAPI = 'https://sos1819-03.herokuapp.com/api/v1/companies';
@@ -81,6 +81,15 @@ app.use('/proxyG08Tourist', function(req, res) {
   console.log('piped: '+G08TouristAPI);
   req.pipe(request(G08TouristAPI)).pipe(res);
 });
+
+//Access to G08-tourists-by-countries
+var G11API = 'https://sos1819-11.herokuapp.com/api/v2/public-expenditure-educations/';
+
+app.use('/proxyG11', function(req, res) {
+  console.log('piped: '+G11API);
+  req.pipe(request(G11API)).pipe(res);
+});
+
 
 // MongoDb
 var climates_stats_api = require("./climate-stats-api");
