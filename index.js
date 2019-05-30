@@ -120,10 +120,18 @@ clientEmma.connect(err => {
   //Integration con API emigration
   var paths='/proxyEmigration';
   var apiEmigration = 'https://sos1819-08.herokuapp.com/api/v1/emigrations-by-countries/';
-
+  
   app.use(paths, function(req, res) {
     console.log('piped: '+apiEmigration);
     req.pipe(request(apiEmigration)).pipe(res);
+  });
+  
+  //Integration API externa
+  var apisports='https://sportsop-soccer-sports-open-data-v1.p.rapidapi.com/v1/stadiums';
+
+  app.use('/proxySport', function(req, res) {
+    console.log('piped: '+apisports);
+    req.pipe(request(apisports)).pipe(res);
   });
 
 // ___________________________economy_stats_____________________________________

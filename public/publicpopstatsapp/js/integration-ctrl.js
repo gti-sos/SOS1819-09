@@ -47,17 +47,22 @@ angular
                         });
                         console.log(myGermany[1].year+' '+myGermany[1].totalpopulation);
                         
+                        var mger=[];
+                        for (var i=0;i<myGermany.length;i++){
+                            mger[i]={name : myGermany[i].year, value : myGermany[i].totalpopulation};
+                        }
+                        
+                        var eger=[];
+                        for (var i=0;i<extGermany.length;i++){
+                            eger[i]={name : extGermany[i].year, value : extGermany[i].totalemigrant};
+                        }
+                        
                         var graphdef = {
                         	categories : ['Total Population','Total Emigration'],
                         	dataset : {
-                        		'Total Population' : [
-                        			{ "name": myGermany[0].year, "value" : myGermany[0].totalpopulation },
-                        			{ "name": myGermany[1].year, "value" : myGermany[1].totalpopulation }
-                        		],
+                        		'Total Population' : mger,
                         		
-                        		'Total Emigration' : [
-                        			{ name : extGermany[0].year, value : extGermany[0].totalemigrant }
-                        		]
+                        		'Total Emigration' : eger
                         	}
                         };
                

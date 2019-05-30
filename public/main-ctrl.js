@@ -83,6 +83,14 @@
                     controller : "integration-ctrl",
                     templateUrl : "publicpopstatsapp/integration.html"
                 })
+                .when("/integrations/EBG08",{
+                    controller : "integration-ctrl",
+                    templateUrl : "publicpopstatsapp/integration.html"
+                })
+                .when("/integrations/EBgeo",{
+                    controller : "geo-ctrl",
+                    templateUrl : "publicpopstatsapp/geo.html"
+                })
                 ;
         });
 
