@@ -21,6 +21,11 @@ var REST_Countries_API = require("./RESTCountries");
 var GWREST;
 REST_Countries_API(app,GWREST);
 
+// REST Countries V1
+var REST_Countriesv1_API = require("./RESTCountriesV1");
+var GWRESTV1;
+REST_Countriesv1_API(app,GWRESTV1);
+
 //Access to G03-Companies
 var G03CompaniesAPI = 'https://sos1819-03.herokuapp.com/api/v1/companies';
 
@@ -45,14 +50,6 @@ app.use('/proxyG06Transfer', function(req, res) {
   req.pipe(request(G06TransferAPI)).pipe(res);
 });
 
-//Access to G03-Computer-attacks
-var G03ComputerAPI = 'https://sos1819-03.herokuapp.com/api/v1/computers-attacks-stats';
-
-app.use('/proxyG03Computer', function(req, res) {
-  console.log('piped: '+G03ComputerAPI);
-  req.pipe(request(G03ComputerAPI)).pipe(res);
-});
-
 //Access to G02-scorers-stats
 var G02ScorersAPI = 'https://sos1819-02.herokuapp.com/api/v1/scorers-stats';
 
@@ -60,6 +57,39 @@ app.use('/proxyG02Scorers', function(req, res) {
   console.log('piped: '+G02ScorersAPI);
   req.pipe(request(G02ScorersAPI)).pipe(res);
 });
+
+//Access to G14-deceaseds
+var G14DeceasedsAPI = 'https://sos1819-14.herokuapp.com/api/v1/deceaseds/';
+
+app.use('/proxyG14Deceaseds', function(req, res) {
+  console.log('piped: '+G14DeceasedsAPI);
+  req.pipe(request(G14DeceasedsAPI)).pipe(res);
+});
+
+//Access to G04-beer-consumed-stats
+var G04BeerAPI = 'https://sos1819-04.herokuapp.com/api/v1/beer-consumed-stats/';
+
+app.use('/proxyG04Beer', function(req, res) {
+  console.log('piped: '+G04BeerAPI);
+  req.pipe(request(G04BeerAPI)).pipe(res);
+});
+
+//Access to G08-tourists-by-countries
+var G08TouristAPI = 'https://sos1819-08.herokuapp.com/api/v1/tourists-by-countries';
+
+app.use('/proxyG08Tourist', function(req, res) {
+  console.log('piped: '+G08TouristAPI);
+  req.pipe(request(G08TouristAPI)).pipe(res);
+});
+
+//Access to G08-tourists-by-countries
+var G11API = 'https://sos1819-11.herokuapp.com/api/v2/public-expenditure-educations/';
+
+app.use('/proxyG11', function(req, res) {
+  console.log('piped: '+G11API);
+  req.pipe(request(G11API)).pipe(res);
+});
+
 
 // MongoDb
 var climates_stats_api = require("./climate-stats-api");

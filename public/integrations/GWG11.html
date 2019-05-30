@@ -16,22 +16,24 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Nombre</th>
-                        <th>Pais</th>
+                        <th>País</th>
                         <th>Año</th>
-                        <th>Goles</th>
-                        <th>Partidos</th>
-                        <th>Promedio</th>
+                        <th>Gasto Educación</th>
+                        <th>G. Educación (% Pub)</th>
+                        <th>G. Educación (% Pib)</th>
+                        <th>G. Educación Per Capita</th>
+                        <th>Var</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="data in datas">
                         <td>{{ data.country }}</td>
                         <td>{{ data.year }}</td>
-                        <td>{{ data.name }}</td>
-                        <td>{{ data.scorergoal }}</td>
-                        <td>{{ data.scorermatch }}</td>
-                        <td>{{ data.scoreraverage }}</td>
+                        <td>{{ data.educationExpense }}</td>
+                        <td>{{ data.educationExpensePub }}</td>
+                        <td>{{ data.educationExpensePib }}</td>
+                        <td>{{ data.healthExpenditurePerCapita }}</td>
+                        <td>{{ data.var_ }}</td>
                     </tr>
                 </tbody>
             </table>

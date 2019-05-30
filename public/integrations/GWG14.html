@@ -1,7 +1,7 @@
 <div class = "container">
     <div class = "row">
         <div class = "col-sm">
-            <h1>Uso de G03-computer-attack-stats</h1>
+            <h1>Uso de G14-deceaseds</h1>
         </div>
     </div>
     
@@ -16,25 +16,24 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Pais</th>
-                        <th>Ano</th>
-                        <th>Tipo de ataque</th>
-                        <th>Impacto en millones</th>
-                        <th>Equipos afectados</th>
-                        <th>Porcentaje general</th>
+                        <th>Provincia</th>
+                        <th>Año</th>
+                        <th>Vidas</th>
+                        <th>Multa</th>
+                        <th>Número de muertos</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="data in datas">
-                        <td>{{ data.country }}</td>
+                        <td>{{ data.province }}</td>
                         <td>{{ data.year }}</td>
-                        <td>{{ data.attacktype }}</td>
-                        <td>{{ data.economicimpactmillions }}</td>
-                        <td>{{ data.affectedequipments }}</td>
-                        <td>{{ data.overallpercentage }}</td>
+                        <td>{{ data.life }}</td>
+                        <td>{{ data.penalty }}</td>
+                        <td>{{ data.number }}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
+
 </div>

@@ -2,9 +2,9 @@
 
 angular
     .module("ProjectApp")
-    .controller("GWG06T-ctrl", ["$scope","$http", function ($scope,$http){
-                console.log("GWG06t Controller initialized.");
-            var API = "/proxyG06Transfer";
+    .controller("GWG04-ctrl", ["$scope","$http", function ($scope,$http){
+                console.log("GWG04 Controller initialized.");
+            var API = "/proxyG04Beer";
             var myAPI = "/api/v2/climate-stats";
             var data;
             var myData;
@@ -34,7 +34,7 @@ angular
                         });
                         
                         var ndata = data.map(function(item){
-                            return item.numberofsignings;
+                            return item.rating;
                         });
                         
                         var categData = data.map(function(item){
@@ -77,7 +77,7 @@ angular
                             },
                             {
                               "values": ndata,
-                              "text": "Número de jugadores fichados"
+                              "text": "Beer rating"
                             }
                           ]
                         };
@@ -87,6 +87,8 @@ angular
                           height: "480",
                           width: "100%"
                         });
+                        
+                        
                         
                         
                     });
