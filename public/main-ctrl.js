@@ -78,6 +78,10 @@
                    controller: "EditCtrlEconomy",
                    templateUrl: "economy-stats/edit.html"
                 })
+                .when("/integrations/GPG11GenPubExp", {   
+                   controller: "GPG11-ctrl-GenPubExp",
+                   templateUrl: "integrations/GPG11GenPubExp.html"
+                })
                 // ----------------- Population Stats
                 .when("/populationstats",{
                     controller : "list-ctrl",

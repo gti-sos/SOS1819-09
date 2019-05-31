@@ -1,0 +1,15 @@
+{
+  "name": "chartkick",
+  "homepage": "https://github.com/ankane/chartkick.js",
+  "version": "3.1.0",
+  "_release": "3.1.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v3.1.0",
+    "commit": "ece4f500c29c9ac82da05e28a7d0997b0f15536f"
+  },
+  "_source": "https://github.com/ankane/chartkick.js.git",
+  "_target": "^3.1.0",
+  "_originalSource": "chartkick",
+  "_direct": true
+}

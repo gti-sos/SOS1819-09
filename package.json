@@ -20,6 +20,8 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "chart.js": "^2.8.0",
+    "chartkick": "^3.1.0",
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "express-query-int": "^3.0.0",

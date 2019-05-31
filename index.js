@@ -174,6 +174,57 @@ clientEmma.connect(err => {
 var economyAPI = require("./economy-stats-api");
 const BASE_PATH = "/api";
 
+// ALL INTEGRATIONS
+//-----------------------------------------------------------------------------------------------------------
+
+//Integration API GenPubExp
+
+var pathsGenPubExp='/proxyGenPubExp'; //porterà direttamente dal path del NOSTRO SITO alla API GenPubExp
+var APIGenPubExp = 'https://sos1819-11.herokuapp.com/api/v1/general-public-expenses';
+
+app.use(pathsGenPubExp, function(req, res) {
+  console.log('piped: '+APIGenPubExp);
+  req.pipe(request(APIGenPubExp)).pipe(res);
+});
+
+//-----------------------------------------------------------------------------------------------------------
+
+//Integration API Country
+
+var pathsCountry='/proxyCountry'; //porterà direttamente dal path del NOSTRO SITO alla API GenPubExp
+var APICountry = 'https://sos1819-03.herokuapp.com/api/v1/country-stats';
+
+app.use(pathsCountry, function(req, res) {
+  console.log('piped: '+APICountry);
+  req.pipe(request(APICountry)).pipe(res);
+});
+
+//-----------------------------------------------------------------------------------------------------------
+
+//Integration API movie
+
+var pathsMovie='/proxyMovie'; //porterà direttamente dal path del NOSTRO SITO alla API GenPubExp
+var APIMovie = 'https://sos1819-02.herokuapp.com/api/v1/movies-stats';
+
+app.use(pathsMovie, function(req, res) {
+  console.log('piped: '+APIMovie);
+  req.pipe(request(APIMovie)).pipe(res);
+});
+
+//-----------------------------------------------------------------------------------------------------------
+/*
+//Integration API elements
+
+var pathsElements='/proxyMovie'; //porterà direttamente dal path del NOSTRO SITO alla API GenPubExp
+var APIElements = 'https://sos1819-14.herokuapp.com/api/v1/elements'; //DA AGGIUSTARE
+
+app.use(pathsElements, function(req, res) {
+  console.log('piped: '+APIElements);
+  req.pipe(request(APIElements)).pipe(res);
+});
+*/
+//-----------------------------------------------------------------------------------------------------------
+
 //MongoDB--------------------------------------------------------------------------------------
 
 const MongoClientGiuseppe = require("mongodb").MongoClient;
