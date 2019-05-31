@@ -157,18 +157,11 @@ clientEmma.connect(err => {
   });
   
   //Integration API externa
-  var REST_Stadium_API = require("./RESTStadium");
-  var EBstad;
-  REST_Stadium_API(app,EBstad);
+  var REST_Stadium_API = require("./RESTfuel");
+  var EBfuel;
+  REST_Stadium_API(app,EBfuel);
   
-  //API country information
-  var proxyInfoCountry='/infoCountry';
-  var apiInfoCountry='https://fuel-price-france.p.rapidapi.com/stations/all';
-  app.use(proxyInfoCountry, function(req, res) {
-    console.log('piped: '+apiInfoCountry);
-    req.pipe(request(apiInfoCountry)).pipe(res);
-  });
-
+  
 // ___________________________economy_stats_____________________________________
 
 var economyAPI = require("./economy-stats-api");
