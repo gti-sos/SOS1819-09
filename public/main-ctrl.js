@@ -90,6 +90,10 @@
                    controller: "GPG03-ctrl-Country",
                    templateUrl: "integrations/GPG03Country.html"
                 })
+                .when("/integrations/GPG02Movie", {   
+                   controller: "GPG02-ctrl-Movie",
+                   templateUrl: "integrations/GPG02Movie.html"
+                })
                 // ----------------- Population Stats
                 .when("/populationstats",{
                     controller : "list-ctrl",

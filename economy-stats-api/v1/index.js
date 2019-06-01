@@ -29,24 +29,66 @@ app.get(path,(req,res)=>{
         gdp_growth_stats : 5.248674135,
         industry_gdp_stats : 36.14320462,
         gross_sav_gdp_stats : 25.72970582
-    },{
-        country : "Netherlands",
-        year : 2012,
-        gdp_growth_stats : -1.057037404,
-        industry_gdp_stats : 20.03862584,
-        gross_sav_gdp_stats : 29.44247574
-    },{
+    }, {
+        country : "Colombia",
+        year : 1970,
+        gdp_growth_stats : 6.207796963,
+        industry_gdp_stats : 27.63994336,
+        gross_sav_gdp_stats : 17.04502207
+    }, {
         country : "Venezuela",
         year : 1970,
         gdp_growth_stats : 7.711914381,
         industry_gdp_stats : 41.62614128,
         gross_sav_gdp_stats : 24.40365209
-    },{
-        country : "Armenia",
+    }, {
+        country : "Netherlands",
         year : 2012,
-        gdp_growth_stats : 7.200000003,
-        industry_gdp_stats : 27.82709461,
-        gross_sav_gdp_stats : 12.81248819
+        gdp_growth_stats : -1.057037404,
+        industry_gdp_stats : 20.03862584,
+        gross_sav_gdp_stats : 29.44247574
+    }, {
+        country : "South Africa",
+        year : 2012,
+        gdp_growth_stats : 2.213354808,
+        industry_gdp_stats : 26.68106047,
+        gross_sav_gdp_stats : 15.10443603
+    }, {
+        country : "Colombia",
+        year : 2012,
+        gdp_growth_stats : 3.903054219,
+        industry_gdp_stats : 33.35718075,
+        gross_sav_gdp_stats : 18.26091867
+    }, {
+        country : "Venezuela",
+        year : 2012,
+        gdp_growth_stats : 5.625956975,
+        industry_gdp_stats : 45.16019843,
+        gross_sav_gdp_stats : 25.62897701
+    }, {
+        country : "Netherlands",
+        year : 2017,
+        gdp_growth_stats : 2.868832199,
+        industry_gdp_stats : 17.41582638,
+        gross_sav_gdp_stats : 31.15410876
+    }, {
+        country : "South Africa",
+        year : 2017,
+        gdp_growth_stats : 1.31674486,
+        industry_gdp_stats : 25.89866891,
+        gross_sav_gdp_stats : 15.8155558
+    }, {
+        country : "Colombia",
+        year : 2017,
+        gdp_growth_stats : 1.789192546,
+        industry_gdp_stats : 26.64246119,
+        gross_sav_gdp_stats : 16.42998629
+    }, {
+        country : "Venezuela",
+        year : 2017,
+        gdp_growth_stats : 1.545621452,
+        industry_gdp_stats : 22.32156541,
+        gross_sav_gdp_stats : 13.16924382
     }];
     
      economy_stats.find({},{projection : {_id : 0}}).toArray((err, economyArray)=>{
