@@ -83,6 +83,14 @@ app.use('/proxyG11', function(req, res) {
   req.pipe(request(G11API)).pipe(res);
 });
 
+//Access to G12-youth-unemployment-stats
+var G12API = 'https://sos1819-12.herokuapp.com/api/v1/youth-unemployment-stats/';
+
+app.use('/proxyG12', function(req, res) {
+  console.log('piped: '+G12API);
+  req.pipe(request(G12API)).pipe(res);
+});
+
 //Access to G14-deceaseds
 var G14DeceasedsAPI = 'https://sos1819-14.herokuapp.com/api/v1/deceaseds/';
 
