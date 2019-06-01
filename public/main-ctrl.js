@@ -115,9 +115,9 @@
                     controller : "integration-ctrl",
                     templateUrl : "publicpopstatsapp/integration.html"
                 })
-                .when("/integrations/EBgeo",{
-                    controller : "geo-ctrl",
-                    templateUrl : "publicpopstatsapp/geo.html"
+                .when("/integrations/EBintefuel",{
+                    controller : "fuel-ctrl",
+                    templateUrl : "publicpopstatsapp/fuel.html"
                 })
                 ;
         });

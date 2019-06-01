@@ -3,7 +3,7 @@ module.exports = function(app,EB_stats){
     var unirest = require('unirest');
     
 
-    app.get('/EBstad',(req,res)=>{
+    app.get('/EBfuel',(req,res)=>{
         
         //code from rapidapi.com
         unirest.get("https://fuel-price-france.p.rapidapi.com/stations/15800003")
