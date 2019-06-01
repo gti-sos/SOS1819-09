@@ -82,6 +82,14 @@
                    controller: "GPG11-ctrl-GenPubExp",
                    templateUrl: "integrations/GPG11GenPubExp.html"
                 })
+                .when("/integrations/GPG11GenPubExp", {   
+                   controller: "GPG11-ctrl-GenPubExp",
+                   templateUrl: "integrations/GPG11GenPubExp.html"
+                })
+                .when("/integrations/GPG03Country", {   
+                   controller: "GPG03-ctrl-Country",
+                   templateUrl: "integrations/GPG03Country.html"
+                })
                 // ----------------- Population Stats
                 .when("/populationstats",{
                     controller : "list-ctrl",

@@ -170,7 +170,7 @@ const BASE_PATH = "/api";
 // ALL INTEGRATIONS
 //-----------------------------------------------------------------------------------------------------------
 
-//Integration API GenPubExp
+//Integration API GenPubExp G11
 
 var pathsGenPubExp='/proxyGenPubExp'; //porterà direttamente dal path del NOSTRO SITO alla API GenPubExp
 var APIGenPubExp = 'https://sos1819-11.herokuapp.com/api/v1/general-public-expenses';
@@ -182,7 +182,7 @@ app.use(pathsGenPubExp, function(req, res) {
 
 //-----------------------------------------------------------------------------------------------------------
 
-//Integration API Country
+//Integration API Country G03
 
 var pathsCountry='/proxyCountry'; //porterà direttamente dal path del NOSTRO SITO alla API GenPubExp
 var APICountry = 'https://sos1819-03.herokuapp.com/api/v1/country-stats';
@@ -194,7 +194,7 @@ app.use(pathsCountry, function(req, res) {
 
 //-----------------------------------------------------------------------------------------------------------
 
-//Integration API movie
+//Integration API movie G02
 
 var pathsMovie='/proxyMovie'; //porterà direttamente dal path del NOSTRO SITO alla API GenPubExp
 var APIMovie = 'https://sos1819-02.herokuapp.com/api/v1/movies-stats';
@@ -206,7 +206,7 @@ app.use(pathsMovie, function(req, res) {
 
 //-----------------------------------------------------------------------------------------------------------
 /*
-//Integration API elements
+//Integration API elements G14
 
 var pathsElements='/proxyMovie'; //porterà direttamente dal path del NOSTRO SITO alla API GenPubExp
 var APIElements = 'https://sos1819-14.herokuapp.com/api/v1/elements'; //DA AGGIUSTARE
