@@ -26,30 +26,6 @@ var REST_Countriesv1_API = require("./RESTCountriesV1");
 var GWRESTV1;
 REST_Countriesv1_API(app,GWRESTV1);
 
-//Access to G03-Companies
-var G03CompaniesAPI = 'https://sos1819-03.herokuapp.com/api/v1/companies';
-
-app.use('/proxyG03Companies', function(req, res) {
-  console.log('piped: '+G03CompaniesAPI);
-  req.pipe(request(G03CompaniesAPI)).pipe(res);
-});
-
-//Access to G10-biofuelsproduction
-var G10BiofuelsAPI = 'https://sos1819-10.herokuapp.com/api/v1/biofuels-production';
-
-app.use('/proxyG10Biofuels', function(req, res) {
-  console.log('piped: '+G10BiofuelsAPI);
-  req.pipe(request(G10BiofuelsAPI)).pipe(res);
-});
-
-//Access to G06-transfer-stats
-var G06TransferAPI = 'https://sos1819-06.herokuapp.com/api/v1/transfer-stats/';
-
-app.use('/proxyG06Transfer', function(req, res) {
-  console.log('piped: '+G06TransferAPI);
-  req.pipe(request(G06TransferAPI)).pipe(res);
-});
-
 //Access to G02-scorers-stats
 var G02ScorersAPI = 'https://sos1819-02.herokuapp.com/api/v1/scorers-stats';
 
@@ -58,12 +34,12 @@ app.use('/proxyG02Scorers', function(req, res) {
   req.pipe(request(G02ScorersAPI)).pipe(res);
 });
 
-//Access to G14-deceaseds
-var G14DeceasedsAPI = 'https://sos1819-14.herokuapp.com/api/v1/deceaseds/';
+//Access to G03-Companies
+var G03CompaniesAPI = 'https://sos1819-03.herokuapp.com/api/v1/companies';
 
-app.use('/proxyG14Deceaseds', function(req, res) {
-  console.log('piped: '+G14DeceasedsAPI);
-  req.pipe(request(G14DeceasedsAPI)).pipe(res);
+app.use('/proxyG03Companies', function(req, res) {
+  console.log('piped: '+G03CompaniesAPI);
+  req.pipe(request(G03CompaniesAPI)).pipe(res);
 });
 
 //Access to G04-beer-consumed-stats
@@ -74,6 +50,14 @@ app.use('/proxyG04Beer', function(req, res) {
   req.pipe(request(G04BeerAPI)).pipe(res);
 });
 
+//Access to G06-transfer-stats
+var G06TransferAPI = 'https://sos1819-06.herokuapp.com/api/v1/transfer-stats/';
+
+app.use('/proxyG06Transfer', function(req, res) {
+  console.log('piped: '+G06TransferAPI);
+  req.pipe(request(G06TransferAPI)).pipe(res);
+});
+
 //Access to G08-tourists-by-countries
 var G08TouristAPI = 'https://sos1819-08.herokuapp.com/api/v1/tourists-by-countries';
 
@@ -82,7 +66,16 @@ app.use('/proxyG08Tourist', function(req, res) {
   req.pipe(request(G08TouristAPI)).pipe(res);
 });
 
-//Access to G08-tourists-by-countries
+
+//Access to G10-biofuelsproduction
+var G10BiofuelsAPI = 'https://sos1819-10.herokuapp.com/api/v1/biofuels-production';
+
+app.use('/proxyG10Biofuels', function(req, res) {
+  console.log('piped: '+G10BiofuelsAPI);
+  req.pipe(request(G10BiofuelsAPI)).pipe(res);
+});
+
+//Access to G11-public-expenditure-educations
 var G11API = 'https://sos1819-11.herokuapp.com/api/v2/public-expenditure-educations/';
 
 app.use('/proxyG11', function(req, res) {
@@ -90,6 +83,21 @@ app.use('/proxyG11', function(req, res) {
   req.pipe(request(G11API)).pipe(res);
 });
 
+//Access to G12-youth-unemployment-stats
+var G12API = 'https://sos1819-12.herokuapp.com/api/v1/youth-unemployment-stats/';
+
+app.use('/proxyG12', function(req, res) {
+  console.log('piped: '+G12API);
+  req.pipe(request(G12API)).pipe(res);
+});
+
+//Access to G14-deceaseds
+var G14DeceasedsAPI = 'https://sos1819-14.herokuapp.com/api/v1/deceaseds/';
+
+app.use('/proxyG14Deceaseds', function(req, res) {
+  console.log('piped: '+G14DeceasedsAPI);
+  req.pipe(request(G14DeceasedsAPI)).pipe(res);
+});
 
 // MongoDb
 var climates_stats_api = require("./climate-stats-api");
@@ -196,7 +204,7 @@ const BASE_PATH = "/api";
 // ALL INTEGRATIONS
 //-----------------------------------------------------------------------------------------------------------
 
-//Integration API GenPubExp
+//Integration API GenPubExp G11
 
 var pathsGenPubExp='/proxyGenPubExp'; //porterà direttamente dal path del NOSTRO SITO alla API GenPubExp
 var APIGenPubExp = 'https://sos1819-11.herokuapp.com/api/v1/general-public-expenses';
@@ -208,7 +216,7 @@ app.use(pathsGenPubExp, function(req, res) {
 
 //-----------------------------------------------------------------------------------------------------------
 
-//Integration API Country
+//Integration API Country G03
 
 var pathsCountry='/proxyCountry'; //porterà direttamente dal path del NOSTRO SITO alla API GenPubExp
 var APICountry = 'https://sos1819-03.herokuapp.com/api/v1/country-stats';
@@ -220,7 +228,7 @@ app.use(pathsCountry, function(req, res) {
 
 //-----------------------------------------------------------------------------------------------------------
 
-//Integration API movie
+//Integration API movie G02
 
 var pathsMovie='/proxyMovie'; //porterà direttamente dal path del NOSTRO SITO alla API GenPubExp
 var APIMovie = 'https://sos1819-02.herokuapp.com/api/v1/movies-stats';
@@ -232,7 +240,7 @@ app.use(pathsMovie, function(req, res) {
 
 //-----------------------------------------------------------------------------------------------------------
 /*
-//Integration API elements
+//Integration API elements G14
 
 var pathsElements='/proxyMovie'; //porterà direttamente dal path del NOSTRO SITO alla API GenPubExp
 var APIElements = 'https://sos1819-14.herokuapp.com/api/v1/elements'; //DA AGGIUSTARE

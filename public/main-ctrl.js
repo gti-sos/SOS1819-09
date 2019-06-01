@@ -19,37 +19,41 @@
                     controller :"GWRESTV1-ctrl",
                     templateUrl : "integrations/GWRESTV1.html"
                 })
-                .when("/integrations/GWG03",{
-                    controller :"GWG03-ctrl",
-                    templateUrl : "integrations/GWG03.html"
-                })
-                .when("/integrations/GWG10",{
-                    controller :"GWG10-ctrl",
-                    templateUrl : "integrations/GWG10.html"
-                })
-                .when("/integrations/GWG06T",{
-                    controller :"GWG06T-ctrl",
-                    templateUrl : "integrations/GWG06T.html"
-                })
                 .when("/integrations/GWG02",{
                     controller :"GWG02-ctrl",
                     templateUrl : "integrations/GWG02.html"
                 })
-                .when("/integrations/GWG14",{
-                    controller :"GWG14-ctrl",
-                    templateUrl : "integrations/GWG14.html"
+                .when("/integrations/GWG03",{
+                    controller :"GWG03-ctrl",
+                    templateUrl : "integrations/GWG03.html"
                 })
                 .when("/integrations/GWG04",{
                     controller :"GWG04-ctrl",
                     templateUrl : "integrations/GWG04.html"
                 })
+                .when("/integrations/GWG06T",{
+                    controller :"GWG06T-ctrl",
+                    templateUrl : "integrations/GWG06T.html"
+                })
                 .when("/integrations/GWG08",{
                     controller :"GWG08-ctrl",
                     templateUrl : "integrations/GWG08.html"
                 })
+                .when("/integrations/GWG10",{
+                    controller :"GWG10-ctrl",
+                    templateUrl : "integrations/GWG10.html"
+                })
                 .when("/integrations/GWG11",{
                     controller :"GWG11-ctrl",
                     templateUrl : "integrations/GWG11.html"
+                })
+                .when("/integrations/GWG12",{
+                    controller :"GWG12-ctrl",
+                    templateUrl : "integrations/GWG12.html"
+                })
+                .when("/integrations/GWG14",{
+                    controller :"GWG14-ctrl",
+                    templateUrl : "integrations/GWG14.html"
                 })
                 // ----------------- Analytics
                 .when("/analytics",{
@@ -81,6 +85,14 @@
                 .when("/integrations/GPG11GenPubExp", {   
                    controller: "GPG11-ctrl-GenPubExp",
                    templateUrl: "integrations/GPG11GenPubExp.html"
+                })
+                .when("/integrations/GPG11GenPubExp", {   
+                   controller: "GPG11-ctrl-GenPubExp",
+                   templateUrl: "integrations/GPG11GenPubExp.html"
+                })
+                .when("/integrations/GPG03Country", {   
+                   controller: "GPG03-ctrl-Country",
+                   templateUrl: "integrations/GPG03Country.html"
                 })
                 // ----------------- Population Stats
                 .when("/populationstats",{

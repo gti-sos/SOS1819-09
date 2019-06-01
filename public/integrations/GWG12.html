@@ -1,7 +1,7 @@
 <div class = "container">
     <div class = "row">
         <div class = "col-sm">
-            <h1>Uso de G02-scorer-stats</h1>
+            <h1>Uso de G12-youth-unemployment-stats</h1>
         </div>
     </div>
     
@@ -16,22 +16,20 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Nombre</th>
                         <th>Pais</th>
                         <th>Año</th>
-                        <th>Goles</th>
-                        <th>Partidos</th>
-                        <th>Promedio</th>
+                        <th>Desempleo juvenil</th>
+                        <th>Desempleo juvenil masculino</th>
+                        <th>Desempleo juvenil femenino</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="data in datas">
-                        <td>{{ data.name }}</td>
                         <td>{{ data.country }}</td>
                         <td>{{ data.year }}</td>
-                        <td>{{ data.scorergoal }}</td>
-                        <td>{{ data.scorermatch }}</td>
-                        <td>{{ data.scoreraverage }}</td>
+                        <td>{{ data.youth_unemployment }}</td>
+                        <td>{{ data.youth_unemployment_man }}</td>
+                        <td>{{ data.youth_unemployment_woman }}</td>
                     </tr>
                 </tbody>
             </table>
