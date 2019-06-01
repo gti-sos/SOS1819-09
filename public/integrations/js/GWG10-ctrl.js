@@ -30,15 +30,15 @@ angular
                         
                         var googleData = [];
                         
-                        googleData[0] = ['Country and Year', 'Ethanol', 'Gas Natural', 'Biodiesel'];
+                        googleData[0] = ['Country and Year', 'Ethanol/CO2', 'Gas Natural (decenas)/Metano (cientos)', 'Biodiesel/Oxido nitroso (cientos)'];
                         var k = 1;
                         for (var i = 0; i < data.length; i++) {
-                            googleData[k++] = [data[i].country + " " + data[i].year, data[i].ethanolFuel, data[i].dryNaturalGas, data[i].biodiesel];
+                            googleData[k++] = [data[i].country + " " + data[i].year, data[i].ethanolFuel, data[i].dryNaturalGas/10, data[i].biodiesel];
                         }
                         for (var i = 0; i < myData.length; i++) {
-                            googleData[k++] = [myData[i].country + " " + myData[i].year, myData[i].co2_stats, myData[i].methane_stats, myData[i].nitrous_oxide_stats];
+                            googleData[k++] = [myData[i].country + " " + myData[i].year, myData[i].co2_stats, myData[i].methane_stats/100, myData[i].nitrous_oxide_stats/100];
                         }
-                
+
                         google.charts.load('current', {'packages':['bar']});
                         google.charts.setOnLoadCallback(drawChart);
                         function drawChart() {
