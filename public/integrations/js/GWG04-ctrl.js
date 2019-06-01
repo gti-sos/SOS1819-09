@@ -26,7 +26,7 @@ angular
                         myData = response.data;
                         
                         var cdata = myData.map(function(item){
-                            return item.co2_stats;
+                            return item.co2_stats*10;
                         });
                        
                         var categoriesMyData = myData.map(function(item){
@@ -44,9 +44,9 @@ angular
                         var bufferCat = categoriesMyData.concat(categData);
                         
                         var myChart = {
-                          "type": "bar",
+                          "type": "radar",
                           "title": {
-                            "text": "Emisión de CO2 y número de jugadores fichados"
+                            "text": "Emisión de CO2 y calificaciones de cerveza"
                           },
                           "plot": {
                             "value-box": {
@@ -73,11 +73,11 @@ angular
                           "series": [
                             {
                               "values": cdata,
-                              "text": "CO2 en kt"
+                              "text": "CO2 en kt*10"
                             },
                             {
                               "values": ndata,
-                              "text": "Beer rating"
+                              "text": "Calificacion de cerveza"
                             }
                           ]
                         };

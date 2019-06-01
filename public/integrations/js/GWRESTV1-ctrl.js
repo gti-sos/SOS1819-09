@@ -43,7 +43,7 @@ angular
                                 my2012Data[j++] = [myData[i].country, myData[i].methane_stats];
                         }
                         var areaData = [];
-                        areaData[0] = ['Country', 'Methane Emission (kt of CO2 equivalent', 'Population (million)'];
+                        areaData[0] = ['País', 'Emisión de metano (kt de CO2 equivalente)', 'Población (Miles)'];
                         j = 1;
                         for (var i = 0; i < my2012Data.length; i++) {
                             for (var k = 0; k < data.length; k++) {
@@ -81,7 +81,7 @@ angular
                             var data = google.visualization.arrayToDataTable(areaData);
                     
                             var options = {
-                              title: 'Población y emission de Methane durante el ano 2012',
+                              title: 'Población y emisión de metano durante el ano 2012',
                               hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
                               vAxis: {minValue: 0}
                             };
