@@ -21,8 +21,9 @@ angular
             
             var dataGoogle = [];
             dataGoogle[0] = ['Country', 'Extensión territorial'];
-            for (var i = 1; i<datas.length; i++)
-                dataGoogle[i] = [datas[i].country, datas[i].territorialExtension];
+            var j = 1;
+            for (var i = 0; i<datas.length; i++)
+               if (datas[i].year == 2013) { dataGoogle[j] = [datas[i].country, datas[i].territorialExtension]; j++ }
              
             var data = google.visualization.arrayToDataTable(dataGoogle);
     
