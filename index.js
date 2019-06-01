@@ -164,10 +164,36 @@ clientEmma.connect(err => {
     req.pipe(request(apiEmigration)).pipe(res);
   });
   
-  //Integration API externa
+  //Integration API externa fuel
   var REST_Stadium_API = require("./RESTfuel");
   var EBfuel;
   REST_Stadium_API(app,EBfuel);
+  
+  //Integration API externa airport
+  var REST_Airport_API = require("./RESTairport");
+  var EBairport;
+  REST_Airport_API(app,EBairport);
+  
+  //Integration API externa foot
+  var REST_foot_API = require("./RESTfoot");
+  var EBfoot;
+  REST_foot_API(app,EBfoot);
+  
+  //Integration API externa hotel
+  var REST_hotel_API = require("./RESThotel");
+  var EBhotel;
+  REST_hotel_API(app,EBhotel);
+  
+  //Integration API externa Numberfact
+  var REST_Fact_API = require('./RESTfact');
+  var EBfact;
+  REST_Fact_API(app,EBfact);
+  
+  //Integration API externa weather
+  var REST_Weather_API = require('./RESTweather');
+  var EBweather;
+  REST_Weather_API(app,EBweather);
+  
   
   
 // ___________________________economy_stats_____________________________________

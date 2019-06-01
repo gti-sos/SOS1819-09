@@ -123,6 +123,10 @@
                     controller : "fuel-ctrl",
                     templateUrl : "publicpopstatsapp/fuel.html"
                 })
+                .when("/integrations/EBinteweather",{
+                    controller : "weather-ctrl",
+                    templateUrl : "publicpopstatsapp/weather.html"
+                })
                 ;
         });
 
