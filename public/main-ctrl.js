@@ -147,6 +147,22 @@
                     controller : "life-ctrl",
                     templateUrl : "publicpopstatsapp/life.html"
                 })
+                .when("/integrations/EBranking",{
+                    controller : "g06-ctrl",
+                    templateUrl : "publicpopstatsapp/g06.html"
+                })
+                .when("/integrations/EBUsoAirport",{
+                    controller : "airport-ctrl",
+                    templateUrl : "publicpopstatsapp/airport.html"
+                })
+                .when("/integrations/EBUsoFoot",{
+                    controller : "foot-ctrl",
+                    templateUrl : "publicpopstatsapp/foot.html"
+                })
+                .when("/integrations/EBUsoFact",{
+                    controller : "fact-ctrl",
+                    templateUrl : "publicpopstatsapp/fact.html"
+                })
                 ;
         });
 

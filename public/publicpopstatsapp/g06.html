@@ -1,0 +1,36 @@
+<h1>Uso de la API UEFA Country Ranking (G06)</h1>
+
+<div>
+            
+            <table class="table">
+                
+                <thead>
+                    <tr>
+                        
+                        <th>País</th>
+                        <th>Temporada</th>
+                        <th>Posición</th>
+                        <th>Puntos</th>
+                        <th>Numero de equipos</th>
+
+                        
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <tr ng-repeat="stat in rankingstats">
+                        
+                       <td>{{stat.country}}</td>
+                       <td >{{stat.season}}</td>
+                       <td>{{stat.rankingPosition}}</td>
+                       <td>{{stat.points}}</td>
+                       <td>{{stat.teams}}</td>
+                       </td>
+                    </tr>
+                    
+                </tbody>
+                
+            </table>
+            
+            <a class="btn btn-info" href="#!/integrations" role="button">REGRESO</a>
+        </div>

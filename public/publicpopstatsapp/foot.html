@@ -1,0 +1,30 @@
+<h1>Partidos de Football</h1>
+
+<div>
+            
+            <table class="table">
+                
+                <thead>
+                    <tr>
+                        
+                        <th>Partido</th>
+                        <th>Fecha</th>
+                        <th>Ver</th>
+                        
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <tr ng-repeat="stat in footstats">
+                        
+                       <td>{{stat.competition.name}} : {{stat.title}}</td>
+                       <td >{{stat.date}}</td>
+                       <td><a href={{stat.side2.url}}>{{stat.side2.url}}</a></td>
+                       </td>
+                    </tr>
+                    
+                </tbody>
+                
+            </table>
+            <a class="btn btn-info" href="#!/integrations" role="button">REGRESO</a>
+        </div>
