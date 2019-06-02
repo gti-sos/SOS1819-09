@@ -135,6 +135,18 @@
                     controller : "weather-ctrl",
                     templateUrl : "publicpopstatsapp/weather.html"
                 })
+                .when("/integrations/EBintehotel",{
+                    controller : "hotel-ctrl",
+                    templateUrl : "publicpopstatsapp/hotel.html"
+                })
+                .when("/integrations/EBG04",{
+                    controller : "suicide-ctrl",
+                    templateUrl : "publicpopstatsapp/suicide.html"
+                })
+                .when("/integrations/EBG12",{
+                    controller : "life-ctrl",
+                    templateUrl : "publicpopstatsapp/life.html"
+                })
                 ;
         });
 

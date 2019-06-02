@@ -28,13 +28,6 @@ angular
                         //récupération de mes données
                         var mydata = response.data;
                         
-                        var mydataYear = mydata.map(function(item){
-                            return item.year;
-                        });
-                        
-                        var dataextYear = dataext.map(function(item){
-                            return item.year;
-                        });
                         
                         var myGermany = mydata.filter(function(item){
                             if (item.country=='Germany')
