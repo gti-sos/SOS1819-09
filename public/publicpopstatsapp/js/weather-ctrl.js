@@ -14,14 +14,14 @@ angular
                         console.log("weather ctrl initialized");
                         
                         var API="/EBweather";
-                        var myAPI="/api/v1/populationstats"
+                        var myAPI="/api/v1/populationstats";
                         
                         $http.get(API)
                             .then(function(response){
                                 
                                 var dataw = response.data;
                                 console.log(dataw.list[10].weather[0].id);
-                                var list = dataw.list
+                                var list = dataw.list;
                                 
                                 var weat = list.map(function(item){
                                     return(item.weather); 
