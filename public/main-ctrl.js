@@ -60,6 +60,10 @@
                     controller :"analytics-ctrl",
                     templateUrl : "analytics/index.html"
                 })
+                // ----------------- About
+                .when("/about",{
+                    templateUrl : "about.html"
+                })
                 // ----------------- Climate Stats
                 .when("/climate-stats",{
                    controller : "ClimateCtrl",
@@ -93,6 +97,10 @@
                 .when("/integrations/GPG03Country", {   
                    controller: "GPG03-ctrl-Country",
                    templateUrl: "integrations/GPG03Country.html"
+                })
+                .when("/integrations/GPG02Movie", {   
+                   controller: "GPG02-ctrl-Movie",
+                   templateUrl: "integrations/GPG02Movie.html"
                 })
                 // ----------------- Population Stats
                 .when("/populationstats",{

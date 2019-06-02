@@ -15,74 +15,92 @@ module.exports =function(app, climate_stats) {
             country : "France",
             year : 1990,
             methane_stats : 75749.5,
-            co2_stats : 6.420670907,
+            co2_stats : 6.4206,
             nitrous_oxide_stats : 73869.28
         },{
             country : "India",
             year : 1990,
             methane_stats : 513704,
-            co2_stats : 0.7115627995,
+            co2_stats : 0.7115,
             nitrous_oxide_stats : 169598.52
         },{
             country : "Spain",
             year : 1990,
             methane_stats : 32809,
-            co2_stats : 5.624190007,
+            co2_stats : 5.6241,
             nitrous_oxide_stats : 26186.661
         },{
             country : "United States",
             year : 1990,
             methane_stats : 637636,
-            co2_stats : 19.32275118,
+            co2_stats : 19.3227,
             nitrous_oxide_stats : 331851.9
+        },{
+            country : "Italy",
+            year : 1990,
+            methane_stats : 47167.7,
+            co2_stats : 7.3617,
+            nitrous_oxide_stats : 31610.39
         },{
             country : "France",
             year : 2000,
             methane_stats : 85646.7,
-            co2_stats : 5.946665463,
+            co2_stats : 5.9466,
             nitrous_oxide_stats : 52700
         },{
             country : "India",
             year : 2000,
             methane_stats : 561733,
-            co2_stats : 0.9798704424,
+            co2_stats : 0.9798,
             nitrous_oxide_stats : 207700
         },{
             country : "Spain",
             year : 2000,
             methane_stats : 35113.6,
-            co2_stats : 7.257824346,
+            co2_stats : 7.2578,
             nitrous_oxide_stats : 27342
         },{
             country : "United States",
             year : 2000,
             methane_stats : 556609,
-            co2_stats : 20.17875051,
+            co2_stats : 20.1787,
             nitrous_oxide_stats : 325500
+        },{
+            country : "Italy",
+            year : 2000,
+            methane_stats : 46791.1,
+            co2_stats : 7.9126,
+            nitrous_oxide_stats : 30504
         },{
             country : "France",
             year : 2012,
             methane_stats : 81178.5035,
-            co2_stats : 5.075063887,
+            co2_stats : 5.0751,
             nitrous_oxide_stats : 36865.68363
         },{
             country : "India",
             year : 2012,
             methane_stats : 636395.8272,
-            co2_stats : 1.598098637,
+            co2_stats : 1.5981,
             nitrous_oxide_stats : 239755.1309
         },{
             country : "Spain",
             year : 2012,
             methane_stats : 37208.10558,
-            co2_stats : 5.660938803,
+            co2_stats : 5.6609,
             nitrous_oxide_stats : 20873.14001
         },{
             country : "United States",
             year : 2012,
             methane_stats : 499809.345,
-            co2_stats : 16.3042868,
+            co2_stats : 16.3042,
             nitrous_oxide_stats : 288877.995
+        },{
+            country : "Italy",
+            year : 2012,
+            methane_stats : 35238.178,
+            co2_stats : 6.2054,
+            nitrous_oxide_stats : 20083.8406
         }];
         
         

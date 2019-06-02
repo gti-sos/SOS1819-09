@@ -56,17 +56,20 @@ angular
                                 type: 'column'
                             },
                             title: {
-                                text: 'Población y emission de Methane durante el ano 2012'
+                                text: 'Población y emisión de metano durante el ano 2012'
                             },
                             xAxis: {
                                 categories: categoriesData,
                                 crosshair: true,
                                 title: {
-                                    text: 'Country'
+                                    text: 'País'
                                 }
                             },
                             yAxis: {
                                 min: 0,
+                                title: {
+                                    text: 'Valores'
+                                }
                             },
                             tooltip: {
                                 headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
@@ -83,11 +86,11 @@ angular
                                 }
                             },
                             series: [{
-                                name: 'Methane Emission (kt of CO2 equivalent)',
+                                name: 'Emisión de metano (kt de CO2 equivalente)',
                                 data: methaneData
                         
                             }, {
-                                name: 'Population (million)',
+                                name: 'Población (Miles)',
                                 data: popData
                         
                             }]
