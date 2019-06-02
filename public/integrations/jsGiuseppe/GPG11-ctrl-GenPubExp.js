@@ -16,7 +16,24 @@ angular
                 if (DataGenPubExp[i].country == "spain") { arrspending[j] = [DataGenPubExp[i].year, DataGenPubExp[i].publicSpending]; j++ }
             }
             
-            new Chartkick.LineChart("chart-id", arrspending); //da finire
+            for (var i=0; i<arrspending.length-1; i++)
+            {
+                for (var j = i+1; j<arrspending.length; j++)
+                {
+                     var arr = arrspending[i];
+                     var arrseg = arrspending[j];
+                     if (arr[0] > arrseg[0]) { var s=arrspending[i]; arrspending[i]=arrspending[j]; arrspending[j]=s; }   
+                }
+            }
+            
+            var finalArray = [];
+            for (var i = 0; i<arrspending.length; i++)
+            {
+                var arr = arrspending[i];
+                finalArray[i] = [ arr[0].toString(), arr[1] ] ;
+            }
+            
+            new Chartkick.LineChart("chart-id", finalArray); //da finire
         }, 
         function (error){});
 }]);
