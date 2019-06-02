@@ -60,6 +60,10 @@
                     controller :"analytics-ctrl",
                     templateUrl : "analytics/index.html"
                 })
+                // ----------------- About
+                .when("/about",{
+                    templateUrl : "about.html"
+                })
                 // ----------------- Climate Stats
                 .when("/climate-stats",{
                    controller : "ClimateCtrl",
