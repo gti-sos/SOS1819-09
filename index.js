@@ -4,6 +4,8 @@ var bodyParser = require("body-parser");
 var request = require("request");
 var cors = require("cors");
 var unirest = require('unirest');
+var chartkick = require('chartkick');
+var chartjs = require('chart.js');
 
 
 var app = express();
@@ -218,7 +220,7 @@ app.use(pathsGenPubExp, function(req, res) {
 
 //Integration API Country G03
 
-var pathsCountry='/proxyCountry'; //porterà direttamente dal path del NOSTRO SITO alla API GenPubExp
+var pathsCountry='/proxyCountry'; 
 var APICountry = 'https://sos1819-03.herokuapp.com/api/v1/country-stats';
 
 app.use(pathsCountry, function(req, res) {
@@ -230,7 +232,7 @@ app.use(pathsCountry, function(req, res) {
 
 //Integration API movie G02
 
-var pathsMovie='/proxyMovie'; //porterà direttamente dal path del NOSTRO SITO alla API GenPubExp
+var pathsMovie='/proxyMovie'; 
 var APIMovie = 'https://sos1819-02.herokuapp.com/api/v1/movies-stats';
 
 app.use(pathsMovie, function(req, res) {
@@ -239,17 +241,17 @@ app.use(pathsMovie, function(req, res) {
 });
 
 //-----------------------------------------------------------------------------------------------------------
-/*
+
 //Integration API elements G14
 
-var pathsElements='/proxyMovie'; //porterà direttamente dal path del NOSTRO SITO alla API GenPubExp
-var APIElements = 'https://sos1819-14.herokuapp.com/api/v1/elements'; //DA AGGIUSTARE
+var pathsElements='/proxyElements'; 
+var APIElements = 'https://sos1819acp-feedbacks-sos1819acp.c9users.io/api/v1/elements'; //DA AGGIUSTARE
 
 app.use(pathsElements, function(req, res) {
   console.log('piped: '+APIElements);
   req.pipe(request(APIElements)).pipe(res);
 });
-*/
+
 //-----------------------------------------------------------------------------------------------------------
 
 //MongoDB--------------------------------------------------------------------------------------

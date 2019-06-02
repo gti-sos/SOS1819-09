@@ -1,0 +1,21 @@
+<h1>Informaciones sobre accidentes</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Provincia</th>
+            <th>Año</th>
+            <th>Numero de victimas</th>
+            <th>Heridos no hospitalizados en accidentes</th>
+            <th>Accidentes con victimas</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="data in datas">
+            <td>{{ data.province }}</td>
+            <td>{{ data.year }}</td>
+            <td>{{ data.victims }}</td>
+            <td>{{ data.injurednothospitalizedinaccidents }}</td>
+            <td>{{ data.accidentswithvictims }}</td>
+        </tr>
+    </tbody>
+</table>

@@ -90,10 +90,6 @@
                    controller: "GPG11-ctrl-GenPubExp",
                    templateUrl: "integrations/GPG11GenPubExp.html"
                 })
-                .when("/integrations/GPG11GenPubExp", {   
-                   controller: "GPG11-ctrl-GenPubExp",
-                   templateUrl: "integrations/GPG11GenPubExp.html"
-                })
                 .when("/integrations/GPG03Country", {   
                    controller: "GPG03-ctrl-Country",
                    templateUrl: "integrations/GPG03Country.html"
@@ -101,6 +97,10 @@
                 .when("/integrations/GPG02Movie", {   
                    controller: "GPG02-ctrl-Movie",
                    templateUrl: "integrations/GPG02Movie.html"
+                })
+                .when("/integrations/GPG14Elements", {   
+                   controller: "GPG14-ctrl-Elements",
+                   templateUrl: "integrations/GPG14Elements.html"
                 })
                 // ----------------- Population Stats
                 .when("/populationstats",{

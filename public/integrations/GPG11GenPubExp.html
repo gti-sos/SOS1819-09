@@ -1,27 +1,3 @@
-<h1>Gastos públicos generales</h1>
-<table class="table">
-    <thead>
-        <tr>
-            <th>País</th>
-            <th>Año</th>
-            <th>Gasto publico</th>
-            <th>Gasto en educación</th>
-            <th>Gasto Salud</th>
-            <th>Gasto Defensa</th>
-            <th>Gasto publico PIB</th>
-            <th>VAR</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="data in datas">
-            <td>{{ data.country }}</td>
-            <td>{{ data.year }}</td>
-            <td>{{ data.publicSpending }}</td>
-            <td>{{ data.educationExpense }}</td>
-            <td>{{ data.healthExpense }}</td>
-            <td>{{ data.defenseSpending }}</td>
-            <td>{{ data.publicSpendingPib }}</td>
-            <td>{{ data.var_ }}</td>
-        </tr>
-    </tbody>
-</table>
+<h1>Análisis del gasto público por año en España</h1>
+
+<div id="chart-id" style="height: 300px; text-align: center; color: #999; line-height: 300px; font-size: 14px; font-family: Lucida Grande, Lucida Sans Unicode, Verdana, Arial, Helvetica, sans-serif;"></div>
