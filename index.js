@@ -184,6 +184,13 @@ clientEmma.connect(err => {
     req.pipe(request(apilife)).pipe(res);
   });
   
+  //API UEFA ranking G06
+  var path3='/proxyRanking';
+  var apiRanking ='https://sos1819-06.herokuapp.com/api/v1/uefa-country-rankings';
+  app.use(path3, function(req, res) {
+    console.log('piped: '+apiRanking);
+    req.pipe(request(apiRanking)).pipe(res);
+  });
   
   //Integration API externa fuel
   var REST_Stadium_API = require("./RESTfuel");

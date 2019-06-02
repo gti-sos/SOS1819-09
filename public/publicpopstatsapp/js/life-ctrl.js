@@ -11,7 +11,7 @@ angular
                 console.log('life ctrl initialized');
                 
                 var API='proxylife';
-                var myAPI = "api/v1/populationstats"
+                var myAPI = "api/v1/populationstats";
                 
                 $http.get(API)
                     .then(function(response){

@@ -28,26 +28,22 @@ angular
                     return (itemCountry+" "+itemYear);
                 });
                 
-                var dataCountryGeoChart = myData.map(function(item){
+                var dataCountryGeoChart = myData.filter(function(item){
                     if(item.year==1990){
-                        itemCountry = item.country;
+                        return (item.country);
                     }
-                    return (itemCountry);
                 });
                 
                 var dataTotalPop = myData.map(function(item){
-                    itemTotalPop = parseInt(item.totalpopulation);
-                    return(itemTotalPop);
+                    return(parseInt(item.totalpopulation));
                 });
                 
                 var dataUrbanPop = myData.map(function(item){
-                    itemUrbanPop = parseInt(item.urbanpopulation);
-                    return(itemUrbanPop);
+                    return(parseInt(item.urbanpopulation));
                 });
                 
                 var dataAccessElec = myData.map(function(item){
-                    itemAccessElec = Math.floor(parseFloat(item.accesstoelectricity)/100*parseInt(item.totalpopulation));
-                    return(itemAccessElec);
+                    return(Math.floor(parseFloat(item.accesstoelectricity)/100*parseInt(item.totalpopulation)));
                 });
                 
                 //for debugging--------------------------------------------------------------------------------------------
@@ -125,6 +121,7 @@ angular
                             geoArray[i++]= [myData[j].country, myData[j].accesstoelectricity];
                         }
                     }
+                    
                 
                 google.charts.load('current', {
                     'packages':['geochart'],
