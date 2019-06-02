@@ -155,7 +155,7 @@ clientEmma.connect(err => {
   app.use("/api/v1/populationstats",express.static(path.join(__dirname,"public/publicpopstatsapp")));
 });
 
-  //Integration con API emigration
+  //Integration con API emigration G08
   var paths='/proxyEmigration';
   var apiEmigration = 'https://sos1819-08.herokuapp.com/api/v1/emigrations-by-countries/';
   
@@ -163,6 +163,16 @@ clientEmma.connect(err => {
     console.log('piped: '+apiEmigration);
     req.pipe(request(apiEmigration)).pipe(res);
   });
+  
+  //Integration con API suicide rate G04
+  var path1='/proxysuicide';
+  var apiSuicide = 'https://sos1819-04.herokuapp.com/api/v1/suicide-rates';
+  
+  app.use(path1, function(req, res) {
+    console.log('piped: '+apiSuicide);
+    req.pipe(request(apiSuicide)).pipe(res);
+  });
+  
   
   //Integration API externa fuel
   var REST_Stadium_API = require("./RESTfuel");
