@@ -135,6 +135,10 @@
                     controller : "weather-ctrl",
                     templateUrl : "publicpopstatsapp/weather.html"
                 })
+                .when("/integrations/EBintehotel",{
+                    controller : "hotel-ctrl",
+                    templateUrl : "publicpopstatsapp/hotel.html"
+                })
                 ;
         });
 
