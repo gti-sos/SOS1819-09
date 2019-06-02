@@ -33,6 +33,10 @@ angular
                 finalArray[i] = [ arr[0].toString(), arr[1] ] ;
             }
             
+            Chartkick.options = {
+              colors: ["pink", "#999"],
+            };
+            
             new Chartkick.LineChart("chart-id", finalArray); //da finire
         }, 
         function (error){});

@@ -23,7 +23,7 @@ app.get(path,(req,res)=>{
         gdp_growth_stats : 34.14211806,
         industry_gdp_stats : 3.457969859,
         gross_sav_gdp_stats : 31.1994775
-    },{
+    }, {
         country : "South Africa",
         year : 1970,
         gdp_growth_stats : 5.248674135,
@@ -41,6 +41,36 @@ app.get(path,(req,res)=>{
         gdp_growth_stats : 7.711914381,
         industry_gdp_stats : 41.62614128,
         gross_sav_gdp_stats : 24.40365209
+    }, {
+       country: "Italy",
+       year: 1970,
+       gdp_growth_stats: 5.268692965,
+       industry_gdp_stats: 27.9871498,
+       gross_sav_gdp_stats: 26.86443817
+    }, {
+       country: "India",
+       year: 1970,
+       gdp_growth_stats: 5.157229736,
+       industry_gdp_stats: 21.78022951,
+       gross_sav_gdp_stats: 13.23451613
+    }, {
+       country: "Spain",
+       year: 1970,
+       gdp_growth_stats: 4.290639388,
+       industry_gdp_stats: 28.36305371,
+       gross_sav_gdp_stats: 25.47194228
+    }, {
+       country: "USA",
+       year: 1970,
+       gdp_growth_stats: 0.1860456364,
+       industry_gdp_stats: 23.13808336,
+       gross_sav_gdp_stats: 21.50689108
+    }, {
+       country: "France",
+       year: 1970,
+       gdp_growth_stats: 5.558249635,
+       industry_gdp_stats: 29.04501265,
+       gross_sav_gdp_stats: 25.76056269
     }, {
         country : "Netherlands",
         year : 2012,
@@ -66,6 +96,36 @@ app.get(path,(req,res)=>{
         industry_gdp_stats : 45.16019843,
         gross_sav_gdp_stats : 25.62897701
     }, {
+       country: "Italy",
+       year: 2012,
+       gdp_growth_stats: -2.819013779,
+       industry_gdp_stats: 21.42657282,
+       gross_sav_gdp_stats: 17.49589194
+    }, {
+       country: "India",
+       year: 2012,
+       gdp_growth_stats: 5.456387552,
+       industry_gdp_stats: 29.3985277,
+       gross_sav_gdp_stats: 35.26129075
+    }, {
+       country: "Spain",
+       year: 2012,
+       gdp_growth_stats: -2.927750507,
+       industry_gdp_stats: 22.03170756,
+       gross_sav_gdp_stats: 19.65773882
+    }, {
+       country: "USA",
+       year: 2012,
+       gdp_growth_stats: 2.249545852,
+       industry_gdp_stats: 19.86025676,
+       gross_sav_gdp_stats: 18.83656036
+    }, {
+       country: "France",
+       year: 2012,
+       gdp_growth_stats: 0.3131347444,
+       industry_gdp_stats: 17.86855062,
+       gross_sav_gdp_stats: 21.45516329
+    }, {
         country : "Netherlands",
         year : 2017,
         gdp_growth_stats : 2.868832199,
@@ -89,7 +149,37 @@ app.get(path,(req,res)=>{
         gdp_growth_stats : 1.545621452,
         industry_gdp_stats : 22.32156541,
         gross_sav_gdp_stats : 13.16924382
-    }];
+    }, {
+       country: "Italy",
+       year: 2017,
+       gdp_growth_stats: 1.145512822,
+       industry_gdp_stats: 21.56525868,
+       gross_sav_gdp_stats: 20.34206903
+    }, {
+       country: "India",
+       year: 2017,
+       gdp_growth_stats: 7.167888861,
+       industry_gdp_stats: 26.49817453,
+       gross_sav_gdp_stats: 29.29807265
+    }, {
+       country: "Spain",
+       year: 2017,
+       gdp_growth_stats: 2.979182401,
+       industry_gdp_stats: 21.87446145,
+       gross_sav_gdp_stats: 22.97782063
+    }, {
+       country: "USA",
+       year: 2017,
+       gdp_growth_stats: 2.21701033,
+       industry_gdp_stats: 18.79695397,
+       gross_sav_gdp_stats: 18.99358566
+    }, {
+       country: "France",
+       year: 2017,
+       gdp_growth_stats: 2.161158086,
+       industry_gdp_stats: 17.36161504,
+       gross_sav_gdp_stats: 22.92424318
+ }];
     
      economy_stats.find({},{projection : {_id : 0}}).toArray((err, economyArray)=>{
         if(err) console.log(err);
