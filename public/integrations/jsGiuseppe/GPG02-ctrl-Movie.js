@@ -94,7 +94,7 @@ angular
                       type: 'line'
                     },
                     title: {
-                        text: 'Premios a las mejores películas de Estados Unidos, desde 1939 hasta 1997, de los films ' + filmlist
+                        text: 'Premios a las mejores películas de Estados Unidos, desde 1939 hasta 2011, de los films ' + filmlist
                     },
                 
                     subtitle: {
