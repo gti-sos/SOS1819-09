@@ -139,6 +139,10 @@
                     controller : "hotel-ctrl",
                     templateUrl : "publicpopstatsapp/hotel.html"
                 })
+                .when("/integrations/EBG04",{
+                    controller : "suicide-ctrl",
+                    templateUrl : "publicpopstatsapp/suicide.html"
+                })
                 ;
         });
 
