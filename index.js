@@ -173,6 +173,15 @@ clientEmma.connect(err => {
     req.pipe(request(apiSuicide)).pipe(res);
   });
   
+  //Integration con API life expectancy G12
+  var path2='/proxylife';
+  var apilife = 'https://sos1819-12.herokuapp.com/api/v1/life-expectancy-stats';
+  
+  app.use(path2, function(req, res) {
+    console.log('piped: '+apilife);
+    req.pipe(request(apilife)).pipe(res);
+  });
+  
   
   //Integration API externa fuel
   var REST_Stadium_API = require("./RESTfuel");

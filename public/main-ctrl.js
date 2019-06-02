@@ -143,6 +143,10 @@
                     controller : "suicide-ctrl",
                     templateUrl : "publicpopstatsapp/suicide.html"
                 })
+                .when("/integrations/EBG12",{
+                    controller : "life-ctrl",
+                    templateUrl : "publicpopstatsapp/life.html"
+                })
                 ;
         });
 
