@@ -167,6 +167,13 @@ app.get("/api/v1/populationstats/loadInitialData",(req,res)=>{
     totalpopulation:"5076732",
     urbanpopulation:"5076732",
     accesstoelectricity:"100"
+},
+{
+    country:"Italy",
+    year:2010,
+    totalpopulation:"59095365",
+    urbanpopulation:"40502481",
+    accesstoelectricity:"100"
 }
     ];
     popstats.count(function(err, count) {
