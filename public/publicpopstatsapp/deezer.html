@@ -1,0 +1,32 @@
+<h1>API Deezer</h1>
+
+<h2>Datos de Eminem</h2>
+
+<div class="centered">
+ <table class="table">
+                
+                <thead>
+                    <tr>
+                        
+                        <th>Canción</th>
+                        <th>Álbum</th>
+                        <th>Escuchar</th>
+                        
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <tr ng-repeat="stat in eminem">
+                        
+                       <td>{{stat.title}}</td>
+                       <td >{{stat.album.title}}</td>
+                       <td><a href={{stat.link}}>{{stat.link}}</a></td>
+                       </td>
+                    </tr>
+                    
+                </tbody>
+                
+            </table>
+</div>
+
+<a class="btn btn-info" href="#!/integrations" role="button">REGRESO</a>

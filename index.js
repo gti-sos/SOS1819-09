@@ -197,12 +197,12 @@ clientEmma.connect(err => {
   var EBfuel;
   REST_Stadium_API(app,EBfuel);
   
-  //Integration API externa airport
+  // API externa airport
   var REST_Airport_API = require("./RESTairport");
   var EBairport;
   REST_Airport_API(app,EBairport);
   
-  //Integration API externa foot
+  // API externa foot
   var REST_foot_API = require("./RESTfoot");
   var EBfoot;
   REST_foot_API(app,EBfoot);
@@ -212,7 +212,7 @@ clientEmma.connect(err => {
   var EBhotel;
   REST_hotel_API(app,EBhotel);
   
-  //Integration API externa Numberfact
+  // API externa Numberfact
   var REST_Fact_API = require('./RESTfact');
   var EBfact;
   REST_Fact_API(app,EBfact);
@@ -222,6 +222,10 @@ clientEmma.connect(err => {
   var EBweather;
   REST_Weather_API(app,EBweather);
   
+  //API eminem
+  var REST_Deezer_API = require('./RESTEminem');
+  var EBdeezer;
+  REST_Deezer_API(app,EBdeezer);
   
   
 // ___________________________economy_stats_____________________________________

@@ -142,6 +142,71 @@ angular
                     chart.draw(data, options);
                 }  
                 
+                //uvChart----------------------------------------------------------------------------------------------
+                
+                var myName1990 = myData.filter(function(item){
+                  if(item.year==1990){
+                       return(item.country);
+                  }
+               });
+               
+               var myName2010 = myData.filter(function(item){
+                  if(item.year==2010){
+                       return(item.country);
+                  }
+               });
+               
+               var myValue1990 = myData.filter(function(item){
+                  if(item.year==1990){
+                       return(parseInt(item.urbanpopulation));
+                  }
+               });
+               
+               var myValue2010 = myData.filter(function(item){
+                  if(item.year==2010){
+                       return(parseInt(item.urbanpopulation));
+                  }
+               });
+                
+                console.log(myName1990.length);
+                console.log(myValue2010);
+                
+
+                var jsonArr = [];
+                
+                for (var i=0;i<myName1990.length;i++){
+                    
+                    jsonArr[i] = {name: myName1990[i].country, value: parseInt(myValue1990[i].totalpopulation)};
+                }
+
+                
+
+                var json2010 = [];
+                
+                for (var i=0;i<myName2010.length;i++){
+
+                    json2010[i] = {name: myName2010[i].country, value: parseInt(myValue2010[i].totalpopulation)}
+                }
+
+            
+                
+                var graphdef = {
+                	categories : ['1990', '2010'],
+                	dataset : {
+                		'1990' : jsonArr,
+                		'2010' : json2010
+                		
+                	}
+                }
+
+                var chart = uv.chart('Bar', graphdef,{
+                                                    	meta : {
+                                                    		caption : 'Total population',
+                                                    		subcaption : 'in 1990 and 2010',
+                                                    		hlabel : 'Total population',
+                                                    		vlabel : 'Countries',
+	
+                }});
                 
                 
             });

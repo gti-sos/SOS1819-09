@@ -115,10 +115,6 @@
                     controller : "pop-view",
                     templateUrl : "publicpopstatsapp/view.html"
                 })
-                .when("/populationstats/uvChart",{
-                    controller : "chart-ctrl",
-                    templateUrl : "publicpopstatsapp/chart.html"
-                })
                 .when("/populationstats/next",{
                     controller : "integration-ctrl",
                     templateUrl : "publicpopstatsapp/integration.html"
@@ -162,6 +158,10 @@
                 .when("/integrations/EBUsoFact",{
                     controller : "fact-ctrl",
                     templateUrl : "publicpopstatsapp/fact.html"
+                })
+                .when("/integrations/EBUsoDeezer",{
+                    controller : "deezer-ctrl",
+                    templateUrl : "publicpopstatsapp/deezer.html"
                 })
                 ;
         });
