@@ -9,7 +9,8 @@ angular
         $http.get(API).then(function(response){
             console.log("Data received " + JSON.stringify(response.data, null, 2));
             var arrinfo = response.data;
-            $scope.info = arrinfo.text + " is " + arrinfo.number;
+            $scope.info = "NUMBER FROM " + arrinfo.region + ", " + arrinfo["iso-code"] + ": " + arrinfo["telephone-number"];
+            
         }, 
         function (error){});
 }]);
