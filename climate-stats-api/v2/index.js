@@ -42,6 +42,12 @@ module.exports =function(app, climate_stats) {
             co2_stats : 7.3617,
             nitrous_oxide_stats : 31610.39
         },{
+            country : "Germany",
+            year : 1990,
+            methane_stats : 115486,
+            co2_stats : 11.6226,
+            nitrous_oxide_stats : 71118.03
+        },{
             country : "France",
             year : 2000,
             methane_stats : 85646.7,
@@ -72,17 +78,17 @@ module.exports =function(app, climate_stats) {
             co2_stats : 7.9126,
             nitrous_oxide_stats : 30504
         },{
+            country : "Germany",
+            year : 2000,
+            methane_stats : 76208.1,
+            co2_stats : 10.0956,
+            nitrous_oxide_stats : 53935.35
+        },{
             country : "France",
             year : 2012,
             methane_stats : 81178.5035,
             co2_stats : 5.0751,
             nitrous_oxide_stats : 36865.68363
-        },{
-            country : "India",
-            year : 2012,
-            methane_stats : 636395.8272,
-            co2_stats : 1.5981,
-            nitrous_oxide_stats : 239755.1309
         },{
             country : "Spain",
             year : 2012,
@@ -101,6 +107,12 @@ module.exports =function(app, climate_stats) {
             methane_stats : 35238.178,
             co2_stats : 6.2054,
             nitrous_oxide_stats : 20083.8406
+        },{
+            country : "Germany",
+            year : 2012,
+            methane_stats : 55720.8184,
+            co2_stats : 9.1992,
+            nitrous_oxide_stats : 43410.6397
         }];
         
         
