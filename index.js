@@ -243,6 +243,7 @@ app.use(pathsGenPubExp, function(req, res) {
 });
 
 //-----------------------------------------------------------------------------------------------------------
+//INTEGRACION API SOS
 
 //Integration API Country G03
 
@@ -279,6 +280,19 @@ app.use(pathsElements, function(req, res) {
 });
 
 //-----------------------------------------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------------------------------------
+//INTEGRACION API EXTERNA
+
+var RESTAPInumber = require("./RESTnumber");
+var GPnumber; 
+RESTAPInumber(app, GPnumber);
+
+var RESTAPIcocktail = require("./RESTCocktail");
+var GPcocktail; 
+RESTAPIcocktail(app, GPcocktail);
 
 //MongoDB--------------------------------------------------------------------------------------
 

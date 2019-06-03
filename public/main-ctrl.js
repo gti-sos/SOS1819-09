@@ -102,6 +102,14 @@
                    controller: "GPG14-ctrl-Elements",
                    templateUrl: "integrations/GPG14Elements.html"
                 })
+                .when("/integrations/GPE01Numbers", {   
+                   controller: "GPE01-ctrl-Numbers",
+                   templateUrl: "integrations/GPE01Numbers.html"
+                })
+                .when("/integrations/GPE02Cocktails", {   
+                   controller: "GPE02-ctrl-Cocktails",
+                   templateUrl: "integrations/GPE02Cocktails.html"
+                })
                 // ----------------- Population Stats
                 .when("/populationstats",{
                     controller : "list-ctrl",
