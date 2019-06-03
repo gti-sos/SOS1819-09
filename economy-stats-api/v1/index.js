@@ -72,6 +72,18 @@ app.get(path,(req,res)=>{
        industry_gdp_stats: 29.04501265,
        gross_sav_gdp_stats: 25.76056269
     }, {
+       country: "Germany",
+       year: 1970,
+       gdp_growth_stats: 3.132699754,
+       industry_gdp_stats: 33.56380555,
+       gross_sav_gdp_stats: 26.47876255
+    }, {
+       country: "Iran",
+       year: 1970,
+       gdp_growth_stats: 11.12258869,
+       industry_gdp_stats: 40.58258388,
+       gross_sav_gdp_stats: 40.67242893
+    }, {
         country : "Netherlands",
         year : 2012,
         gdp_growth_stats : -1.057037404,
@@ -126,6 +138,84 @@ app.get(path,(req,res)=>{
        industry_gdp_stats: 17.86855062,
        gross_sav_gdp_stats: 21.45516329
     }, {
+       country: "Germany",
+       year: 2012,
+       gdp_growth_stats: 0.4919928291,
+       industry_gdp_stats: 27.59250397,
+       gross_sav_gdp_stats: 26.32637875
+    }, {
+       country: "Iran",
+       year: 2012,
+       gdp_growth_stats: -7.44455703,
+       industry_gdp_stats: 43.34185294,
+       gross_sav_gdp_stats: 37.65796579
+    }, {
+       country: "Netherlands",
+       year: 2013,
+       gdp_growth_stats: -0.1301752395,
+       industry_gdp_stats: 19.33416406,
+       gross_sav_gdp_stats: 28.06072932
+    }, {
+       country: "South Africa",
+       year: 2013,
+       gdp_growth_stats: 2.4852005,
+       industry_gdp_stats: 26.66809154,
+       gross_sav_gdp_stats: 19.02767037
+    }, {
+       country: "Colombia",
+       year: 2013,
+       gdp_growth_stats: 4.566869773,
+       industry_gdp_stats: 32.72222772,
+       gross_sav_gdp_stats: 18.2279525
+    }, {
+       country: "Venezuela",
+       year: 2013,
+       gdp_growth_stats: 1.343094036,
+       industry_gdp_stats: 44.72616122,
+       gross_sav_gdp_stats: 15.36172757
+    }, {
+       country: "Italy",
+       year: 2013,
+       gdp_growth_stats: -1.728160802,
+       industry_gdp_stats: 21.32794416,
+       gross_sav_gdp_stats: 17.92019665
+    }, {
+       country: "India",
+       year: 2013,
+       gdp_growth_stats: 6.386106401,
+       industry_gdp_stats: 28.40489956,
+       gross_sav_gdp_stats: 34.30465633
+    }, {
+       country: "Spain",
+       year: 2013,
+       gdp_growth_stats: -1.705705,
+       industry_gdp_stats: 21.24339349,
+       gross_sav_gdp_stats: 20.19361317
+    }, {
+       country: "USA",
+       year: 2013,
+       gdp_growth_stats: 1.842081071,
+       industry_gdp_stats: 19.95404993,
+       gross_sav_gdp_stats: 19.26164254
+    }, {
+       country: "France",
+       year: 2013,
+       gdp_growth_stats: 0.5763266792,
+       industry_gdp_stats: 17.97180129,
+       gross_sav_gdp_stats: 21.38921233
+    }, {
+       country: "Germany",
+       year: 2013,
+       gdp_growth_stats: 0.4919928291,
+       industry_gdp_stats: 27.08669469,
+       gross_sav_gdp_stats: 26.18672763
+    }, {
+       country: "Iran",
+       year: 2013,
+       gdp_growth_stats: -7.44455703,
+       industry_gdp_stats: 42.88103081,
+       gross_sav_gdp_stats: 35.7380595
+    }, {
         country : "Netherlands",
         year : 2017,
         gdp_growth_stats : 2.868832199,
@@ -179,6 +269,18 @@ app.get(path,(req,res)=>{
        gdp_growth_stats: 2.161158086,
        industry_gdp_stats: 17.36161504,
        gross_sav_gdp_stats: 22.92424318
+    }, {
+       country: "Germany",
+       year: 2017,
+       gdp_growth_stats: 2.15710947,
+       industry_gdp_stats: 27.97460746,
+       gross_sav_gdp_stats: 28.10854548
+    }, {
+       country: "Iran",
+       year: 2017,
+       gdp_growth_stats: 3.755187367,
+       industry_gdp_stats: 34.91010692,
+       gross_sav_gdp_stats: 30.17271808
  }];
     
      economy_stats.find({},{projection : {_id : 0}}).toArray((err, economyArray)=>{
