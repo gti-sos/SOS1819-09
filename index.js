@@ -272,7 +272,7 @@ app.use(pathsMovie, function(req, res) {
 //Integration API elements G14
 
 var pathsElements='/proxyElements'; 
-var APIElements = 'https://sos1819acp-feedbacks-sos1819acp.c9users.io/api/v1/elements'; //DA AGGIUSTARE
+var APIElements = 'https://sos1819-14.herokuapp.com/api/v1/elements';
 
 app.use(pathsElements, function(req, res) {
   console.log('piped: '+APIElements);
