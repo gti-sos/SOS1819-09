@@ -78,7 +78,7 @@ angular
                                     
                                           var options = {
                                             title: 'London\'s weather identification, access to electricity' ,
-                                            chartArea: {width: '50%'},
+                                            chartArea: {width: '70%', height: '70%'},
                                             hAxis: {
                                               title: 'value',
                                               minValue: 0
