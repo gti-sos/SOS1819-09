@@ -18,6 +18,7 @@ angular
             var filmlist = "";
             
             var j = 0;
+            
             for (var i = 0; i<DataMovie.length; i++)
             {
                 if (DataMovie[i].country == "EEUU")

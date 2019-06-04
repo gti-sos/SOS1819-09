@@ -110,6 +110,10 @@
                    controller: "GPE02-ctrl-Cocktails",
                    templateUrl: "integrations/GPE02Cocktails.html"
                 })
+                .when("/economy-stats/visualization", {   
+                   controller: "ListCtrlVisualEconomy",
+                   templateUrl: "economy-stats/visualization.html"
+                })
                 // ----------------- Population Stats
                 .when("/populationstats",{
                     controller : "list-ctrl",
